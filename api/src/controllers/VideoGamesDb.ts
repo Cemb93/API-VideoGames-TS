@@ -9,7 +9,7 @@ export const videoGamesDb = async () => {
     // let games_DB = await videoGamesDb.findAll({
 
     let games_DB = await Videogames.find({
-      relations: ['Genres']
+      relations: ['genre']
     });
     //* Se cambia el formato para una mejor visualizacion
     games_DB = JSON.parse(JSON.stringify(games_DB));

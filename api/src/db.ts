@@ -9,13 +9,13 @@ const { HOST, USER, PASSWORD, DATABASE } = process.env;
 
 //* Genero la coneccion de la base de datos
 export const AppDataSource = new DataSource({
-  type: "postgres",//* Elegimos la DB 
+  type: "postgres", 
   host: HOST,
   username: USER,
   password: PASSWORD,
-  port: 5432,//! PUERTO POR DEFECTO
-  database: DATABASE,//* NOMBRE DE LA BASE DE DATOS
-  entities: [Videogames, Genres],//* NOMBRE DE LOS MODELOS
+  port: 5432,
+  database: DATABASE,
+  entities: [Videogames, Genres],
   synchronize: true,
-  // logging: true,//* No permite visualizar la info de DB en la terminal
-})
+  // logging: true,
+});
