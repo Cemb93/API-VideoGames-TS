@@ -2,7 +2,7 @@ import { Request, Response } from "express"
 import { gamesByName } from "../controllers/gamesByName";
 import { gamesById } from "../controllers/gamesById";
 import { videoGamesApi } from "../controllers/VideoGames";
-import { VideoGames } from "../interface/VideoGames";
+import { VideoGames } from "../interface";
 
 export const allVideoGames = async (req: Request, res: Response) => {
   const { name } = req.query;

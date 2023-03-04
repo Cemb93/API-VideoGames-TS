@@ -1,5 +1,3 @@
-// import { Platforms } from "../types/VideoGames"
-
 export interface Platforms {
   platform: {
     name: string
@@ -19,4 +17,9 @@ export interface VideoGames {
   platforms: Platforms[]
   genres: Genres[]
   background_image: string
+}
+
+export interface Generos {
+  id: number
+  name: string
 }

@@ -1,4 +1,4 @@
-import { Genres, Platforms } from "../interface/VideoGames";
+import { Genres, Platforms } from "../interface";
 import { Videogames } from "../models/VideoGames";
 const fetch = require("node-fetch");
 const { VIDEOGAMES, KEY } = process.env;
