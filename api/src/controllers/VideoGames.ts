@@ -32,7 +32,6 @@ export const videoGamesApi = async () => {
       }));
       gamesOfApi = gameDb?.concat(gamesOfApi)
       return gamesOfApi;
-      // return pagesOfApi;
     }
   } catch (error) {
     console.log("Error en videoGamesApi por:", error);
