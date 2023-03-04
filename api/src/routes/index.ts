@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { allVideoGames } from "../services/VideoGames";
+import { allVideoGames, allVideoGamesById } from "../services/VideoGames";
 
 const router = Router();
 
@@ -9,6 +9,7 @@ const GENRES = '/genres';
 // router.post('/users', create);
 
 router.get(VIDEOGAMES, allVideoGames);
+router.get(`${VIDEOGAMES}/:id`, allVideoGamesById);
 
 // router.put('/users/:id', update);
 
