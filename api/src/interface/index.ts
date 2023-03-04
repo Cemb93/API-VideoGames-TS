@@ -1,4 +1,4 @@
-export interface Platforms {
+export interface Platforms {//! ESTO NO SE PUEDE HACER CON LOS TIPOS
   platform: {
     name: string
   }
