@@ -1,4 +1,4 @@
-import { Generos, IVideoGames, Platforms } from "../interface";
+import { Generos, Platforms, VideoGamesApi } from "../interface";
 import { videoGamesDb } from "./VideoGamesDb";
 const fetch = require("node-fetch");
 const { VIDEOGAMES, KEY } = process.env;
@@ -9,7 +9,7 @@ export const gamesByName = async (name: string) => {
   try {
     let gameDb = await videoGamesDb();
     let nameApi = await fetch(`${VIDEOGAMES}?search=${name}&key=${KEY}`).then((data: any) => data.json());
-    nameApi.results.map((el: IVideoGames) => {
+    nameApi.results.map((el: VideoGamesApi) => {
       gameByName.push({
         id: el.id,
         name: el.name,

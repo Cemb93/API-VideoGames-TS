@@ -1,9 +1,9 @@
 'use strict';
 
-import { Model } from "sequelize";
+import { Model, Sequelize } from "sequelize";
 import { Generos } from "../interface";
 
-module.exports = (sequelize: any, DataTypes: any) => {
+module.exports = (sequelize: Sequelize, DataTypes: any) => {
   class Genre extends Model<Generos> implements Generos {
     id!: number;
     name!: string;

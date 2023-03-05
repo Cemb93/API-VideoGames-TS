@@ -9,7 +9,7 @@ export interface Generos {
   name: string
 }
 
-export interface IVideoGames {
+export interface VideoGamesApi {
   id?: string
   name: string
   description: string
@@ -17,10 +17,11 @@ export interface IVideoGames {
   rating: number
   platforms: Platforms[]
   genres?: Generos[]
-  // genres?: GenreGame[]
   background_image: string
 }
 
-type PropsGenre = Omit<Generos, 'id'>
+type PropsGames = Omit<VideoGamesApi, 'background_image'>
 
-export interface IGamesGenres extends PropsGenre {}
+export interface IVideoGames extends PropsGames {
+  image: string
+}

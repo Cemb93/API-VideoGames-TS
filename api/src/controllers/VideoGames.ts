@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { Generos, Platforms, IVideoGames } from "../interface";
+import { Generos, Platforms, VideoGamesApi } from "../interface";
 //* FETCH WITH NODE.JS => https://stackoverflow.com/questions/48433783/referenceerror-fetch-is-not-defined
 const fetch = require("node-fetch");
 import { videoGamesDb } from "./VideoGamesDb";
@@ -18,7 +18,7 @@ export const videoGamesApi = async () => {
         ).catch((error: string) => console.log('Error en la API por:', error))
       );
     }
-    let gamesOfApi = await Promise.all(pagesOfApi).then((res: any) => res[1].results.map((el: IVideoGames) => {
+    let gamesOfApi = await Promise.all(pagesOfApi).then((res: any) => res[1].results.map((el: VideoGamesApi) => {
       return {
         id: el.id,
         name: el.name,
@@ -53,7 +53,7 @@ export const videoGamesApi = async () => {
 //           ).catch((error: string) => console.log('Error en la API por:', error))
 //         );
 //       }
-//       let gamesOfApi = await Promise.all(pagesOfApi).then((res: any) => res[1].results.map((el: IVideoGames) => {
+//       let gamesOfApi = await Promise.all(pagesOfApi).then((res: any) => res[1].results.map((el: VideoGamesApi) => {
 //         return {
 //           id: el.id,
 //           name: el.name,

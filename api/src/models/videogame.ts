@@ -1,8 +1,8 @@
 'use strict';
-import { Model } from "sequelize";
+import { Model, Sequelize } from "sequelize";
 import { Generos, IVideoGames, Platforms } from "../interface";
 
-module.exports = (sequelize: any, DataTypes: any) => {
+module.exports = (sequelize: Sequelize, DataTypes: any) => {
   class VideoGame extends Model<IVideoGames> implements IVideoGames {
     id!: string;
     name!: string;
@@ -10,8 +10,8 @@ module.exports = (sequelize: any, DataTypes: any) => {
     released!: string;
     rating!: number;
     platforms!: Platforms[]
-    // genres!: Generos[]
-    background_image!: string
+    genres!: Generos[]
+    image!: string
     static associate(models: any) {
       VideoGame.belongsToMany(models.Genre, { through: 'Games_Genres' });
     }
@@ -43,9 +43,9 @@ module.exports = (sequelize: any, DataTypes: any) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
-    background_image: {
+    image: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: false,
     }
   }, {
     sequelize,
