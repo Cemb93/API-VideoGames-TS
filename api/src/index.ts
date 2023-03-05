@@ -1,14 +1,11 @@
-import dotenv from 'dotenv';
-import app from './app';
-import { sequelize } from './db';
-// import { sequelize } from './db';
-dotenv.config();
-
+require('dotenv').config();
+import db from './models/db';
+import server from './app';
 const { PORT } = process.env;
 
-sequelize.sync({ force: true }).then(() => {
-  app.listen(PORT, () => {
-    console.log(`Listening at port:`, 3001);
+db.sequelize.sync({ force: false }).then(() => {
+  server.listen(PORT, () => {
+    console.log(`Listening at PORT:`, 3001);
   });
 });
 

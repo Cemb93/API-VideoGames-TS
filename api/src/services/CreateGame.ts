@@ -1,29 +1,35 @@
 import { Request, Response } from "express";
-import { Genres } from "../models/Genres";
-// import { Videogames } from "../models/VideoGames";
-import Videogames from "../models/VideoGames";
-import {sequelize} from '../db'
-console.log('DB IN CREATE:', sequelize.models.Videogames)
-//* METODOS DE TYPEORM => https://typeorm.biunav.com/en/repository-api.html#repository-api
+import { IVideoGames } from "../interface";
+import db from "../models/db";
 
 export const createVideoGame = async (req: Request, res: Response) => {
-  const { name, description, released, image, rating, platforms, genres } = req.body as Videogames;
-  // console.log('GENERO:', genres)
+  const game = req.body as IVideoGames;
+  // const game = req.body as IGamesGenres;
+  // const { name, description, released, image, rating, platforms, genres } = req.body;
   try {
-    // const games = req.body as Videogames;
-    if (platforms.length >= 1) {
-      const newGame = await sequelize.models.Videogames.create({
-        name: name,
-        description: description,
-        released: released,
-        image: image,
-        rating: rating,
-        platforms: platforms,
-      });
-      console.log('NEW GAME:', newGame);
-      return res.json({ mgs: 'Video Juegos creado' });
-    }
+    // let newGame = await db.VideoGame.create({
+    //   name,
+    //   description,
+    //   released,
+    //   image,
+    //   rating,
+    //   platforms,
+    // });
+    let newGame = await db.VideoGame.create({
+      name: game.name,
+      description: game.description,
+      released: game.released,
+      image: game.background_image,
+      rating: game.rating,
+      platforms: game.platforms,
+    });
+    // console.log(newGame.__proto__)
+    // newGame = JSON.parse(JSON.stringify(newGame));
+    let generos_DB = await db.Genre.findAll({ where: { name: game.genres } });
+    console.log('GENEROS DB:', generos_DB)
+    await newGame.addGenre(generos_DB);
+    return res.json({ mgs: "Video Juegos creado" });
   } catch (error) {
-    console.log('Error en POST por:', error);
+    console.log("Error en POST por:", error);
   }
 };

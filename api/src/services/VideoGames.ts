@@ -2,7 +2,7 @@ import { Request, Response } from "express"
 import { gamesByName } from "../controllers/gamesByName";
 import { gamesById } from "../controllers/gamesById";
 import { videoGamesApi } from "../controllers/VideoGames";
-import { VideoGames } from "../interface";
+import { IVideoGames } from "../interface";
 
 export const allVideoGames = async (req: Request, res: Response) => {
   const { name } = req.query;
@@ -11,7 +11,7 @@ export const allVideoGames = async (req: Request, res: Response) => {
     if (typeof name === 'string') {
       let names = await gamesByName(name);
       if (names && names.length >= 1) {
-        let filterName = names.filter((el: VideoGames) => {
+        let filterName = names.filter((el: IVideoGames) => {
           return el.name.toLowerCase().includes(name.toLowerCase());
         });
         

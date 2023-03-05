@@ -1,10 +1,12 @@
 import { Column, ForeignKey, Model, Table } from "sequelize-typescript";
+// import VideoGames from "./VideoGames";
 import { Genres } from "./Genres";
-import Videogames from "./VideoGames";
+import { VideoGames } from "./VideoGames";
 
 @Table
-export default class VideogamesGenres extends Model {
-    @ForeignKey(() => Videogames)
+// export default class GamesGenres extends Model {
+export class GamesGenres extends Model {
+    @ForeignKey(() => VideoGames)
     @Column
     games_id!: number
 

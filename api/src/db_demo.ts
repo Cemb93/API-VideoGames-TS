@@ -17,6 +17,8 @@ export const sequelize = new Sequelize({
   logging: false,
 });
 
+export const { models } = sequelize
+
 //* VER DE LA DOCUMENTACION -> https://typeorm.io/
 // import "reflect-metadata";
 // import dotenv from 'dotenv';

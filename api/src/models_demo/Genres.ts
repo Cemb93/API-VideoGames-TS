@@ -1,8 +1,11 @@
 import { BelongsToMany, Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
-import { Generos } from '../interface';
-import VideogamesGenres from './GamesGenres';
-import Videogames from './VideoGames';
+import { Generos, IVideoGames } from '../interface';
+import { GamesGenres } from './GamesGenres';
+import { VideoGames } from './VideoGames';
 
+@Table({
+  timestamps: true,
+})
 @Table
 export class Genres extends Model<Generos> {
   @PrimaryKey
@@ -16,15 +19,15 @@ export class Genres extends Model<Generos> {
   })
   name!: string
 
-  // @BelongsToMany(() => Videogames,{ as: 'members', through: () => VideogamesGenres })
-  @BelongsToMany(() => Videogames, () => VideogamesGenres)
-  videogames!: Videogames[]
+  // @BelongsToMany(() => VideoGames,{ as: 'members', through: () => GamesGenres })
+  @BelongsToMany(() => VideoGames, () => GamesGenres)
+  videogames!: IVideoGames[]
 
-  active!: boolean
+  // active!: boolean
 }
 
 // import { Entity, Column, BaseEntity, PrimaryColumn, ManyToMany, JoinTable } from 'typeorm';
-// import { Videogames } from './VideoGames';
+// import { VideoGames } from './IVideoGames';
 
 // //* SE CREA LA TABLA
 // //! IMPORTANTE, una ves creada la estructura de la tabla, REINICIAR TODO EL VISUAL, para que se efectuen los cambios
@@ -36,9 +39,9 @@ export class Genres extends Model<Generos> {
 //   @Column()
 //   name!: string
 
-//   @ManyToMany(() => Videogames)
+//   @ManyToMany(() => VideoGames)
 //   @JoinTable()
-//   videogames!: Videogames[]
+//   videogames!: VideoGames[]
 
 //   active!: boolean
 // }

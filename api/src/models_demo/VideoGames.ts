@@ -1,10 +1,11 @@
 import { BelongsToMany, Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
-import { VideoGames } from '../interface';
-import VideogamesGenres from './GamesGenres';
+import { IVideoGames } from '../interface';
+import { GamesGenres } from './GamesGenres';
 import { Genres } from './Genres';
 
 @Table
-export default class Videogames extends Model<VideoGames> {
+// export default class VideoGames extends Model<IVideoGames> {
+export class VideoGames extends Model<IVideoGames> {
   @PrimaryKey
   @Column({
     type: DataType.UUID,
@@ -39,14 +40,15 @@ export default class Videogames extends Model<VideoGames> {
 
   @Column({
     type: DataType.STRING,
-    defaultValue: 'https://www.xtrafondos.com/wallpaper/3840x2160/6406-parado-en-el-borde-de-dos-mundos.html',
+    // defaultValue: 'https://www.xtrafondos.com/wallpaper/3840x2160/6406-parado-en-el-borde-de-dos-mundos.html',
   })
-  image!: string
+  // image!: string
+  background_image!: string
 
-  @BelongsToMany(() => Genres, () => VideogamesGenres)
+  @BelongsToMany(() => Genres, () => GamesGenres)
   genres!: Genres[]
 
-  active!: boolean
+  // active!: boolean
 }
 
 // import { Entity, Column, BaseEntity, ManyToMany, JoinTable, PrimaryGeneratedColumn } from 'typeorm';
