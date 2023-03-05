@@ -9,13 +9,12 @@ const { VIDEOGAMES, KEY } = process.env;
 export const videoGamesApi = async () => {
   try {
     let gameDb = await videoGamesDb();
-    // console.log('DB:', gameDb)
     let pagesOfApi = [];
     for (let i = 0; i <= 1; i++) {
-      pagesOfApi.push(
-        await fetch(`${VIDEOGAMES}?key=${KEY}&page=${i}`).then(
-          (data: any) => data.json()
-        ).catch((error: string) => console.log('Error en la API por:', error))
+      const EndPoint = `${VIDEOGAMES}?key=${KEY}&page=${i}`;
+      pagesOfApi.push(await fetch(EndPoint)
+        .then((data: any) => data.json())
+        .catch((error: string) => console.log('Error en la API por:', error))
       );
     }
     let gamesOfApi = await Promise.all(pagesOfApi).then((res: any) => res[1].results.map((el: VideoGamesApi) => {

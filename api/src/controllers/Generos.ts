@@ -3,21 +3,22 @@ import { Generos } from "../interface";
 import db from "../models/db";
 const fetch = require("node-fetch");
 const { GENRES, KEY } = process.env;
-//* METODOS DE TYPEORM => https://typeorm.biunav.com/en/repository-api.html#repository-api
 
 export const genresApi = async (_req: Request, res: Response) => {
   try {
-    const genreDb = await db.Genre.findAll()
-    console.log('GENEROS:', genreDb)
+    const genreDb = await db.Genre.findAll();
+    const EndPoint = `${GENRES}?key=${KEY}`;
 
     if (!genreDb.length) {
-      const dataApi = await fetch(`${GENRES}?key=${KEY}`).then((res: any) => res.json());
+      const dataApi = await fetch(EndPoint).then((res: any) => res.json());
+      
       let genresApi = dataApi.results.map((el: Generos) => {
         return {
           id: el.id,
           name: el.name,
         };
       });
+
       genresApi = await db.Genre.bulkCreate(genresApi);
       return res.json(genresApi);
     } else {

@@ -5,10 +5,10 @@ const { VIDEOGAMES, KEY } = process.env;
 
 export const gamesByName = async (name: string) => {
   let gameByName: any[] = [];
-  // let gameByName: VideoGames[] = [];
+  const EndPoint = `${VIDEOGAMES}?search=${name}&key=${KEY}`;
   try {
     let gameDb = await videoGamesDb();
-    let nameApi = await fetch(`${VIDEOGAMES}?search=${name}&key=${KEY}`).then((data: any) => data.json());
+    let nameApi = await fetch(EndPoint).then((data: any) => data.json());
     nameApi.results.map((el: VideoGamesApi) => {
       gameByName.push({
         id: el.id,

@@ -1,4 +1,3 @@
-import { IVideoGames } from "../interface";
 import db from "../models/db";
 
 export const videoGamesDb = async () => {
@@ -17,7 +16,7 @@ export const videoGamesDb = async () => {
   }
 }
 
-export const gamesDbById = async (id: string): Promise<IVideoGames> => {
+export const gamesDbById = async (id: string) => {
   let id_DB = await db.VideoGame.findByPk(id, {
     include: {
       model: db.Genres,

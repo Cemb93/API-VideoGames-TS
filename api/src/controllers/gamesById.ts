@@ -9,7 +9,8 @@ export const gamesById = async (id: string | number) => {
       let idDb = await gamesDbById(id);
       return idDb;
     } else {
-      let idApi = fetch(`${VIDEOGAMES}/${id}?key=${KEY}`).then((res: any) => res.json());
+      const EndPoint = `${VIDEOGAMES}/${id}?key=${KEY}`;
+      let idApi = fetch(EndPoint).then((res: any) => res.json());
       //* DSTRUCTURANDO EL OBJETO
       const { name, background_image, released, rating, platforms, genres, description_raw } = await idApi;
   

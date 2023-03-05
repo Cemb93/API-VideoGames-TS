@@ -39,6 +39,11 @@ export const allVideoGamesById = async (req: Request, res: Response) => {
   let { id } = req.params;
   try {
     let allIds = await gamesById(id);
+    // console.log('findId',allIds)
+    // let findId = allIds.find((el: IVideoGames) => {
+    //   if (typeof id === 'string') return el === id;
+    //   if (typeof id === 'number') return el === Number(id);
+    // })
     if (!allIds) {
       return res.json({ mgs: `El Juego con el ID: ${id}, no existe!` });
     }

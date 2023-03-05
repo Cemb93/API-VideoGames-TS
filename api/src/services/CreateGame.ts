@@ -14,8 +14,12 @@ export const createVideoGame = async (req: Request, res: Response) => {
       platforms: game.platforms,
     });
 
-    let generos_DB = await db.Genre.findAll({ where: { name: game.genres } });
-    
+    let generos_DB = await db.Genre.findAll({
+      where: {
+        name: game.genres,
+      } 
+    });
+
     await newGame.addGenre(generos_DB);
     return res.json({ mgs: "Video Juegos creado" });
   } catch (error) {

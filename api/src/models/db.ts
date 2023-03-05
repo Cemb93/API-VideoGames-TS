@@ -6,8 +6,9 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const db: any = {};
 const { USER, PASSWORD, HOST, DATABASE, DEPLOY } = process.env;
+const ConnectDb = `postgresql://${USER}:${PASSWORD}@${HOST}/${DATABASE}`;
 
-let sequelize: any = new Sequelize(`postgresql://${USER}:${PASSWORD}@${HOST}/${DATABASE}`, {
+let sequelize: any = new Sequelize(ConnectDb, {
     logging: false,
     native: false,
   }

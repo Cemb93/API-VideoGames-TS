@@ -11,8 +11,8 @@ const GENRES = '/genres';
 router.post(VIDEOGAMES, createVideoGame);
 router.get(VIDEOGAMES, allVideoGames);
 router.get(`${VIDEOGAMES}/:id`, allVideoGamesById);
-// router.put('/users/:id', update);
-// router.delete('/users/:id', eliminar);
+// router.put(`${VIDEOGAMES}/:id`, update);
+// router.delete(`${VIDEOGAMES}/:id`, eliminar);
 
 router.get(GENRES, genresApi);
 
