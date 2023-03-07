@@ -3,7 +3,7 @@ import db from './models/db';
 import server from './app';
 const { PORT } = process.env;
 
-db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   server.listen(PORT, () => {
     console.log(`Listening at PORT:`, 3001);
   });

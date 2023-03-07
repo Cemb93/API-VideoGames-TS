@@ -1,7 +1,15 @@
-export interface Platforms {//! ESTO NO SE PUEDE HACER CON LOS TIPOS
-  platform: {
-    name: string
-  }
+// export interface Platforms {//! ESTO NO SE PUEDE HACER CON LOS TIPOS
+//   platform: {
+//     name: string
+//   }
+// }
+
+export type Platform = {
+  name: string
+}
+
+export interface Platforms {
+  platform: Platform
 }
 
 export interface Generos {
@@ -16,12 +24,18 @@ export interface VideoGamesApi {
   released: string
   rating: number
   platforms: Platforms[]
-  genres?: Generos[]
+  genres: Generos[]
   background_image: string
 }
 
-type PropsGames = Omit<VideoGamesApi, 'background_image'>
+type PropsGames = Omit<VideoGamesApi, 'background_image' | 'platforms' | 'genres'>
+
+export interface IGenres {
+  name: string
+}
 
 export interface IVideoGames extends PropsGames {
   image: string
+  platforms: Array<string>
+  genres?: Array<IGenres>
 }
