@@ -1,41 +1,35 @@
-// export interface Platforms {//! ESTO NO SE PUEDE HACER CON LOS TIPOS
-//   platform: {
-//     name: string
-//   }
-// }
-
-export type Platform = {
-  name: string
+export interface PlatformsApi {//! ESTO NO SE PUEDE HACER CON LOS TIPOS
+  platform: {
+    name: string
+  }
 }
 
-export interface Platforms {
-  platform: Platform
-}
-
-export interface Generos {
+export interface GenerosApi {
   id?: number
   name: string
 }
 
-export interface VideoGamesApi {
+export interface GamesApi {
   id?: string
   name: string
   description: string
   released: string
   rating: number
-  platforms: Platforms[]
-  genres: Generos[]
+  platforms: PlatformsApi[]
+  genres: GenerosApi[]
   background_image: string
 }
 
-type PropsGames = Omit<VideoGamesApi, 'background_image' | 'platforms' | 'genres'>
+type PropsGames = Omit<GamesApi, 'background_image' | 'platforms' | 'genres'>
 
 export interface IGenres {
   name: string
 }
 
-export interface IVideoGames extends PropsGames {
+export interface GamesDb extends PropsGames {
   image: string
-  platforms: Array<string>
-  genres?: Array<IGenres>
+  platformsDb: Array<string>
+  genresDb?: Array<IGenres>//! Se deja opcional por el modelo
 }
+
+export interface GamesGenres extends GamesDb, GamesApi {}

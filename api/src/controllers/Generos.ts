@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Generos } from "../interface";
+import { GenerosApi } from "../interface";
 import db from "../models/db";
 const fetch = require("node-fetch");
 const { GENRES, KEY } = process.env;
@@ -12,7 +12,7 @@ export const genresApi = async (_req: Request, res: Response) => {
     if (!genreDb.length) {
       const dataApi = await fetch(EndPoint).then((res: any) => res.json());
       
-      let genresApi = dataApi.results.map((el: Generos) => {
+      let genresApi = dataApi.results.map((el: GenerosApi) => {
         return {
           id: el.id,
           name: el.name,
@@ -35,7 +35,7 @@ export const genresApi = async (_req: Request, res: Response) => {
 
 //     if (!genreDb.length) {
 //       const dataApi = await fetch(`${GENRES}?key=${KEY}`).then((res: any) => res.json());
-//       let genresApi = dataApi.results.map((el: Generos) => {
+//       let genresApi = dataApi.results.map((el: GenerosApi) => {
 //         return {
 //           id: el.id,
 //           name: el.name,

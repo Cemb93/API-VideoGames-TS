@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { IVideoGames } from "../interface";
+import { GamesGenres } from "../interface";
 import db from "../models/db";
 
 export const createVideoGame = async (req: Request, res: Response) => {
-  const game = req.body as IVideoGames;
+  const game = req.body as GamesGenres;
   try {
     let newGame = await db.VideoGame.create({
       name: game.name,
@@ -11,7 +11,7 @@ export const createVideoGame = async (req: Request, res: Response) => {
       released: game.released,
       image: game.image || "https://www.xtrafondos.com/wallpaper/3840x2160/6406-parado-en-el-borde-de-dos-mundos.html",
       rating: game.rating,
-      platforms: game.platforms,
+      platformsDb: game.platformsDb,
     });
 
     let generos_DB = await db.Genre.findAll({

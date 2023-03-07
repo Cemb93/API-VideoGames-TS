@@ -2,7 +2,7 @@ import { Request, Response } from "express"
 import { gamesByName } from "../controllers/gamesByName";
 import { gamesById } from "../controllers/gamesById";
 import { videoGamesApi } from "../controllers/VideoGames";
-import { IVideoGames } from "../interface";
+import { GamesGenres } from "../interface";
 
 export const allVideoGames = async (req: Request, res: Response) => {
   const { name } = req.query;
@@ -11,11 +11,11 @@ export const allVideoGames = async (req: Request, res: Response) => {
     if (typeof name === 'string') {
       let names = await gamesByName(name);
       if (names && names.length >= 1) {
-        let filterName = names.filter((el: IVideoGames) => {
+        let filterName = names.filter((el: GamesGenres) => {
           return el.name.toLowerCase().includes(name.toLowerCase());
         });
         
-        let firstNames = [];
+        let firstNames: GamesGenres[] = [];
         for (let i = 0; i < filterName.length; i++) {
           firstNames.push(filterName[i]);
           if (firstNames.length === 15) {
@@ -40,7 +40,7 @@ export const allVideoGamesById = async (req: Request, res: Response) => {
   try {
     let allIds = await gamesById(id);
     // console.log('findId',allIds)
-    // let findId = allIds.find((el: IVideoGames) => {
+    // let findId = allIds.find((el: GamesGenres) => {
     //   if (typeof id === 'string') return el === id;
     //   if (typeof id === 'number') return el === Number(id);
     // })

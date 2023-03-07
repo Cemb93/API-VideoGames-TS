@@ -1,4 +1,4 @@
-import { Generos, Platforms } from "../interface";
+import { GenerosApi, PlatformsApi } from "../interface";
 import { gamesDbById } from "./VideoGamesDb";
 const fetch = require("node-fetch");
 const { VIDEOGAMES, KEY } = process.env;
@@ -20,8 +20,8 @@ export const gamesById = async (id: string | number) => {
         image: background_image,
         released,
         rating,
-        platforms: platforms.map((el: Platforms) => el.platform.name),
-        genres: genres.map((el: Generos) => el.name),
+        platforms: platforms.map((el: PlatformsApi) => el.platform.name),
+        genres: genres.map((el: GenerosApi) => el.name),
         description: description_raw,
       };
       return game;
@@ -48,8 +48,8 @@ export const gamesById = async (id: string | number) => {
 //         image: background_image,
 //         released,
 //         rating,
-//         platforms: platforms.map((el: Platforms) => el.platform.name),
-//         genres: genres.map((el: Generos) => el.name),
+//         platforms: platforms.map((el: PlatformsApi) => el.platform.name),
+//         genres: genres.map((el: GenerosApi) => el.name),
 //         description: description_raw,
 //       };
 //       return game;

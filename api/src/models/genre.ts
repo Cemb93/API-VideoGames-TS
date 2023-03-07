@@ -1,10 +1,10 @@
 'use strict';
 
 import { Model, Sequelize } from "sequelize";
-import { Generos } from "../interface";
+import { GenerosApi } from "../interface";
 
 module.exports = (sequelize: Sequelize, DataTypes: any) => {
-  class Genre extends Model<Generos> implements Generos {
+  class Genre extends Model<GenerosApi> implements GenerosApi {
     id!: number;
     name!: string;
     static associate(models: any) {
