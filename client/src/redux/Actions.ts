@@ -1,8 +1,10 @@
+import { Action } from "@/interface/Actions";
+import { Dispatch } from "react";
 import { ActionsTypes, BACK } from "./Action-Types"
 
-export const getAllGames = () => async (dispatch: any): Promise<void> => {
+export const getAllGames = () => async (dispatch: Dispatch<Action>): Promise<void> => {
   try {
-    const data = fetch(BACK.games).then((res: any) => res.json());
+    const data = await fetch(BACK.games).then((res: any) => res.json());
     dispatch({
       type: ActionsTypes.GET_ALL_GAMES,
       payload: data,

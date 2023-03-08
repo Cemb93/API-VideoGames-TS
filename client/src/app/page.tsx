@@ -1,13 +1,9 @@
-// import Image from 'next/image'
-// import { Inter } from 'next/font/google'
-// import styles from './page.module.css'
-
-// const inter = Inter({ subsets: ['latin'] })
+import { Games } from "./components/Games";
 
 export default function Home() {
   return (
     <main>
-      1
+      <Games/>
     </main>
   )
 }
