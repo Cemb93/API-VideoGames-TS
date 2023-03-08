@@ -18,16 +18,18 @@ export const allVideoGames = async (req: Request, res: Response) => {
         let firstNames: GamesGenres[] = [];
         for (let i = 0; i < filterName.length; i++) {
           firstNames.push(filterName[i]);
-          if (firstNames.length === 15) {
+          if (firstNames.length <= 15) {
             firstNames = firstNames;
             if (firstNames.length) {
               return res.json(firstNames);
             } else {
-              return res.json({ msg: 'El juego que buscas no existe' });
+              return res.json({ msg: `No hay juegos con el nombre: ${name}` });
             }
           }
         }
       }
+      //! Si no encuentra nada que filtrar devuelve este mesaje
+      return res.json({ mgs: `No existen juegos con el nombre: ${name}` })
     }
     return res.status(200).json(allGames);
   } catch (error) {

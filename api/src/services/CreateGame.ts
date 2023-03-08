@@ -14,7 +14,7 @@ export const createVideoGame = async (req: Request, res: Response) => {
       platformsDb: game.platformsDb,
     });
 
-    let generos_DB = await db.Genre.findAll({
+    let generos_DB = await db.genre.findAll({
       where: {
         name: game.genres,
       } 

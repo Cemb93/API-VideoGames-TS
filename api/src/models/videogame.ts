@@ -13,7 +13,7 @@ module.exports = (sequelize: Sequelize, DataTypes: any) => {
     genresDb!: IGenres[];
     image!: string;
     static associate(models: any) {
-      VideoGame.belongsToMany(models.Genre, { through: 'Games_Genres' });
+      VideoGame.belongsToMany(models.genre, { through: 'Games_Genres' });
     }
   }
   VideoGame.init({

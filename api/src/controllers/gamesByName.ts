@@ -1,4 +1,4 @@
-import { GamesApi, GenerosApi, PlatformsApi } from "../interface";
+import { GamesApi, GamesGenres, GenerosApi, PlatformsApi } from "../interface";
 import { videoGamesDb } from "./VideoGamesDb";
 const fetch = require("node-fetch");
 const { VIDEOGAMES, KEY } = process.env;
@@ -8,16 +8,15 @@ export const gamesByName = async (name: string) => {
   try {
     let gameDb = await videoGamesDb();
 
-    //! Se obtiene la información de la API
+    let allNames: GamesGenres[] = [];
     let nameApi = await fetch(EndPoint).then((data: any) => data.json());
 
-    //! Se usa el ARREGLO del metodo MAP() para concatenar
     nameApi.results.map((el: GamesApi) => {
       let arrPlatforms: string[] = [];
       if (el.platforms !== null) {
         arrPlatforms = el.platforms.map((el: PlatformsApi) => el.platform.name);
       }
-      return {
+      allNames.push({
         id: el.id,
         name: el.name,
         released: el.released,
@@ -25,14 +24,16 @@ export const gamesByName = async (name: string) => {
         rating: el.rating,
         platforms: arrPlatforms,
         genres: el.genres?.map((el: GenerosApi) => el.name)
-      };
+      });
     });
-    if (gameDb && gameDb.length >= 1) {
-      nameApi = gameDb.concat(nameApi)
-      return nameApi;
-    } else {
-      return nameApi;
-    }
+    // allNames = gameDb.concat(allNames)
+    // console.log('NAMES:', allNames)
+    allNames = [...gameDb, ...allNames]
+    return allNames;
+    // if (gameDb && gameDb.length >= 1) {
+    // } else if (allNames.length >= 1) {
+    //   return allNames;
+    // }
   } catch (error) {
     console.log('No se obtuvo los nombre por:', error);
   }

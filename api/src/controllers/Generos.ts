@@ -6,7 +6,7 @@ const { GENRES, KEY } = process.env;
 
 export const genresApi = async (_req: Request, res: Response) => {
   try {
-    const genreDb = await db.Genre.findAll();
+    const genreDb = await db.genre.findAll();
     const EndPoint = `${GENRES}?key=${KEY}`;
 
     if (!genreDb.length) {
@@ -19,7 +19,7 @@ export const genresApi = async (_req: Request, res: Response) => {
         };
       });
 
-      genresApi = await db.Genre.bulkCreate(genresApi);
+      genresApi = await db.genre.bulkCreate(genresApi);
       return res.json(genresApi);
     } else {
       return res.json(genreDb);

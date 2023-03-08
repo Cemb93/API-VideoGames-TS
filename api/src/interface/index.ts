@@ -12,7 +12,7 @@ export interface GenerosApi {
 export interface GamesApi {
   id?: string
   name: string
-  description: string
+  description?: string //! Se usa SÓLO para el ID
   released: string
   rating: number
   platforms: PlatformsApi[]
@@ -28,8 +28,11 @@ export interface IGenres {
 
 export interface GamesDb extends PropsGames {
   image: string
-  platformsDb: Array<string>
+  platformsDb?: string[]
   genresDb?: Array<IGenres>//! Se deja opcional por el modelo
 }
 
-export interface GamesGenres extends GamesDb, GamesApi {}
+export interface GamesGenres extends GamesDb, PropsGames {
+  platforms: Array<string>
+  genres: string[]
+}

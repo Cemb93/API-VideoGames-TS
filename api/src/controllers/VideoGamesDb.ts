@@ -4,7 +4,7 @@ export const videoGamesDb = async () => {
   try {
     let games_DB = await db.VideoGame.findAll({
       include: {
-        model: db.Genre,
+        model: db.genre,
         attributes: ["name"],
         through: { attributes: [], },
       },
@@ -19,7 +19,7 @@ export const videoGamesDb = async () => {
 export const gamesDbById = async (id: string) => {
   let id_DB = await db.VideoGame.findByPk(id, {
     include: {
-      model: db.Genres,
+      model: db.genres,
       attributes: ["name"],
       through: { attributes: [], },
     },
