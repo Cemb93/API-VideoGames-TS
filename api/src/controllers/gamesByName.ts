@@ -26,14 +26,9 @@ export const gamesByName = async (name: string) => {
         genres: el.genres?.map((el: GenerosApi) => el.name)
       });
     });
-    // allNames = gameDb.concat(allNames)
-    // console.log('NAMES:', allNames)
+    
     allNames = [...gameDb, ...allNames]
     return allNames;
-    // if (gameDb && gameDb.length >= 1) {
-    // } else if (allNames.length >= 1) {
-    //   return allNames;
-    // }
   } catch (error) {
     console.log('No se obtuvo los nombre por:', error);
   }

@@ -13,15 +13,21 @@ export const gamesById = async (id: string | number) => {
       let idApi = fetch(EndPoint).then((res: any) => res.json());
       //* DSTRUCTURANDO EL OBJETO
       const { name, background_image, released, rating, platforms, genres, description_raw } = await idApi;
-  
+
+      let arrPlataforms: string[] = [];
+      let arrGenres: string[] = [];
+      if ((platforms && genres) !== undefined) {
+        arrPlataforms = platforms.map((el: PlatformsApi) => el.platform.name)
+        arrGenres = genres.map((el: GenerosApi) => el.name)
+      }
       const game = {
         id,
         name,
         image: background_image,
         released,
         rating,
-        platforms: platforms.map((el: PlatformsApi) => el.platform.name),
-        genres: genres.map((el: GenerosApi) => el.name),
+        platforms: arrPlataforms,
+        genres: arrGenres,
         description: description_raw,
       };
       return game;
