@@ -5,7 +5,7 @@ export const Game = (
   { id, name, image, released, rating, platforms, genres }: 
   GamesGenres
 ) => {
-  console.log(genres)
+  // console.log(genres)
   return (
     <div>
       <p>Nombre: {name}</p>

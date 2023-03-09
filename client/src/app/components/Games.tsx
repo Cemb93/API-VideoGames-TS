@@ -2,25 +2,31 @@
 
 import { useAppDispatch, useAppSelector } from '@/Hooks'
 import { getAllGames } from '@/redux/Actions'
+import Link from 'next/link';
 import React, { useEffect } from 'react'
 import { GamesGenres, IGenres } from '../../../../api/src/interface';
 import { Game } from './Game';
 
 export const Games = () => {
   const {allGames} = useAppSelector((state) => state)
-  console.log('ALL GAMES',allGames)
+  // console.log('ALL GAMES',allGames)
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch<any>(getAllGames())
   }, [])
   return (
     <div>
+      <Link href={'/create'} >
+        <button>
+          Crear VideoJuego
+        </button>
+      </Link>
       {
         allGames.map((el: GamesGenres) => {
           let GenresDb = el.genresDb?.map((el: IGenres) => el.name)
-          console.log('GENEROS DB:',GenresDb?.length)
+          // console.log('GENEROS DB:',GenresDb?.length)
           let Genres = el.genres.map((el: string) => el)
-          console.log('GENEROS API:', Genres)
+          // console.log('GENEROS API:', Genres)
           return (
             <div key={el.id} >
               <Game
