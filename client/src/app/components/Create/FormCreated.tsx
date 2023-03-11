@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const FormCreated = (
-  {games,errors,handlerChanges,selectPlatforms,deletePlatforms,selectGenres,deleteGenres,handlerSubmit,platforms_api}: 
+  {games,errors,handlerChanges,selectPlatforms,deletePlatforms,selectGenres,deleteGenres,handlerSubmit,platforms_api,genres}: 
   // {games: any,errors: any,}
   any
 ) => {
@@ -87,8 +87,8 @@ export const FormCreated = (
           })}
         </select>
         {games.platformsDb.map((el: string, index: number) => {
-            console.log('EL:', el)
-            console.log('TYPEOF EL:',typeof el)
+            // console.log('EL:', el)
+            // console.log('TYPEOF EL:',typeof el)
           return (
             <div key={index}>
               <p>{el}</p>
@@ -117,25 +117,31 @@ export const FormCreated = (
 
       <br></br>
 
-      {/* <div>
+      <div>
         <label>
           Genres: <br></br>
         </label>
         <select onChange={(e) => selectGenres(e)}>
           <option>Elije mínimo un Genero</option>
-          {genres.map((genre) => (
-            <option key={genre.id} value={genre.name}>
-              {genre.name}
-            </option>
-          ))}
+          {genres.map((genre: any) => {
+            return (
+              <option key={genre.id} value={genre.name}>
+                {genre.name}
+              </option>
+            );
+          })}
         </select>
-        {input.genres.map((el, index) => (
-          <div key={index}>
-            <p>{el}</p>
-            <button onClick={() => deleteGenres(el)}>X</button>
-          </div>
-        ))}
-      </div> */}
+        {games.genres.map((el: string, index: number) => {
+            // console.log('EL:', el)
+            // console.log('TYPEOF EL:',typeof el)
+          return (
+            <div key={index}>
+              <p>{el}</p>
+              <button onClick={() => deleteGenres(el)}>X</button>
+            </div>
+          );
+        })}
+      </div>
 
       <button type="submit">Crear Video Juego</button>
       <br />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useAppDispatch } from '@/Hooks';
+import { useAppDispatch, useAppSelector } from '@/Hooks';
 import { createGames, getGenres } from '@/redux/Actions';
 import React, { useEffect, useState } from 'react'
 import { FormCreated } from './FormCreated';
@@ -18,6 +18,7 @@ export const Create = () => {
   }
   const [games, setGames] = useState(formState);
   const [errors, setErrors] = useState({});
+  const {genres} = useAppSelector((state) => state)
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch<any>(getGenres())
@@ -112,6 +113,7 @@ export const Create = () => {
       deleteGenres={deleteGenres}
       handlerSubmit={handlerSubmit}
       platforms_api={platforms_api}
+      genres={genres}
     />
   )
 }
