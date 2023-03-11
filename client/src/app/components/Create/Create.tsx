@@ -2,6 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from '@/Hooks';
 import { createGames, getGenres } from '@/redux/Actions';
+import { InitialState } from '@/types';
 import React, { useEffect, useState } from 'react'
 import { IGenres } from '../../../../../interface';
 import { FormCreated } from './FormCreated';
@@ -18,10 +19,10 @@ export const Create = () => {
   }
   const [games, setGames] = useState(formState);
   const [errors, setErrors] = useState({});
-  const {genres} = useAppSelector((state) => state)
+  const {genres} = useAppSelector((state: InitialState) => state)
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch<any>(getGenres())
+    dispatch(getGenres())
   }, [dispatch]);
   const platforms_api = [
     "PC",
@@ -96,7 +97,7 @@ export const Create = () => {
     //   })
     // );
 
-    dispatch<any>(createGames(games));
+    dispatch(createGames(games));
     alert("Has creado un nuevo Video Juego!!! 🤩");
 
     //* Seteo todo el input desde CERO
