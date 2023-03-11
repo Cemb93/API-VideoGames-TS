@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const FormCreated = (
-  {games,errors,handlerChanges,selectPlatforms,deletePlatforms,selectGenres,deleteGenres,handlerSubmit}: 
+  {games,errors,handlerChanges,selectPlatforms,deletePlatforms,selectGenres,deleteGenres,handlerSubmit,platforms_api}: 
   // {games: any,errors: any,}
   any
 ) => {
@@ -65,31 +65,39 @@ export const FormCreated = (
           value={games.released}
           onChange={(e) => handlerChanges(e)}
         />
-        {errors.released && <p>{errors.released}</p>}
+        {/* {errors.released && <p>{errors.released}</p>} */}
       </div>
 
       <br></br>
 
-      {/* <div>
+      <div>
         <label>
           Platforms: <br></br>
         </label>
         <select onChange={(e) => selectPlatforms(e)}>
           <option>Elije mínimo una Plataforma</option>
-          {platforms_api.map((platform, index) => (
-            <option key={index} value={platform}>
-              {platform}
-            </option>
-          ))}
+          {platforms_api.map((platform: string, index: number) => {
+            // console.log('EL:', platform)
+            // console.log('TYPEOF EL:',typeof platform)
+            return (
+              <option key={index} value={platform}>
+                {platform}
+              </option>
+            );
+          })}
         </select>
-        {input.platforms.map((el, index) => (
-          <div key={index}>
-            <p>{el}</p>
-            <button onClick={() => deletePlatforms(el)}>X</button>
-          </div>
-        ))}
-        {errors.platforms && <p>{errors.platforms}</p>}
-      </div> */}
+        {games.platformsDb.map((el: string, index: number) => {
+            console.log('EL:', el)
+            console.log('TYPEOF EL:',typeof el)
+          return (
+            <div key={index}>
+              <p>{el}</p>
+              <button onClick={() => deletePlatforms(el)}>X</button>
+            </div>
+          );
+        })}
+        {/* {errors.platforms && <p>{errors.platforms}</p>} */}
+      </div>
 
       <div>
         <label>

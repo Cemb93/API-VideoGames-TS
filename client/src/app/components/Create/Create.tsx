@@ -12,7 +12,8 @@ export const Create = () => {
     description: '',
     released: '',
     rating: 0,
-    platforms: [''],
+    // platforms: [''],
+    platformsDb: [''],
     genres: [''],
   }
   const [games, setGames] = useState(formState);
@@ -56,16 +57,16 @@ export const Create = () => {
   function selectPlatforms(e: any) {
     setGames({
       ...games,
-      platforms: games.platforms.includes(e.target.value)
-        ? games.platforms
-        : [...games.platforms, e.target.value],
+      platformsDb: games.platformsDb.includes(e.target.value)
+        ? games.platformsDb
+        : [...games.platformsDb, e.target.value],
     });
   }
 
   function deletePlatforms(el: any) {
     setGames({
       ...games,
-      platforms: games.platforms.filter((platform) => platform !== el),
+      platformsDb: games.platformsDb.filter((platform) => platform !== el),
     });
   }
 
@@ -110,6 +111,7 @@ export const Create = () => {
       selectGenres={selectGenres}
       deleteGenres={deleteGenres}
       handlerSubmit={handlerSubmit}
+      platforms_api={platforms_api}
     />
   )
 }
