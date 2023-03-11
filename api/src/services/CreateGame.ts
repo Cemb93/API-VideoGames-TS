@@ -11,16 +11,16 @@ export const createVideoGame = async (req: Request, res: Response) => {
       released: game.released,
       image: game.image || "https://www.xtrafondos.com/wallpaper/3840x2160/6406-parado-en-el-borde-de-dos-mundos.html",
       rating: game.rating,
-      platformsDb: game.platformsDb,
+      platforms: game.platforms,
     });
 
-    let generos_DB = await db.genre.findAll({
+    let genresDb = await db.genre.findAll({
       where: {
         name: game.genres,
       } 
     });
 
-    await newGame.addGenre(generos_DB);
+    await newGame.addGenre(genresDb);
     return res.json({ mgs: "Video Juegos creado" });
   } catch (error) {
     console.log("Error en POST por:", error);
