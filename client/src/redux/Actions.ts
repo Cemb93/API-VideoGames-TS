@@ -1,11 +1,9 @@
-import { Action } from "@/interface/Actions";
 import { Dispatch } from "react";
+import { Action } from "../../../interface/Actions";
 import { ActionsTypes, BACK } from "./Action-Types";
 
 // export const getAllGames = () => async (dispatch: Dispatch<Action>): Promise<void> => {
-export const getAllGames =
-  () =>
-  async (dispatch: Dispatch<Action>): Promise<void> => {
+export const getAllGames = () => async (dispatch: Dispatch<Action>) => {
     try {
       const data = await fetch(BACK.games).then((res: any) => res.json());
       dispatch({
@@ -18,9 +16,7 @@ export const getAllGames =
   };
 
 // export const createGames = (post: any) => async (dispatch: Dispatch<Action>): Promise<void>  => {
-export const createGames =
-  (post: any) => async (dispatch: Dispatch<Action>) => {
-    console.log('POST:', post)
+export const createGames = (post: any) => async (dispatch: Dispatch<Action>)  => {
     try {
       const data = await fetch(BACK.games, {
         method: "POST",
@@ -29,25 +25,20 @@ export const createGames =
           "Content-type": "application/json; charset=UTF-8"
         }
       })
-        .then((res: any) => {
-          console.log('RES:', res);
-          res.json();
-        })
+        .then((res: any) => res.json())
         .then((data: any) => console.log('DATA:',data))
-        .catch((error: string) => console.log('ERROR:',error))
-      console.log(data); //! PENDIENTE
+        .catch((error: string) => console.log('ERROR:',error));
       dispatch({
         type: ActionsTypes.CREATE_GAME,
-        payload: data,
+        // payload: data,
       });
     } catch (error) {
       console.log("Error en createGames por:", error);
     }
   };
 
-export const getGenres =
-  () =>
-  async (dispatch: Dispatch<Action>): Promise<void> => {
+// export const getGenres = () => async (dispatch: Dispatch<Action>): Promise<void> => {
+export const getGenres = () => async (dispatch: Dispatch<Action>) => {
     try {
       const data = await fetch(BACK.genres).then((res: any) => res.json());
       dispatch({

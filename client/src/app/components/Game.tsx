@@ -1,5 +1,5 @@
 import React from 'react'
-import { GamesGenres, IGenres } from '../../../../api/src/interface'
+import { GamesGenres, IGenres } from '../../../../interface'
 
 export const Game = (
   { id, name, image, released, rating, platforms, genres }: 

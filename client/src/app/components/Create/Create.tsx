@@ -3,6 +3,7 @@
 import { useAppDispatch, useAppSelector } from '@/Hooks';
 import { createGames, getGenres } from '@/redux/Actions';
 import React, { useEffect, useState } from 'react'
+import { IGenres } from '../../../../../interface';
 import { FormCreated } from './FormCreated';
 
 export const Create = () => {
@@ -13,7 +14,6 @@ export const Create = () => {
     released: '',
     rating: 0,
     platforms: [''],
-    // platformsDb: [''],
     genres: [''],
   }
   const [games, setGames] = useState(formState);
@@ -42,7 +42,7 @@ export const Create = () => {
     "Linux",
   ];
 
-  const handlerChanges = (e: any) => {
+  const handlerChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGames({
       ...games,
       [e.target.name]: e.target.value,
@@ -55,7 +55,7 @@ export const Create = () => {
     // );
   }
 
-  function selectPlatforms(e: any) {
+  function selectPlatforms(e: React.ChangeEvent<HTMLSelectElement>) {
     setGames({
       ...games,
       platforms: games.platforms.includes(e.target.value)
@@ -64,14 +64,14 @@ export const Create = () => {
     });
   }
 
-  function deletePlatforms(el: any) {
+  function deletePlatforms(el: string) {
     setGames({
       ...games,
-      platforms: games.platforms.filter((ele) => ele !== el),
+      platforms: games.platforms.filter((ele: string) => ele !== el),
     });
   }
 
-  function selectGenres(e: any) {
+  function selectGenres(e: React.ChangeEvent<HTMLSelectElement>) {
     setGames({
       ...games,
       genres: games.genres.includes(e.target.value)
@@ -80,13 +80,14 @@ export const Create = () => {
     });
   }
 
-  function deleteGenres(el: any) {
+  function deleteGenres(el: IGenres) {
     setGames({
       ...games,
-      genres: games.genres.filter((genre) => genre !== el),
+      genres: games.genres.filter((ele: string) => ele !== el.name),
     });
   }
-  function handlerSubmit(e: any) {
+
+  function handlerSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // setErrors(
     //   validation({
@@ -102,6 +103,7 @@ export const Create = () => {
     setGames(games);
     // history.push("/home");
   }
+  
   return (
     <FormCreated
       games={games}
@@ -115,5 +117,5 @@ export const Create = () => {
       platforms_api={platforms_api}
       genres={genres}
     />
-  )
+  );
 }

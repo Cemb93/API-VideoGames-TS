@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/Hooks'
 import { getAllGames } from '@/redux/Actions'
 import Link from 'next/link';
 import React, { useEffect } from 'react'
-import { GamesGenres, IGenres } from '../../../../api/src/interface';
+import { GamesGenres, IGenres } from '../../../../interface';
 import { Game } from './Game';
 
 export const Games = () => {

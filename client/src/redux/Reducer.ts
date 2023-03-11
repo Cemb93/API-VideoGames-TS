@@ -1,5 +1,6 @@
-import { Action } from "@/interface/Actions";
+// import { Action } from "@/interface/Actions";
 import { InitialState } from "@/types";
+import { Action } from "../../../interface/Actions";
 import { ActionsTypes } from "./Action-Types";
 
 const initialState: InitialState = {

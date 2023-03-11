@@ -1,7 +1,7 @@
 'use strict';
 
 import { Model, Sequelize } from "sequelize";
-import { GenerosApi } from "../interface";
+import { GenerosApi } from "../../../interface";
 
 module.exports = (sequelize: Sequelize, DataTypes: any) => {
   class Genre extends Model<GenerosApi> implements GenerosApi {

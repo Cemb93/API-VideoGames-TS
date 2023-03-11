@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GenerosApi } from "../../../../../interface";
 
 export const FormCreated = (
   {games,errors,handlerChanges,selectPlatforms,deletePlatforms,selectGenres,deleteGenres,handlerSubmit,platforms_api,genres}: 
@@ -6,7 +7,6 @@ export const FormCreated = (
   any
 ) => {
   return (
-    // <div>formualrio</div>
     <form onSubmit={(e) => handlerSubmit(e)}>
       <div>
         <label>
@@ -77,8 +77,6 @@ export const FormCreated = (
         <select onChange={(e) => selectPlatforms(e)}>
           <option>Elije mínimo una Plataforma</option>
           {platforms_api.map((platform: string, index: number) => {
-            // console.log('EL:', platform)
-            // console.log('TYPEOF EL:',typeof platform)
             return (
               <option key={index} value={platform}>
                 {platform}
@@ -87,8 +85,6 @@ export const FormCreated = (
           })}
         </select>
         {games.platforms.map((el: string, index: number) => {
-            // console.log('EL:', el)
-            // console.log('TYPEOF EL:',typeof el)
           return (
             <div key={index}>
               <p>{el}</p>
@@ -123,7 +119,7 @@ export const FormCreated = (
         </label>
         <select onChange={(e) => selectGenres(e)}>
           <option>Elije mínimo un Genero</option>
-          {genres.map((genre: any) => {
+          {genres.map((genre: GenerosApi) => {
             return (
               <option key={genre.id} value={genre.name}>
                 {genre.name}
@@ -132,8 +128,6 @@ export const FormCreated = (
           })}
         </select>
         {games.genres.map((el: string, index: number) => {
-            // console.log('EL:', el)
-            // console.log('TYPEOF EL:',typeof el)
           return (
             <div key={index}>
               <p>{el}</p>

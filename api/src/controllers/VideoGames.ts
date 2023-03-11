@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { GamesApi, GamesGenres, GenerosApi, PlatformsApi } from "../interface";
+import { GamesApi, GamesGenres, GenerosApi, PlatformsApi } from "../../../interface";
 //* FETCH WITH NODE.JS => https://stackoverflow.com/questions/48433783/referenceerror-fetch-is-not-defined
 const fetch = require("node-fetch");
 import { videoGamesDb } from "./VideoGamesDb";

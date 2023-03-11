@@ -1,5 +1,5 @@
 import { BelongsToMany, Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
-import { IVideoGames } from '../interface';
+import { IVideoGames } from '../../../interface';
 import { GamesGenres } from './GamesGenres';
 import { Genres } from './Genres';
 
