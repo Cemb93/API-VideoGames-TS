@@ -5,3 +5,8 @@ export type InitialState = {
   copyAllGames: GamesGenres[]
   genres: GenerosApi[]
 }
+
+type PropsCreate = Omit<GamesGenres, 'genres'>
+export type FormCreate = PropsCreate & {
+  genres: Array<string>
+}

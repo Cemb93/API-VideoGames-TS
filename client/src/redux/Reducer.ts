@@ -1,4 +1,3 @@
-// import { Action } from "@/interface/Actions";
 import { InitialState } from "@/types";
 import { Action } from "../../../interface/Actions";
 import { ActionsTypes } from "./Action-Types";
@@ -17,10 +16,10 @@ export const Reducer = (state: InitialState = initialState, action: Action): Ini
         allGames: action.payload,
         copyAllGames: action.payload,
       }
-    case ActionsTypes.CREATE_GAME:
-      return {
-        ...state,
-      }
+    // case ActionsTypes.CREATE_GAME:
+    //   return {
+    //     ...state,
+    //   }
     case ActionsTypes.GET_GENRES:
       return {
         ...state,

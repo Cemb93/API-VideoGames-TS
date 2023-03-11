@@ -2,13 +2,13 @@
 
 import { useAppDispatch, useAppSelector } from '@/Hooks';
 import { createGames, getGenres } from '@/redux/Actions';
-import { InitialState } from '@/types';
+import { FormCreate, InitialState } from '@/types';
 import React, { useEffect, useState } from 'react'
 import { IGenres } from '../../../../../interface';
 import { FormCreated } from './FormCreated';
 
 export const Create = () => {
-  const formState = {
+  const formState: FormCreate = {
     name: '',
     image: '',
     description: '',
@@ -17,7 +17,7 @@ export const Create = () => {
     platforms: [''],
     genres: [''],
   }
-  const [games, setGames] = useState(formState);
+  const [games, setGames] = useState<FormCreate>(formState);
   const [errors, setErrors] = useState({});
   const {genres} = useAppSelector((state: InitialState) => state)
   const dispatch = useAppDispatch();
