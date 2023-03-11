@@ -38,8 +38,9 @@ export const Games = () => {
                 rating={el.rating}
                 platforms={el.platforms}
                 genres={el.genres}
+                handlerDelete={handlerDelete}
               />
-              <button onClick={() => handlerDelete(el.id, el.name)} >Eliminar</button>
+              {/* <button onClick={() => handlerDelete(el.id, el.name)} >Eliminar</button> */}
             </div>
           );
         })

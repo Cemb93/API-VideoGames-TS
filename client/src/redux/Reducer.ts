@@ -25,6 +25,11 @@ export const Reducer = (state: InitialState = initialState, action: Action): Ini
         ...state,
         genres: action.payload,
       }
+    case ActionsTypes.DELETE_GAME:
+      return {
+        ...state,
+        allGames: [...state.allGames].filter((el) => el.id !== action.payload),
+      }
     default: return state;
   }
 }

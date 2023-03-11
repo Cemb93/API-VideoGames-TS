@@ -6,7 +6,6 @@ export const deleteGame = async (req: Request, res: Response) => {
 
   try {
     let game = await db.VideoGame.findByPk(id);
-    console.log('DELETE:', game)
     if (!game) {
       throw Error(`El juego: ${id}, no existe.`);
     } else {

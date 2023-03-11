@@ -16,4 +16,9 @@ export interface GetGenres {
   payload: GenerosApi[]
 }
 
-export type Action = AllGames | CreateGames | GetGenres
+export interface DeleteGames {
+  type: ActionsTypes.DELETE_GAME
+  payload: string | undefined
+}
+
+export type Action = AllGames | CreateGames | GetGenres | DeleteGames

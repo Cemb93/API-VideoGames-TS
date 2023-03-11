@@ -4,7 +4,6 @@ import { Dispatch } from "redux";
 import { Action } from "../../../interface/Actions";
 import { ActionsTypes, BACK } from "./Action-Types";
 
-// export const getAllGames = () => async (dispatch: Dispatch<Action>): Promise<void> => {
 export const getAllGames = () => async (dispatch: Dispatch<Action>) => {
     try {
       const data = await fetch(BACK.games).then((res: any) => res.json());
@@ -17,8 +16,7 @@ export const getAllGames = () => async (dispatch: Dispatch<Action>) => {
     }
   };
 
-export const createGames = (post: FormCreate) => async (dispatch: Dispatch<Action>): Promise<void>  => {
-// export const createGames = (post: FormCreate) => async (dispatch: Dispatch<Action>)  => {
+export const createGames = (post: FormCreate) => async (dispatch: Dispatch<Action>)  => {
     try {
       const data = await fetch(BACK.games, {
         method: "POST",
@@ -40,8 +38,7 @@ export const createGames = (post: FormCreate) => async (dispatch: Dispatch<Actio
     }
   };
 
-export const getGenres = () => async (dispatch: Dispatch<Action>): Promise<void> => {
-// export const getGenres = () => async (dispatch: Dispatch<Action>) => {
+export const getGenres = () => async (dispatch: Dispatch<Action>) => {
   try {
     const data = await fetch(BACK.genres).then((res: any) => res.json());
     dispatch({
@@ -53,20 +50,15 @@ export const getGenres = () => async (dispatch: Dispatch<Action>): Promise<void>
   }
 };
 
-export const deleteGame = (id: string | undefined) => async (dispatch: Dispatch<Action>): Promise<void> => {
-// export const deleteGame = (id: string) => async (dispatch: Dispatch) => {
+export const deleteGame = (id: string | undefined) => async (dispatch: Dispatch<Action>) => {
   try {
-    const data = await fetch(`${BACK.games}/${id}`, {
+    await fetch(`${BACK.games}/${id}`, {
       method: "DELETE",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    }).then((res: any) => res.json());
-    // dispatch(getAllGames())
-    // dispatch({
-    //   type: ActionsTypes.DELETE_GAME,
-    //   payload: data,
-    // });
+    }).then((res: any) => res.json()).then((data: any) => console.log('DATA:', data))
+    dispatch({
+      type: ActionsTypes.DELETE_GAME,
+      payload: id,
+    });
   } catch (error) {
     console.log("Error en getGenres por:", error);
   }

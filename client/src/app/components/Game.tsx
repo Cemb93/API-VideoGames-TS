@@ -2,10 +2,10 @@ import React from 'react'
 import { GamesGenres, IGenres } from '../../../../interface'
 
 export const Game = (
-  { id, name, image, released, rating, platforms, genres }: 
-  GamesGenres
+  { id, name, image, released, rating, platforms, genres, handlerDelete }: 
+  // GamesGenres
+  any
 ) => {
-  // console.log(genres)
   return (
     <div>
       <p>Nombre: {name}</p>
@@ -20,10 +20,6 @@ export const Game = (
       }</p>
       <p>Generos: {
         genres.map((el: string | IGenres, index: number) => (
-        // genres.map((el: string) => (
-            // <ul key={el} >
-            //   <li>{`✔ ${el}`}</li>
-            // </ul>
           typeof el === 'object' ? (
             <ul key={index} >
               <li>DB: {`✔ ${el.name}`}</li>
@@ -35,6 +31,7 @@ export const Game = (
           )
         ))  
       }</p>
+      <button onClick={() => handlerDelete(id, name)} >Eliminar</button>
     </div>
   )
 }
