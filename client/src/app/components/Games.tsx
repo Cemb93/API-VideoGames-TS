@@ -23,9 +23,9 @@ export const Games = () => {
       </Link>
       {
         allGames.map((el: GamesGenres) => {
-          let GenresDb = el.genresDb?.map((el: IGenres) => el.name)
+          // let GenresDb = el.genresDb?.map((el: IGenres) => el.name)
           // console.log('GENEROS DB:',GenresDb?.length)
-          let Genres = el.genres.map((el: string) => el)
+          // let Genres = el.genres.map((el: string) => el)
           // console.log('GENEROS API:', Genres)
           return (
             <div key={el.id} >
@@ -35,11 +35,11 @@ export const Games = () => {
                 image={el.image}
                 released={el.released}
                 rating={el.rating}
-                platforms={!el.platformsDb?.length ? el.platforms : el.platformsDb}
-                // platforms={el.platforms}
+                // platforms={!el.platformsDb?.length ? el.platforms : el.platformsDb}
+                platforms={el.platforms}
                 // genres={!el.genresDb?.length ? el.genres : el.genresDb}
-                genres={!GenresDb?.length ? Genres : GenresDb}
-                // genres={el.genres}
+                // genres={!GenresDb?.length ? Genres : GenresDb}
+                genres={el.genres}
               />
             </div>
           );

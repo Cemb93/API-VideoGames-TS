@@ -86,7 +86,7 @@ export const FormCreated = (
             );
           })}
         </select>
-        {games.platformsDb.map((el: string, index: number) => {
+        {games.platforms.map((el: string, index: number) => {
             // console.log('EL:', el)
             // console.log('TYPEOF EL:',typeof el)
           return (
