@@ -1,7 +1,7 @@
 'use client';
 
 import { useAppDispatch, useAppSelector } from '@/Hooks'
-import { getAllGames } from '@/redux/Actions'
+import { deleteGame, getAllGames } from '@/redux/Actions'
 import { InitialState } from '@/types';
 import Link from 'next/link';
 import React, { useEffect } from 'react'
@@ -14,7 +14,11 @@ export const Games = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(getAllGames())
-  }, [])
+  }, []);
+  const handlerDelete = (id: string | undefined, name: string) => {
+    dispatch(deleteGame(id));
+    alert(`Presiona "Aceptar" para eliminar el juego: ${name.toUpperCase()}`);
+  }
   return (
     <div>
       <Link href={'/create'} >
@@ -35,6 +39,7 @@ export const Games = () => {
                 platforms={el.platforms}
                 genres={el.genres}
               />
+              <button onClick={() => handlerDelete(el.id, el.name)} >Eliminar</button>
             </div>
           );
         })

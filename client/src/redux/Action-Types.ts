@@ -4,6 +4,8 @@ export enum ActionsTypes {
   GET_ID = 'GET_ID',
   CREATE_GAME = 'CREATE_GAME',
   GET_GENRES = 'GET_GENRES',
+  DELETE_GAME = 'DELETE_GAME',
+  UPDATE_GAME = 'UPDATE_GAME',
 }
 
 export enum BACK {
