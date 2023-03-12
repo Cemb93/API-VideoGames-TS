@@ -4,6 +4,7 @@ export type InitialState = {
   allGames: GamesGenres[]
   copyAllGames: GamesGenres[]
   genres: GenerosApi[]
+  detail?: GamesGenres
 }
 
 type PropsCreate = Omit<GamesGenres, 'genres'>

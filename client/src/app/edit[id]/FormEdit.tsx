@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GenerosApi } from "../../../../../interface";
+import { GenerosApi } from "../../../../interface";
 
 export const FormEdit = (
   {games,errors,handlerChanges,selectPlatforms,deletePlatforms,selectGenres,deleteGenres,handlerSubmit,platforms_api,genres}: 

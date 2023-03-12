@@ -1,13 +1,14 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from '@/Hooks';
-import { upDateGame } from '@/redux/Actions';
+// import { upDateGame } from '@/redux/Actions';
 import { EditForm, InitialState } from '@/types';
 import React, { useState } from 'react'
-import { FormEdit } from './FormEdit';
+import { FormEdit } from '../../edit[id]/FormEdit';
+import {PropsEdit} from '../../../../../interface/PropsParams'
 
 // export const Edit = (props: { match: { params: { id: string } } }) => {
-export const Edit = ({id}:{id:string}) => {
+export const Edit = (props: PropsEdit) => {
   const formState: EditForm = {
     name: '',
     image: '',
@@ -21,7 +22,7 @@ export const Edit = ({id}:{id:string}) => {
   const [errors, setErrors] = useState({});
   const {genres} = useAppSelector((state: InitialState) => state)
   const dispatch = useAppDispatch();
-  // const { id } = props.match.params;
+  const { id } = props.match.params;
   const platforms_api = [
     "PC",
     "PlayStation 5",
@@ -79,7 +80,7 @@ export const Edit = ({id}:{id:string}) => {
     //   })
     // );
 
-    dispatch(upDateGame(games, id));
+    // dispatch(upDateGame(games, id));
     alert("Has modificado el Video Juego!!! 🤩");
 
     //* Seteo todo el input desde CERO

@@ -16,6 +16,11 @@ export const Reducer = (state: InitialState = initialState, action: Action): Ini
         allGames: action.payload,
         copyAllGames: action.payload,
       }
+    case ActionsTypes.GET_ID:
+      return {
+        ...state,
+        detail: action.payload,
+      }
     // case ActionsTypes.CREATE_GAME:
     //   return {
     //     ...state,
