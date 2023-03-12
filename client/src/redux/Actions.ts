@@ -1,4 +1,4 @@
-import { FormCreate } from "@/types";
+import { EditForm, FormCreate } from "@/types";
 import { Dispatch } from "redux";
 // import { Dispatch } from "react";
 import { Action } from "../../../interface/Actions";
@@ -70,7 +70,7 @@ export const deleteGame = (id: string | undefined) => {
   }
 };
 
-export const upDateGame = (game: FormCreate, id: string | undefined) => {
+export const upDateGame = (game: EditForm, id: string) => {
   return async (dispatch: Dispatch<Action>) => {
     try {
       await fetch(`${BACK.games}/${id}`, {

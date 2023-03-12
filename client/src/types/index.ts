@@ -10,3 +10,6 @@ type PropsCreate = Omit<GamesGenres, 'genres'>
 export type FormCreate = PropsCreate & {
   genres: Array<string>
 }
+
+type PropsEdit = Omit<GamesGenres, 'genres'>
+export type EditForm = PropsEdit

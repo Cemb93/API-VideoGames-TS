@@ -1,12 +1,13 @@
 'use client';
 
 import { useAppDispatch, useAppSelector } from '@/Hooks'
-import { deleteGame, getAllGames } from '@/redux/Actions'
-import { InitialState } from '@/types';
+import { deleteGame, getAllGames, upDateGame } from '@/redux/Actions'
+import { EditForm, InitialState } from '@/types';
 import Link from 'next/link';
 import React, { useEffect } from 'react'
 import { GamesGenres } from '../../../../interface';
 import { Game } from './Game';
+import { Loading } from './Loading';
 
 export const Games = () => {
   const {allGames} = useAppSelector((state: InitialState) => state)
@@ -19,6 +20,10 @@ export const Games = () => {
     dispatch(deleteGame(id));
     alert(`Presiona "Aceptar" para eliminar el juego: ${name.toUpperCase()}`);
   }
+  // const handlerEdit = (game: EditForm, id: string) => {
+  //   dispatch(upDateGame(game,id));
+  //   alert(`Presiona "Aceptar" para editar el juego`);
+  // }
   return (
     <div>
       <Link href={'/create'} >
@@ -26,24 +31,33 @@ export const Games = () => {
           Crear VideoJuego
         </button>
       </Link>
+      {/* <Link href={'/edit'} >
+        <button>
+          Editar VideoJuego
+        </button>
+      </Link> */}
       {
-        allGames.map((el: GamesGenres) => {
-          return (
-            <div key={el.id} >
-              <Game
-                id={el.id}
-                name={el.name}
-                image={el.image}
-                released={el.released}
-                rating={el.rating}
-                platforms={el.platforms}
-                genres={el.genres}
-                handlerDelete={handlerDelete}
-              />
-              {/* <button onClick={() => handlerDelete(el.id, el.name)} >Eliminar</button> */}
-            </div>
-          );
-        })
+        !allGames.length ? (
+          <Loading/>
+        ) : (
+          allGames.map((el: GamesGenres) => {
+            return (
+              <div key={el.id} >
+                <Game
+                  id={el.id}
+                  name={el.name}
+                  image={el.image}
+                  released={el.released}
+                  rating={el.rating}
+                  platforms={el.platforms}
+                  genres={el.genres}
+                  handlerDelete={handlerDelete}
+                  // handlerEdit={handlerEdit}
+                />
+              </div>
+            );
+          })
+        )
       }
     </div>
   )
