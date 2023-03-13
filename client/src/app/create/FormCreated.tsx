@@ -139,7 +139,7 @@ export const FormCreated = (
 
       <button type="submit">Crear Video Juego</button>
       <br />
-      <Link href={'/'}>
+      <Link href={'/games'}>
         <button>Regresar</button>
       </Link>
     </form>

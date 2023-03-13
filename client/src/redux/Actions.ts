@@ -18,6 +18,20 @@ export const getAllGames = () => {
   }
 };
 
+export const getNames = (name: string) => {
+  return async (dispatch: Dispatch<Action>) => {
+    try {
+      const data = await fetch(`${BACK.games}?name=${name}`).then((res: any) => res.json());
+      dispatch({
+        type: ActionsTypes.GET_NAME,
+        payload: data,
+      })
+    } catch (error) {
+      console.log("Error en getDetailGame por:", error);
+    }
+  }
+}
+
 export const getDetailGame = (id: string | number) => {
   return async (dispatch: Dispatch) => {
     try {

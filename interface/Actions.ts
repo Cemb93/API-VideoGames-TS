@@ -6,6 +6,11 @@ export interface AllGames {
   payload: GamesGenres[]
 }
 
+export interface GetNames {
+  type: ActionsTypes.GET_NAME
+  payload: GamesGenres[]
+}
+
 export interface DetailGame {
   type: ActionsTypes.GET_ID
   payload: GamesGenres
@@ -32,4 +37,4 @@ export interface UpDateGame {
   payload: { msg: string }
 }
 
-export type Action = AllGames | DetailGame | CreateGame | GetGenres | DeleteGame | UpDateGame
+export type Action = AllGames | GetNames | DetailGame | CreateGame | GetGenres | DeleteGame | UpDateGame

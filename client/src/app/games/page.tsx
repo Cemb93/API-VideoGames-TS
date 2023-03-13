@@ -9,6 +9,7 @@ import React, { useEffect } from 'react'
 import { GamesGenres } from '../../../../interface';
 import { Game } from './Game';
 import { Loading } from '../components/Loading';
+import SearchBar from '../components/SearchBar';
 
 const GamesPage = () => {
   const {allGames} = useAppSelector((state: InitialState) => state)
@@ -25,6 +26,10 @@ const GamesPage = () => {
           Crear VideoJuego
         </button>
       </Link>
+      <div>
+        <SearchBar/>
+      </div>
+      <button onClick={() => dispatch(getAllGames())} >Traer todos los juegos</button>
       {
         !allGames.length ? (
           <Loading/>
