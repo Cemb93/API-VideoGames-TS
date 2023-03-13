@@ -40,6 +40,11 @@ export const Reducer = (state: InitialState = initialState, action: Action): Ini
         ...state,
         allGames: [...state.allGames].filter((el) => el.id !== action.payload),
       }
+    // case ActionsTypes.UPDATE_GAME:
+    //   return {
+    //     ...state,
+    //     // allGames: [...state.allGames]
+    //   }
     default: return state;
   }
 }

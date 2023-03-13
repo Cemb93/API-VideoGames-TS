@@ -16,11 +16,10 @@ const EditPage = (props: PropsParams) => {
     released: '',
     rating: 0,
     platforms: [''],
-    // genres: [''],
   }
   const [games, setGames] = useState<EditForm>(formState);
   const [errors, setErrors] = useState({});
-  const {genres} = useAppSelector((state: InitialState) => state)
+  const {genres, detail} = useAppSelector((state: InitialState) => state)
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { id } = props.params;
@@ -99,6 +98,7 @@ const EditPage = (props: PropsParams) => {
       handlerSubmit={handlerSubmit}
       platforms_api={platforms_api}
       genres={genres}
+      detail={detail}
     />
   );
 }

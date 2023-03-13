@@ -2,7 +2,7 @@ import Link from "next/link";
 import { GenerosApi } from "../../../../interface";
 
 export const FormEdit = (
-  {games,errors,handlerChanges,selectPlatforms,deletePlatforms,selectGenres,deleteGenres,handlerSubmit,platforms_api,genres}: 
+  {games,errors,handlerChanges,selectPlatforms,deletePlatforms,handlerSubmit,platforms_api,genres, detail}: 
   // {games: any,errors: any,}
   any
 ) => {
@@ -103,8 +103,8 @@ export const FormEdit = (
           type="number"
           name="rating"
           placeholder="0.00 - 5.00"
-          step={0.01}
-          min={0.0}
+          // step={0.01}
+          // min={0.0}
           max={5}
           value={games.rating}
           onChange={(e) => handlerChanges(e)}
@@ -112,30 +112,6 @@ export const FormEdit = (
       </div>
 
       <br></br>
-
-      {/* <div>
-        <label>
-          Genres: <br></br>
-        </label>
-        <select onChange={(e) => selectGenres(e)}>
-          <option>Elije mínimo un Genero</option>
-          {genres.map((genre: GenerosApi) => {
-            return (
-              <option key={genre.id} value={genre.name}>
-                {genre.name}
-              </option>
-            );
-          })}
-        </select>
-        {games.genres.map((el: string, index: number) => {
-          return (
-            <div key={index}>
-              <p>{el}</p>
-              <button onClick={() => deleteGenres(el)}>X</button>
-            </div>
-          );
-        })}
-      </div> */}
 
       <button type="submit">Editar Video Juego</button>
       <br />

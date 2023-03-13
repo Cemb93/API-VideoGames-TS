@@ -10,7 +10,7 @@ export const Game = (
   GamesGenres
 ) => {
   const dispatch = useAppDispatch();
-  const handlerDelete = (id: string | undefined, name: string) => {
+  const handlerDelete = (id: string, name: string) => {
     dispatch(deleteGame(id));
     alert(`Presiona "Aceptar" para eliminar el juego: ${name.toUpperCase()}`);
   }
