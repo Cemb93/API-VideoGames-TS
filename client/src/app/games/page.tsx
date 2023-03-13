@@ -8,9 +8,9 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
 import { GamesGenres } from '../../../../interface';
 import { Game } from './Game';
-import { Loading } from './Loading';
+import { Loading } from '../components/Loading';
 
-export const Games = () => {
+const GamesPage = () => {
   const {allGames} = useAppSelector((state: InitialState) => state)
   // console.log('ALL GAMES',allGames)
   const dispatch = useAppDispatch()
@@ -47,5 +47,7 @@ export const Games = () => {
         )
       }
     </div>
-  )
+  );
 }
+
+export default GamesPage;

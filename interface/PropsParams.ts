@@ -1,3 +1,3 @@
-export interface PropsParmas {
+export interface PropsParams {
   params: { id: string | number },
 }

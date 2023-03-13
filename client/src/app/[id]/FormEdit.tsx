@@ -139,7 +139,7 @@ export const FormEdit = (
 
       <button type="submit">Editar Video Juego</button>
       <br />
-      <Link href={'/'}>
+      <Link href={'/games'}>
         <button>Regresar</button>
       </Link>
     </form>

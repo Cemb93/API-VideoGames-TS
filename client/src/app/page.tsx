@@ -1,9 +1,12 @@
-import { Games } from "./components/Games";
+import Link from "next/link";
 
-export default function Home() {
+export default function Landing() {
   return (
     <main>
-      <Games/>
+      {/* <Games/> */}
+      <Link href={'/games'} >
+        <button>Ver los Video Juegos</button>
+      </Link>
     </main>
   )
 }

@@ -9,7 +9,7 @@ export const createVideoGame = async (req: Request, res: Response) => {
       name: game.name,
       description: game.description,
       released: game.released,
-      image: game.image || "https://www.xtrafondos.com/wallpaper/3840x2160/6406-parado-en-el-borde-de-dos-mundos.html",
+      image: game.image || "https://cdn2.thedogapi.com/images/B12BnxcVQ.jpg",
       rating: game.rating,
       platforms: game.platforms,
     });

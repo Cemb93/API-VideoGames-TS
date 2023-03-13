@@ -14,12 +14,12 @@ export const Game = (
     dispatch(deleteGame(id));
     alert(`Presiona "Aceptar" para eliminar el juego: ${name.toUpperCase()}`);
   }
-  // const router = useRouter();
+  const router = useRouter();
   return (
     <div>
       <p>Nombre: {name}</p>
-      {/* <Link href={`/game/${id}`} > */}
-      <Link href={`/${id}`} >
+      <Link href={`/games/${id}`} >
+      {/* <Link href={`/${id}`} > */}
       <img src={image} alt={name} width={'400px'} height={'250px'} />
       </Link>
       <p>Plataformas: {
@@ -46,6 +46,7 @@ export const Game = (
       }</p>
       <button onClick={() => handlerDelete(id, name)} >Eliminar</button>
       {/* <button onClick={() => router.push(`/edit/${id}`)} >Editar</button> */}
+      <button onClick={() => router.push(`/${id}`)} >Editar</button>
     </div>
   );
 }

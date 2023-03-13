@@ -85,18 +85,25 @@ export const deleteGame = (id: string | undefined) => {
 };
 
 //! PENDIENTE
-// export const upDateGame = (game: EditForm, id: string) => {
-//   return async (dispatch: Dispatch<Action>) => {
-//     try {
-//       await fetch(`${BACK.games}/${id}`, {
-//         method: "PUT",
-//         body: JSON.stringify(game)
-//       })
-//       .then((res: any) => res.json())
-//       .then((data: any) => console.log('DATA:', data))
-//       // dispatch(getAllGames())
-//     } catch (error) {
-//       console.log("Error en getGenres por:", error);
-//     }
-//   }
-// };
+export const upDateGame = (game: EditForm, id: string | number) => {
+  return async (dispatch: Dispatch<Action>) => {
+  // return async (dispatch: Dispatch) => {
+    try {
+      const data = await fetch(`${BACK.games}/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(game)
+      })
+      .then((res: any) => res.json())
+      .then((res: (string)) => console.log('DATA:', res))
+      .catch((error: string) => console.log('ERROR:',error));
+      console.log(data)
+      // dispatch(getAllGames())
+      // dispatch({
+      //   type: ActionsTypes.UPDATE_GAME,
+      //   payload: data
+      // })
+    } catch (error) {
+      console.log("Error en getGenres por:", error);
+    }
+  }
+};

@@ -1,74 +1,106 @@
-"use client";
+"use client"
 
-import { useAppDispatch, useAppSelector } from "@/Hooks";
-import { getDetailGame } from "@/redux/Actions";
-import { InitialState } from "@/types";
-import Link from "next/link";
-import React, { useEffect } from "react";
-import { PropsParmas } from "../../../../interface/PropsParams";
+import { useAppDispatch, useAppSelector } from '@/Hooks';
+import { upDateGame } from '@/redux/Actions';
+import { EditForm, InitialState } from '@/types';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+import { PropsParams } from '../../../../interface/PropsParams';
+import { FormEdit } from './FormEdit';
 
-export default function DetailPage(props: PropsParmas) {
-// export default function DetailPage(props: any) {
-  console.log('MIS PROPS DE DETALLE:', props)
+const EditPage = (props: PropsParams) => {
+  const formState: EditForm = {
+    name: '',
+    image: '',
+    description: '',
+    released: '',
+    rating: 0,
+    platforms: [''],
+    // genres: [''],
+  }
+  const [games, setGames] = useState<EditForm>(formState);
+  const [errors, setErrors] = useState({});
+  const {genres} = useAppSelector((state: InitialState) => state)
   const dispatch = useAppDispatch();
-  // const { id } = useParams();
-  // const { id } = props.match.params;
+  const router = useRouter();
   const { id } = props.params;
-  // console.log('ID DE DETALLE:', id);
+  const platforms_api = [
+    "PC",
+    "PlayStation 5",
+    "PlayStation 4",
+    "PlayStation 3",
+    "Xbox One",
+    "Xbox Series S/X",
+    "Xbox 360",
+    "Xbox",
+    "Nintendo Switch",
+    "Nintendo 3DS",
+    "Nintendo DS",
+    "Nintendo DSi",
+    "iOS",
+    "Android",
+    "macOS",
+    "Linux",
+  ];
+
+  const handlerChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setGames({
+      ...games,
+      [e.target.name]: e.target.value,
+    });
+    // setErrors(
+    //   validation({
+    //     ...input,
+    //     [e.target.name]: e.target.value,
+    //   })
+    // );
+  }
+
+  function selectPlatforms(e: React.ChangeEvent<HTMLSelectElement>) {
+    setGames({
+      ...games,
+      platforms: games.platforms.includes(e.target.value)
+        ? games.platforms
+        : [...games.platforms, e.target.value],
+    });
+  }
+
+  function deletePlatforms(el: string) {
+    setGames({
+      ...games,
+      platforms: games.platforms.filter((ele: string) => ele !== el),
+    });
+  }
+
+  function handlerSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    // setErrors(
+    //   validation({
+    //     ...input,
+    //     [e.target.name]: e.target.value,
+    //   })
+    // );
+
+    dispatch(upDateGame(games, id));
+    alert("Has modificado el Video Juego!!! 🤩");
+
+    //* Seteo todo el input desde CERO
+    setGames(games);
+    router.push("/games");
+  }
   
-  useEffect(() => {
-    dispatch(getDetailGame(id));
-  }, [dispatch, id]);
-
-  const {detail} = useAppSelector((state: InitialState) => state);
-  // console.log("MI DETALLE:", detail);
-
   return (
-    <div>
-      {detail ? (
-        <div>
-          <p>
-            <strong>Nombre: </strong>
-            {detail.name}
-          </p>
-          <img
-            src={detail.image}
-            alt="img not found"
-            width="500px"
-            height="300px"
-          />
-          <p>
-            <strong>Fecha de creación: </strong>
-            {detail.released}
-          </p>
-          <p>
-            <strong>Generos: </strong>
-            {
-              detail.genres?.map(genre => typeof genre === 'object'? genre.name + ', ' : genre + ', ')
-            }
-          </p>
-          <p>
-            <strong>Calificación: </strong>
-            {detail.rating}
-          </p>
-          <p>
-            <strong>Descripción: </strong>
-            {/* {detail.description || detail.description_raw} */}
-            {detail.description}
-          </p>
-          <p>
-            <strong>Plataformas: </strong>
-            {detail.platforms?.map(platform => platform + ', ')}
-          </p>
-        </div>
-      ) : (
-        <p>Cargando...</p>
-      )}
-      <div>
-        <Link href={"/"}>
-          <button>Regresar</button>
-        </Link>
-      </div>
-    </div>
+    <FormEdit
+      games={games}
+      errors={errors}
+      handlerChanges={handlerChanges}
+      selectPlatforms={selectPlatforms}
+      deletePlatforms={deletePlatforms}
+      handlerSubmit={handlerSubmit}
+      platforms_api={platforms_api}
+      genres={genres}
+    />
   );
 }
+
+export default EditPage;
