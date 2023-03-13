@@ -34,6 +34,5 @@ export interface GamesDb extends PropsGames {
 
 //TODO: AGRUPO TODAS LAS PROPS PARA LOS DATOS DE SALIDA
 export interface GamesGenres extends GamesDb, PropsGames {
-  platforms: Array<string>
   genres: string[] | Array<IGenres>
 }

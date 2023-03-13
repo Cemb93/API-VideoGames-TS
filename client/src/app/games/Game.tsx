@@ -6,7 +6,7 @@ import React from 'react'
 import { GamesGenres, IGenres } from '../../../../interface'
 
 export const Game = (
-  { id, name, image, released, rating, platforms, genres, }: 
+  { id, name, image, released, rating, platforms, genres }: 
   GamesGenres
 ) => {
   const dispatch = useAppDispatch();
@@ -17,11 +17,19 @@ export const Game = (
   const router = useRouter();
   return (
     <div>
-      <p>Nombre: {name}</p>
+      {
+        typeof id === 'string' ? (
+          //? convierte la "primer" letra de cada palabra en "mayuscula"
+          <p>Nombre: {name.replace(/\b\w/g, l => l.toUpperCase())}</p>
+        ) : (
+          <p>Nombre: {name}</p> 
+        )
+      }
       <Link href={`/games/${id}`} >
-      {/* <Link href={`/${id}`} > */}
-      <img src={image} alt={name} width={'400px'} height={'250px'} />
+        <img src={image} alt={name} width={'400px'} height={'250px'} />
       </Link>
+      <p>Fecha de lanzamiento: {released}</p>
+      <p>Calificación: {rating}</p>
       <p>Plataformas: {
         platforms.map((el: string) => {
           return (
@@ -35,18 +43,23 @@ export const Game = (
         genres.map((el: string | IGenres, index: number) => (
           typeof el === 'object' ? (
             <ul key={index} >
-              <li>DB: {`✔ ${el.name}`}</li>
+              <li>{`✔ ${el.name}`}</li>
             </ul>
           ) :  (
             <ul key={index} >
-              <li>API: {`✔ ${el}`}</li>
+              <li>{`✔ ${el}`}</li>
             </ul>
           )
         ))  
       }</p>
-      <button onClick={() => handlerDelete(id, name)} >Eliminar</button>
-      {/* <button onClick={() => router.push(`/edit/${id}`)} >Editar</button> */}
-      <button onClick={() => router.push(`/${id}`)} >Editar</button>
+      {
+        typeof id === 'string' && (
+          <div>
+            <button onClick={() => handlerDelete(id, name)} >Eliminar</button>
+            <button onClick={() => router.push(`/${id}`)} >Editar</button>
+          </div>
+        )
+      }
     </div>
   );
 }
