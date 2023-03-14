@@ -43,7 +43,7 @@ const EditPage = (props: PropsParams) => {
   ];
 
   useEffect(() => {
-    if (!(detail?.id === id)) {
+    if ((detail?.id === id)) {
       dispatch(getDetailGame(id));
       setGames(games);
     }
@@ -86,14 +86,13 @@ const EditPage = (props: PropsParams) => {
     //     [e.target.name]: e.target.value,
     //   })
     // );
-    console.log('GAME IN SUBMIT:', games)
 
     dispatch(upDateGame(games, id));
     alert("Has modificado el Video Juego!!! 🤩");
 
     //* Seteo todo el input desde CERO
-    // setGames(games);
-    // router.push("/games");
+    setGames(games);
+    router.push("/games");
   }
   
   return (

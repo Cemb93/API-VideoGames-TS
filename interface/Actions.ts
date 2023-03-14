@@ -31,11 +31,4 @@ export interface DeleteGame {
   payload: string | undefined
 }
 
-export interface UpDateGame {
-  type: ActionsTypes.UPDATE_GAME
-  payload: string | void
-  // payload: GamesGenres
-  // payload: { msg: string }
-}
-
-export type Action = AllGames | GetNames | DetailGame | CreateGame | GetGenres | DeleteGame | UpDateGame
+export type Action = AllGames | GetNames | DetailGame | CreateGame | GetGenres | DeleteGame
