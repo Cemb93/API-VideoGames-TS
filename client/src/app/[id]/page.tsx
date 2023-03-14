@@ -1,10 +1,10 @@
 "use client"
 
 import { useAppDispatch, useAppSelector } from '@/Hooks';
-import { upDateGame } from '@/redux/Actions';
+import { getDetailGame, upDateGame } from '@/redux/Actions';
 import { EditForm, InitialState } from '@/types';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PropsParams } from '../../../../interface/PropsParams';
 import { FormEdit } from './FormEdit';
 
@@ -41,6 +41,13 @@ const EditPage = (props: PropsParams) => {
     "macOS",
     "Linux",
   ];
+
+  useEffect(() => {
+    if (!(detail?.id === id)) {
+      dispatch(getDetailGame(id));
+      setGames(games);
+    }
+  }, [detail]);
 
   const handlerChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGames({
@@ -79,13 +86,14 @@ const EditPage = (props: PropsParams) => {
     //     [e.target.name]: e.target.value,
     //   })
     // );
+    console.log('GAME IN SUBMIT:', games)
 
     dispatch(upDateGame(games, id));
     alert("Has modificado el Video Juego!!! 🤩");
 
     //* Seteo todo el input desde CERO
-    setGames(games);
-    router.push("/games");
+    // setGames(games);
+    // router.push("/games");
   }
   
   return (

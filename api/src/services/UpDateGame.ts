@@ -5,6 +5,7 @@ import db from "../models/db";
 export const upDateGame = async (req: Request, res: Response) => {
   const { id } = req.params;
   let game: GamesGenres = req.body;
+  console.log('GAME current:', game)
   try {
     let current = await db.VideoGame.findByPk(id);
     if (!current) {

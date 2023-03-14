@@ -1,4 +1,5 @@
 import { EditForm, FormCreate } from "@/types";
+import axios from "axios";
 import { Dispatch } from "redux";
 // import { Dispatch } from "react";
 import { Action } from "../../../interface/Actions";
@@ -100,26 +101,45 @@ export const deleteGame = (id: string) => {
 
 //! PENDIENTE
 export const upDateGame = (game: EditForm, id: string) => {
-  // return async (dispatch: Dispatch<Action>) => {
-  return async (dispatch: Dispatch) => {
+  console.log('GAME:',game)
+  console.log('ID',id)
+  return async (dispatch: Dispatch<Action>) => {
+  // return async (dispatch: Dispatch) => {
     try {
       const data = await fetch(`${BACK.games}/${id}`, {
         method: "PUT",
         headers: {
-          "Content-type": "application/json;"
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(game),
       })
       .then((res: any) => res.json().then((r: any) => r))
       .then((res: (string)) => res)
       .catch((error: string) => console.log('ERROR:',error));
-      console.log('PUT ACTION:',data)
-      // return dispatch(getAllGames())
-      // dispatch({
-      //   type: ActionsTypes.UPDATE_GAME,
-      //   payload: data,
+      // console.log('PUT ACTION:',data)
+      // return dispatch<any>(getAllGames())
+
+      // const data = await fetch(`${BACK.games}/${id}`, {
+      //   method: 'PUT',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify(game)
       // })
-      return dispatch<any>(getAllGames())
+      // .then(response => {
+      //   if (!response.ok) {
+      //     throw new Error('Network response was not ok');
+      //   }
+      //   return response.json();
+      // })
+      // .then(data => {
+      //   console.log('PUT request succeeded with JSON response', data);
+      // })
+      // .catch(error => {
+      //   console.error('Error making PUT request:', error);
+      // });
+      // const {data} = await axios.put(`${BACK.games}/${id}`, game)
+      console.log('PUT ACTION:',data)
     } catch (error) {
       console.log("Error en getGenres por:", error);
     }

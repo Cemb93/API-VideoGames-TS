@@ -17,6 +17,7 @@ export const FormEdit = (
           name="name"
           placeholder="Videogame"
           value={games.name}
+          // value={detail?.name}
           onChange={(e) => handlerChanges(e)}
         />
         {errors.name && <p>{errors.name}</p>}
@@ -33,6 +34,7 @@ export const FormEdit = (
           name="description"
           placeholder="Enter a description"
           value={games.description}
+          // value={detail?.description}
           onChange={(e) => handlerChanges(e)}
         />
         {errors.description && <p>{errors.description}</p>}
