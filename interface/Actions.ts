@@ -16,11 +16,6 @@ export interface DetailGame {
   payload: GamesGenres
 }
 
-export interface CreateGame {
-  type: ActionsTypes.CREATE_GAME
-  // payload: GamesGenres
-}
-
 export interface GetGenres {
   type: ActionsTypes.GET_GENRES
   payload: GenerosApi[]
@@ -28,7 +23,7 @@ export interface GetGenres {
 
 export interface DeleteGame {
   type: ActionsTypes.DELETE_GAME
-  payload: string | undefined
+  payload: string
 }
 
-export type Action = AllGames | GetNames | DetailGame | CreateGame | GetGenres | DeleteGame
+export type Action = AllGames | GetNames | DetailGame | GetGenres | DeleteGame

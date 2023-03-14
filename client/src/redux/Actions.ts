@@ -1,11 +1,11 @@
 import { EditForm, FormCreate } from "@/types";
 import { Dispatch } from "redux";
-// import { Dispatch } from "react";
 import { Action } from "../../../interface/Actions";
 import { ActionsTypes, BACK } from "./Action-Types";
 
 export const getAllGames = () => {
-  return async (dispatch: Dispatch<Action>) => {
+  // return async (dispatch: Dispatch<Action>) => {
+  return async (dispatch: Dispatch) => {
     try {
       const data = await fetch(BACK.games).then((res: any) => res.json());
       dispatch({
@@ -36,6 +36,7 @@ export const getDetailGame = (id: string | number) => {
   return async (dispatch: Dispatch) => {
     try {
       const data = await fetch(`${BACK.games}/${id}`).then((res: any) => res.json());
+      console.log(data)
       dispatch({
         type: ActionsTypes.GET_ID,
         payload: data,
@@ -47,7 +48,8 @@ export const getDetailGame = (id: string | number) => {
 }
 
 export const createGames = (post: FormCreate) => {
-  return async (dispatch: Dispatch<Action>)  => {
+  // return async (dispatch: Dispatch<Action>)  => {
+  return async (dispatch: Dispatch)  => {
     try {
       const data = await fetch(BACK.games, {
         method: "POST",
@@ -57,7 +59,7 @@ export const createGames = (post: FormCreate) => {
         }
       })
       .then((res: any) => res.json())
-      .then((data: any) => console.log('DATA:',data))
+      .then((data: (string)) => data)
       .catch((error: string) => console.log('ERROR:',error));
       console.log(data)
     } catch (error) {

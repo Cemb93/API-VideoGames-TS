@@ -3,6 +3,7 @@
 import { useAppDispatch, useAppSelector } from '@/Hooks';
 import { createGames, getGenres } from '@/redux/Actions';
 import { FormCreate, InitialState } from '@/types';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { IGenres } from '../../../../interface';
 import { FormCreated } from './FormCreated';
@@ -21,6 +22,7 @@ const CreatePage = () => {
   const [errors, setErrors] = useState({});
   const {genres} = useAppSelector((state: InitialState) => state)
   const dispatch = useAppDispatch();
+  const router = useRouter();
   useEffect(() => {
     dispatch(getGenres())
   }, [dispatch]);
@@ -102,8 +104,9 @@ const CreatePage = () => {
 
     //* Seteo todo el input desde CERO
     setGames(games);
-    // history.push("/home");
+    router.push("/games");
   }
+
   return (
     <FormCreated
       games={games}

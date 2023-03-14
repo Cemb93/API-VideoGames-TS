@@ -26,10 +26,6 @@ export const Reducer = (state: InitialState = initialState, action: Action): Ini
         ...state,
         detail: action.payload,
       }
-    // case ActionsTypes.CREATE_GAME:
-    //   return {
-    //     ...state,
-    //   }
     case ActionsTypes.GET_GENRES:
       return {
         ...state,
@@ -40,11 +36,6 @@ export const Reducer = (state: InitialState = initialState, action: Action): Ini
         ...state,
         allGames: [...state.allGames].filter((el) => el.id !== action.payload),
       }
-    // case ActionsTypes.UPDATE_GAME:
-    //   return {
-    //     ...state,
-    //     // allGames: [...state.allGames]
-    //   }
     default: return state;
   }
 }

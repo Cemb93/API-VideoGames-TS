@@ -103,8 +103,8 @@ export const FormCreated = (
           type="number"
           name="rating"
           placeholder="0.00 - 5.00"
-          step={0.01}
-          min={0.0}
+          // step={0.01}
+          // min={0.0}
           max={5}
           value={games.rating}
           onChange={(e) => handlerChanges(e)}
