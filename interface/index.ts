@@ -9,6 +9,12 @@ export interface GenerosApi {
   name: string
 }
 
+//* Esta representa el ENDPOINT
+export interface EndPointP {
+  id: number
+  name: string
+}
+
 export interface GamesApi {
   id?: string
   name: string
