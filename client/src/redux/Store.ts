@@ -15,4 +15,6 @@ export type RootState = ReturnType<typeof store.getState>;
 
 //* https://lightrun.com/answers/reduxjs-redux-thunk-thunkaction-is-not-assignable-to-parameter-of-type-anyaction
 //! OTRA MANERA DE USAR EL "useDispatch()" CAMUFLANDO EL "any"
-export type AppDispatch<T> = ThunkDispatch<T, any, AnyAction>;
+// export type AppDispatch<T> = ThunkDispatch<T, any, AnyAction>;
+//* https://stackoverflow.com/questions/52977666/correct-typescript-type-for-thunk-dispatch
+export type AppDispatch = ThunkDispatch<RootState, void, AnyAction>;
