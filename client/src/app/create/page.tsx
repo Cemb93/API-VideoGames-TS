@@ -6,6 +6,7 @@ import { FormCreate, InitialState } from '@/types';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { IGenres } from '../../../../interface';
+import { platforms } from '../components/AllPlatforms';
 import { FormCreated } from './FormCreated';
 
 const CreatePage = () => {
@@ -26,24 +27,6 @@ const CreatePage = () => {
   useEffect(() => {
     dispatch(getGenres())
   }, [dispatch]);
-  const platforms_api = [
-    "PC",
-    "PlayStation 5",
-    "PlayStation 4",
-    "PlayStation 3",
-    "Xbox One",
-    "Xbox Series S/X",
-    "Xbox 360",
-    "Xbox",
-    "Nintendo Switch",
-    "Nintendo 3DS",
-    "Nintendo DS",
-    "Nintendo DSi",
-    "iOS",
-    "Android",
-    "macOS",
-    "Linux",
-  ];
 
   const handlerChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGames({
@@ -117,7 +100,7 @@ const CreatePage = () => {
       selectGenres={selectGenres}
       deleteGenres={deleteGenres}
       handlerSubmit={handlerSubmit}
-      platforms_api={platforms_api}
+      platforms={platforms}
       genres={genres}
     />
   );

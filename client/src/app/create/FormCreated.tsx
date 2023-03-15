@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { GenerosApi } from "../../../../interface";
+import { GenerosApi, EndPointP } from "../../../../interface";
 
 export const FormCreated = (
-  {games,errors,handlerChanges,selectPlatforms,deletePlatforms,selectGenres,deleteGenres,handlerSubmit,platforms_api,genres}: 
+  {games,errors,handlerChanges,selectPlatforms,deletePlatforms,selectGenres,deleteGenres,handlerSubmit,platforms,genres}: 
   // {games: any,errors: any,}
   any
 ) => {
@@ -76,10 +76,10 @@ export const FormCreated = (
         </label>
         <select onChange={(e) => selectPlatforms(e)}>
           <option>Elije mínimo una Plataforma</option>
-          {platforms_api.map((platform: string, index: number) => {
+          {platforms.map((el: EndPointP) => {
             return (
-              <option key={index} value={platform}>
-                {platform}
+              <option key={el.id} >
+                {el.name}
               </option>
             );
           })}
@@ -88,7 +88,7 @@ export const FormCreated = (
           return (
             <div key={index}>
               <p>{el}</p>
-              <button onClick={() => deletePlatforms(el)}>X</button>
+              <div onClick={() => deletePlatforms(el)}>[X]</div>
             </div>
           );
         })}
@@ -121,7 +121,7 @@ export const FormCreated = (
           <option>Elije mínimo un Genero</option>
           {genres.map((genre: GenerosApi) => {
             return (
-              <option key={genre.id} value={genre.name}>
+              <option key={genre.id} >
                 {genre.name}
               </option>
             );
@@ -131,7 +131,8 @@ export const FormCreated = (
           return (
             <div key={index}>
               <p>{el}</p>
-              <button onClick={() => deleteGenres(el)}>X</button>
+              {/* <button onClick={() => deleteGenres(el)}>X</button> */}
+              <a onClick={() => deleteGenres(el)}>[X]</a>
             </div>
           );
         })}

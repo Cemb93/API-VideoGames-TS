@@ -61,7 +61,7 @@ export const createGames = (post: FormCreate) => {
       .then((res: any) => res.json())
       .then((data: (string)) => data)
       .catch((error: string) => console.log('ERROR:',error));
-      console.log(data)
+      alert(data)
     } catch (error) {
       console.log("Error en createGames por:", error);
     }
@@ -89,7 +89,7 @@ export const deleteGame = (id: string) => {
         method: "DELETE",
       })
       .then((res: any) => res.json())
-      .then((data: any) => console.log('DATA:', data))
+      .then((data: (string)) => data)
       dispatch({
         type: ActionsTypes.DELETE_GAME,
         payload: id,
@@ -114,7 +114,7 @@ export const upDateGame = (game: EditForm, id: string) => {
       .then((res: any) => res.json())
       .then((res: (string)) => res)
       .catch((error: string) => console.log('ERROR:',error));
-      console.log('PUT ACTION:',data)
+      alert(data)
     } catch (error) {
       console.log("Error en getGenres por:", error);
     }
