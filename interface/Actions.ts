@@ -26,14 +26,35 @@ export interface DeleteGame {
   payload: string
 }
 
-export interface FilterByCreated {
+export interface FilterCreated {
   type: ActionsTypes.FILTER_BY_CREATED
   payload: string
 }
 
-export interface FilterByGenres {
+export interface FilterGenres {
   type: ActionsTypes.FILTER_BY_GENRES
   payload: string
 }
 
-export type Action = AllGames | GetNames | DetailGame | GetGenres | DeleteGame | FilterByCreated | FilterByGenres
+export interface OrderName {
+  type: ActionsTypes.ORDER_BY_NAME
+  payload: string
+}
+
+export interface OrderRating {
+  type: ActionsTypes.ORDER_BY_RATING
+  payload: string
+}
+
+export interface Filters {
+  type: ActionsTypes.FILTERS
+  payload: string
+}
+
+export interface Orders {
+  type: ActionsTypes.ORDERS
+  payload: string
+}
+
+// export type Action = AllGames | GetNames | DetailGame | GetGenres | DeleteGame | Filters | Orders
+export type Action = AllGames | GetNames | DetailGame | GetGenres | DeleteGame | FilterCreated | FilterGenres | OrderName | OrderRating

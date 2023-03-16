@@ -120,3 +120,45 @@ export const upDateGame = (game: EditForm, id: string) => {
     }
   }
 };
+
+export const filterByCreation = (filter: string) => {
+  return {
+    type: ActionsTypes.FILTER_BY_CREATED,
+    payload: filter,
+  };
+};
+
+export const filterByGenre = (filter: string) => {
+  return {
+    type: ActionsTypes.FILTER_BY_GENRES,
+    payload: filter,
+  };
+};
+
+export const orderByName = (order: string) => {
+  return {
+    type: ActionsTypes.ORDER_BY_NAME,
+    payload: order,
+  };
+};
+
+export const orderByRating = (order: string) => {
+  return {
+    type: ActionsTypes.ORDER_BY_RATING,
+    payload: order,
+  };
+};
+
+export const filters = (payload: string) => {
+  return {
+    type: ActionsTypes.FILTERS,
+    payload,
+  }
+}
+
+export const order = (payload: string) => {
+  return {
+    type: ActionsTypes.ORDERS,
+    payload,
+  }
+}
