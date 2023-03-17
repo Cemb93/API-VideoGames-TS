@@ -26,7 +26,7 @@ export const Game = (
         )
       }
       <Link href={`/games/${id}`} >
-        <img src={image} alt={name} width={'400px'} height={'250px'} />
+        <img src={image} alt={name} width={'250px'} height={'150px'} />
       </Link>
       <p>Fecha de lanzamiento: {released}</p>
       <p>Calificación: {rating}</p>

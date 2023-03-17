@@ -41,27 +41,21 @@ export const Reducer = (
         allGames: [...state.allGames].filter((el) => el.id !== action.payload),
       };
     case ActionsTypes.FILTER_BY_CREATED:
-      let filterGame;
+      let filterGame: GamesGenres[] = [];
       if (action.payload === "Original Games") {
-        let filterOrigin = state.allGames.filter(
-          // (e:GamesGenres) => e.id.toString().length < 7
-          (e:GamesGenres) => {
-            if (typeof e.id === 'number') {
-              return e.id
-            }
+        let filterOrigin = state.allGames.filter((e:GamesGenres) => {
+          if (typeof e.id === 'number') {
+            return e.id
           }
-        );
+        });
         filterGame = filterOrigin;
       }
       if (action.payload === "Added Games") {
-        let filterCreated = state.allGames.filter(
-          // (e:GamesGenres) => e.id.toString().length > 6
-          (e:GamesGenres) => {
-            if (typeof e.id === 'string') {
-              return e.id
-            }
+        let filterCreated = state.allGames.filter((e:GamesGenres) => {
+          if (typeof e.id === 'string') {
+            return e.id
           }
-        );
+        });
         filterGame = filterCreated;
 
         // if (!filterGame.length) {
@@ -73,20 +67,29 @@ export const Reducer = (
       }
       return {
         ...state,
-        // allGames: filterGame,
+        allGames: filterGame,
       };
     case ActionsTypes.FILTER_BY_GENRES:
       const filterGames = state.allGames;
       let genreFilter =
-        action.payload === "All Genres"
+        action.payload === "All"
           ? filterGames
           : filterGames.filter((e:GamesGenres) => e.genres.map((el:IGenres | string) => {
+            let arr1 = [];
             if (typeof el === 'object') {
-              return el.name.includes(action.payload)
-            } else if (typeof el === 'string') {
-              return el.includes(action.payload)
+              arr1.push(el.name === action.payload)
             }
+            let arr2 = [];
+            if (typeof el === 'string') {
+              arr2.push(el === action.payload)
+            }
+            arr1 = arr1.concat(arr2);
+            return arr1
+            // if ((typeof el === 'object' && el.name === action.payload) && (typeof el === 'string' && el === action.payload)) {
+            //   return el;
+            // }
           }));
+          console.log('FILTER GENRES:',genreFilter)
       return {
         ...state,
         allGames: genreFilter,

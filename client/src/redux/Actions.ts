@@ -129,6 +129,7 @@ export const filterByCreation = (filter: string) => {
 };
 
 export const filterByGenre = (filter: string) => {
+  // console.log(filter)
   return {
     type: ActionsTypes.FILTER_BY_GENRES,
     payload: filter,

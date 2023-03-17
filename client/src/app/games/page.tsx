@@ -11,6 +11,7 @@ import { Loading } from '../components/Loading';
 import SearchBar from '../components/SearchBar';
 import NavBar from '../components/NavBar';
 import { FilterOrder } from '../components/FilterOrder';
+import s from '../styles/Games.module.css';
 
 const GamesPage = () => {
   const {allGames} = useAppSelector((state: InitialState) => state)
@@ -21,24 +22,26 @@ const GamesPage = () => {
     created: '',
     // years: '',
   });
+  console.log('SELECT:', selects)
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getAllGames())
   }, []);
 
-  const genreHandler = (e: any) => {
+  const genreHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    // console.log('EVENTO GENERO:',e.target)
     e.preventDefault();
     setSelects({
       order: '',
+      genres: e.target.value,
       created: '',
       // years: '',
-      genres: e.target.value,
     });
     dispatch(filterByGenre(e.target.value));
     // setCurrentPage(1);
   };
 
-  const createdGameHandler = (e: any) => {
+  const createdGameHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     setSelects({
       order: '',
@@ -49,15 +52,15 @@ const GamesPage = () => {
     // setCurrentPage(1);
   };
 
-  const sortHandler = (e: any) => {
+  const sortHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     if (e.target.value === 'A-Z' || e.target.value === 'Z-A') {
       dispatch(orderByName(e.target.value));
       setSelects({
-        created: '',
-        genres: '',
-        // years: '',
         order: `${e.target.value}`,
+        genres: '',
+        created: '',
+        // years: '',
       });
       // setCurrentPage(1);
     }
@@ -67,10 +70,10 @@ const GamesPage = () => {
     ) {
       dispatch(orderByRating(e.target.value));
       setSelects({
-        created: '',
-        genres: '',
-        // years: '',
         order: `${e.target.value}`,
+        genres: '',
+        created: '',
+        // years: '',
       });
       // setCurrentPage(1);
     }
@@ -78,15 +81,15 @@ const GamesPage = () => {
       // dispatch(cleanVideogamesState());
       dispatch(getAllGames());
       setSelects({
-        created: '',
-        genres: '',
-        // years: '',
         order: `${e.target.value}`,
+        genres: '',
+        created: '',
+        // years: '',
       });
       // setCurrentPage(1);
     }
   };
-  const resetFiltersHandler = (e:any) => {
+  const resetFiltersHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     // dispatch(cleanVideogamesState());
     dispatch(getAllGames());
@@ -98,7 +101,7 @@ const GamesPage = () => {
     });
     // setCurrentPage(1);
   };
-  const resetGames = (e:any) => {
+  const resetGames = (e:React.MouseEvent<HTMLButtonElement>) => {
     resetFiltersHandler(e);
   };
 
@@ -138,27 +141,29 @@ const GamesPage = () => {
       <button onClick={() => dispatch(getAllGames())} >
         Traer todos los juegos
       </button>
-      {
-        !allGames.length ? (
-          <Loading/>
-        ) : (
-          allGames.map((el: GamesGenres) => {
-            return (
-              <div key={el.id} >
-                <Game
-                  id={el.id}
-                  name={el.name}
-                  image={el.image}
-                  released={el.released}
-                  rating={el.rating}
-                  platforms={el.platforms}
-                  genres={el.genres}
-                />
-              </div>
-            );
-          })
-        )
-      }
+      <div className={s.allGames} >
+        {
+          !allGames.length ? (
+            <Loading/>
+          ) : (
+            allGames.map((el: GamesGenres) => {
+              return (
+                <div key={el.id} >
+                  <Game
+                    id={el.id}
+                    name={el.name}
+                    image={el.image}
+                    released={el.released}
+                    rating={el.rating}
+                    platforms={el.platforms}
+                    genres={el.genres}
+                  />
+                </div>
+              );
+            })
+          )
+        }
+      </div>
     </div>
   );
 }

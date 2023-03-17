@@ -9,7 +9,6 @@ export default function NavBar(
     any
 ) {
   const { genres } = useAppSelector((state: InitialState) => state);
-  console.log('GENRES:', genres)
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getGenres());
@@ -20,19 +19,17 @@ export default function NavBar(
         All videogames
       </button>
       <h3>Filters</h3>
-      {/*select con 20 options => 19generos y all games */}
       <select
         onChange={(e) => genreHandler(e)}
         value={selects.genres}
       >
-        <option value="All Genres">All Genres</option>
+        <option value="All">All Genres</option>
         {genres.map((genre: GenerosApi) => {
-          return <option key={genre.id} >
+          return <option key={genre.id} value={genre.name} >
             {genre.name}
           </option>
         })}
       </select>
-      {/*select con 3 options */}
       <select
         onChange={(e) => createdGameHandler(e)}
         value={selects.created}
@@ -41,7 +38,6 @@ export default function NavBar(
         <option value="Original Games">Original Videogames</option>
         <option value="Added Games">Added Videogames</option>
       </select>
-      {/*select con 5 options */}
       <select
         onChange={(e) => sortHandler(e)}
         value={selects.order}
