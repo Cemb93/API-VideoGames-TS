@@ -4,7 +4,6 @@ import { Action } from "../../../interface/Actions";
 import { ActionsTypes, BACK } from "./Action-Types";
 
 export const getAllGames = () => {
-  // return async (dispatch: Dispatch<Action>) => {
   return async (dispatch: Dispatch) => {
     try {
       const data = await fetch(BACK.games).then((res: any) => res.json());
@@ -19,7 +18,7 @@ export const getAllGames = () => {
 };
 
 export const getNames = (name: string) => {
-  return async (dispatch: Dispatch<Action>) => {
+  return async (dispatch: Dispatch) => {
     try {
       const data = await fetch(`${BACK.games}?name=${name}`).then((res: any) => res.json());
       dispatch({
@@ -36,7 +35,6 @@ export const getDetailGame = (id: string | number) => {
   return async (dispatch: Dispatch) => {
     try {
       const data = await fetch(`${BACK.games}/${id}`).then((res: any) => res.json());
-      console.log(data)
       dispatch({
         type: ActionsTypes.GET_ID,
         payload: data,
@@ -48,10 +46,9 @@ export const getDetailGame = (id: string | number) => {
 }
 
 export const createGames = (post: FormCreate) => {
-  // return async (dispatch: Dispatch<Action>)  => {
   return async (dispatch: Dispatch)  => {
     try {
-      const data = await fetch(BACK.games, {
+      await fetch(BACK.games, {
         method: "POST",
         body: JSON.stringify(post),
         headers: {
@@ -61,7 +58,6 @@ export const createGames = (post: FormCreate) => {
       .then((res: any) => res.json())
       .then((data: (string)) => data)
       .catch((error: string) => console.log('ERROR:',error));
-      alert(data)
     } catch (error) {
       console.log("Error en createGames por:", error);
     }
@@ -69,7 +65,7 @@ export const createGames = (post: FormCreate) => {
 };
 
 export const getGenres = () => {
-  return async (dispatch: Dispatch<Action>) => {
+  return async (dispatch: Dispatch) => {
     try {
       const data = await fetch(BACK.genres).then((res: any) => res.json());
       dispatch({
@@ -83,7 +79,7 @@ export const getGenres = () => {
 };
 
 export const deleteGame = (id: string) => {
-  return async (dispatch: Dispatch<Action>) => {
+  return async (dispatch: Dispatch) => {
     try {
       await fetch(`${BACK.games}/${id}`, {
         method: "DELETE",
@@ -101,10 +97,9 @@ export const deleteGame = (id: string) => {
 };
 
 export const upDateGame = (game: EditForm, id: string) => {
-  // return async (dispatch: Dispatch<Action>) => {
   return async (dispatch: Dispatch) => {
     try {
-      const data = await fetch(`${BACK.games}/${id}`, {
+      await fetch(`${BACK.games}/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -114,7 +109,6 @@ export const upDateGame = (game: EditForm, id: string) => {
       .then((res: any) => res.json())
       .then((res: (string)) => res)
       .catch((error: string) => console.log('ERROR:',error));
-      alert(data)
     } catch (error) {
       console.log("Error en getGenres por:", error);
     }
@@ -129,7 +123,10 @@ export const filterByCreation = (filter: string) => {
 };
 
 export const filterByGenre = (filter: string) => {
-  // console.log(filter)
+  /* 
+  ! NO HAY: Strategy - Casual - Simulation - Arcade - Racing
+  ! NO HAY: Sports - Family - Board Games - Educational - Card
+  */
   return {
     type: ActionsTypes.FILTER_BY_GENRES,
     payload: filter,

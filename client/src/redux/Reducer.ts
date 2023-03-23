@@ -57,14 +57,11 @@ export const Reducer = (
           }
         });
         filterGame = filterCreated;
-
-        // if (!filterGame.length) {
-        //   filterGame = ["No games created"];
-        // }
       }
       if (action.payload === "All Games") {
         filterGame = state.allGames;
       }
+      console.log('FILTER CREATED:', filterGame)
       return {
         ...state,
         allGames: filterGame,
@@ -79,18 +76,13 @@ export const Reducer = (
             let arr2: (IGenres | string)[] = []
             for (let el of e.genres) {
               if (typeof el === 'object' && el.name === action.payload) {
-                // console.log('OBJECT:', el)
                 arr1.push(el)
-                console.log('OBJECT:', arr1)
               }
               if (typeof el === 'string' && el.includes(action.payload)) {
-                // console.log('STRING:', el)
                 arr1.push(el)
-                console.log('STRING:', arr1)
               }
             }
             arr2 = arr1.concat(arr2)
-            console.log('ARR-2:', arr2)
             return arr2.length > 0 && arr2;
           })
           console.log('FILTER GENRES:',genreFilter)
@@ -112,7 +104,7 @@ export const Reducer = (
               if (a.name > b.name) return -1;
               return 0;
             });
-
+      console.log('ORDER NAME:', alphabeticOrder)
       return {
         ...state,
         allGames: alphabeticOrder,
@@ -130,6 +122,7 @@ export const Reducer = (
               if (a.rating > b.rating) return 1;
               return 0;
             });
+      console.log('ORDER RATING:', ratingOrder)
       return {
         ...state,
         allGames: ratingOrder,

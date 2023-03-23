@@ -26,7 +26,7 @@ const GamesPage = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getAllGames())
-  }, []);
+  }, [dispatch]);
 
   const genreHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     // console.log('EVENTO GENERO:',e.target)

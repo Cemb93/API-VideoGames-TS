@@ -30,15 +30,6 @@ export const Game = (
       </Link>
       <p>Fecha de lanzamiento: {released}</p>
       <p>Calificación: {rating}</p>
-      <p>Plataformas: {
-        platforms.map((el: string) => {
-          return (
-            <ul key={el} >
-              <li>{`✔ ${el}`}</li>
-            </ul>
-          );
-        })  
-      }</p>
       <p>Generos: {
         genres.map((el: string | IGenres, index: number) => (
           typeof el === 'object' ? (
@@ -51,6 +42,15 @@ export const Game = (
             </ul>
           )
         ))  
+      }</p>
+      <p>Plataformas: {
+        platforms.map((el: string) => {
+          return (
+            <ul key={el} >
+              <li>{`✔ ${el}`}</li>
+            </ul>
+          );
+        })  
       }</p>
       {
         typeof id === 'string' && (
