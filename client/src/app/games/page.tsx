@@ -22,7 +22,7 @@ const GamesPage = () => {
     created: '',
     // years: '',
   });
-  console.log('SELECT:', selects)
+  // console.log('SELECT:', selects)
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getAllGames())

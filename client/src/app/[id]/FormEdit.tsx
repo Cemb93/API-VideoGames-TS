@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { GenerosApi } from "../../../../interface";
+import { platforms } from '../components/AllPlatforms';
 
 export const FormEdit = (
-  {games,errors,handlerChanges,selectPlatforms,deletePlatforms,handlerSubmit,platforms_api,genres, detail}: 
+  {games,errors,handlerChanges,selectPlatforms,deletePlatforms,handlerSubmit,detail}: 
   // {games: any,errors: any,}
   any
 ) => {
@@ -78,10 +78,10 @@ export const FormEdit = (
         </label>
         <select onChange={(e) => selectPlatforms(e)}>
           <option>Elije mínimo una Plataforma</option>
-          {platforms_api.map((platform: string, index: number) => {
+          {platforms.map((platform: {name:string}, index: number) => {
             return (
-              <option key={index} value={platform}>
-                {platform}
+              <option key={index} value={platform.name}>
+                {platform.name}
               </option>
             );
           })}

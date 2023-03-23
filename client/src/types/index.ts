@@ -7,10 +7,10 @@ export type InitialState = {
   detail?: GamesGenres
 }
 
-type PropsCreate = Omit<GamesGenres, 'genres'>
+type PropsCreate = Omit<GamesGenres, 'id' | 'genres'>
 export type FormCreate = PropsCreate & {
   genres: Array<string>
 }
 
-type PropsEdit = Omit<GamesGenres, 'genres'>
+type PropsEdit = Omit<GamesGenres, 'id' | 'genres'>
 export type EditForm = PropsEdit

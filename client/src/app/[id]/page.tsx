@@ -23,24 +23,6 @@ const EditPage = (props: PropsParams) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { id } = props.params;
-  const platforms_api = [
-    "PC",
-    "PlayStation 5",
-    "PlayStation 4",
-    "PlayStation 3",
-    "Xbox One",
-    "Xbox Series S/X",
-    "Xbox 360",
-    "Xbox",
-    "Nintendo Switch",
-    "Nintendo 3DS",
-    "Nintendo DS",
-    "Nintendo DSi",
-    "iOS",
-    "Android",
-    "macOS",
-    "Linux",
-  ];
 
   useEffect(() => {
     if ((detail?.id === id)) {
@@ -103,7 +85,6 @@ const EditPage = (props: PropsParams) => {
       selectPlatforms={selectPlatforms}
       deletePlatforms={deletePlatforms}
       handlerSubmit={handlerSubmit}
-      platforms_api={platforms_api}
       genres={genres}
       detail={detail}
     />

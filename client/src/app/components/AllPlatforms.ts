@@ -1,4 +1,7 @@
-export const platforms = [
+export const platforms: {
+  id: number;
+  name: string;
+}[] = [
   {
     id: 111,
     name: "3DO",

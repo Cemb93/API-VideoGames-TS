@@ -10,7 +10,7 @@ export const videoGamesApi = async () => {
   try {
     let gameDb = await videoGamesDb();
     let pagesOfApi: GamesGenres[] = [];
-    for (let i = 0; i <= 1; i++) {
+    for (let i = 0; i <= 5; i++) {
       const EndPoint = `${VIDEOGAMES}?key=${KEY}&page=${i}`;
       pagesOfApi.push(await fetch(EndPoint)
         .then((data: any) => data.json())

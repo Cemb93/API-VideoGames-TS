@@ -74,21 +74,25 @@ export const Reducer = (
       let genreFilter =
         action.payload === "All"
           ? filterGames
-          : filterGames.filter((e:GamesGenres) => e.genres.map((el:IGenres | string) => {
-            let arr1 = [];
-            if (typeof el === 'object') {
-              arr1.push(el.name === action.payload)
+          : filterGames.filter((e:GamesGenres) => {
+            let arr1: (IGenres | string)[] = []
+            let arr2: (IGenres | string)[] = []
+            for (let el of e.genres) {
+              if (typeof el === 'object' && el.name === action.payload) {
+                // console.log('OBJECT:', el)
+                arr1.push(el)
+                console.log('OBJECT:', arr1)
+              }
+              if (typeof el === 'string' && el.includes(action.payload)) {
+                // console.log('STRING:', el)
+                arr1.push(el)
+                console.log('STRING:', arr1)
+              }
             }
-            let arr2 = [];
-            if (typeof el === 'string') {
-              arr2.push(el === action.payload)
-            }
-            arr1 = arr1.concat(arr2);
-            return arr1
-            // if ((typeof el === 'object' && el.name === action.payload) && (typeof el === 'string' && el === action.payload)) {
-            //   return el;
-            // }
-          }));
+            arr2 = arr1.concat(arr2)
+            console.log('ARR-2:', arr2)
+            return arr2.length > 0 && arr2;
+          })
           console.log('FILTER GENRES:',genreFilter)
       return {
         ...state,
