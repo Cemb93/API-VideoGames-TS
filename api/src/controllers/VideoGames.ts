@@ -10,7 +10,7 @@ export const videoGamesApi = async () => {
   try {
     let gameDb = await videoGamesDb();
     let pagesOfApi: GamesGenres[] = [];
-    for (let i = 0; i <= 5; i++) {
+    for (let i = 1; i <= 5; i++) {
       const EndPoint = `${VIDEOGAMES}?key=${KEY}&page=${i}`;
       pagesOfApi.push(await fetch(EndPoint)
         .then((data: any) => data.json())
@@ -18,22 +18,29 @@ export const videoGamesApi = async () => {
       );
     }
     let gamesOfApi = await Promise.all(pagesOfApi)
-      .then((res: any) => res[1].results.map((el: GamesApi) => {
-        return {
-          id: el.id,
-          name: el.name,
-          released: el.released,
-          image: el.background_image,
-          rating: el.rating,
-          platforms: el.platforms.map((el: PlatformsApi) => el.platform.name),
-          genres: el.genres?.map((el: GenerosApi) => el.name),
+      .then((res: any) => {
+        let pages: GamesApi[] = [];
+        for (let i = 0; i < res.length; i++) {
+          pages = pages.concat(res[i].results);
         }
-      }));
+        return pages.map((el: GamesApi) => {
+          return {
+            id: el.id,
+            name: el.name,
+            released: el.released,
+            image: el.background_image,
+            rating: el.rating,
+            platforms: el.platforms.map((el: PlatformsApi) => el.platform.name),
+            genres: el.genres?.map((el: GenerosApi) => el.name),
+          }
+        });
+      });
     if (gameDb && gameDb.length) {
-      gamesOfApi = gameDb.concat(gamesOfApi)
-      return gamesOfApi;
+      pagesOfApi = gameDb.concat(gamesOfApi);
+      // console.log('ALL:', pagesOfApi.length)
+      return pagesOfApi;
     } else {
-      return gamesOfApi;
+      return pagesOfApi;
     }
   } catch (error) {
     console.log("Error en videoGamesApi por:", error);
