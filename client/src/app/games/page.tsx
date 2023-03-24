@@ -10,8 +10,9 @@ import { Game } from './Game';
 import { Loading } from '../components/Loading';
 import SearchBar from '../components/SearchBar';
 import NavBar from '../components/NavBar';
-import { FilterOrder } from '../components/FilterOrder';
 import s from '../styles/Games.module.css';
+import { BACK } from '@/redux/Action-Types';
+const url = 'https://api.rawg.io/api/games?key=1fdada09a1ba470984c5234110f3638f'
 
 const GamesPage = () => {
   const {allGames} = useAppSelector((state: InitialState) => state)
@@ -23,6 +24,8 @@ const GamesPage = () => {
     created: '',
   });
   // console.log('SELECT:', selects)
+  const [pages, setPages] = useState<number>(1);
+  const [coinsData, setCoinsData] = useState<[]>([]);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getAllGames())
@@ -94,6 +97,43 @@ const GamesPage = () => {
     resetfilters(e);
   };
 
+  //! PENDIENTE SCROLL INFINITO
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await fetch(`${url}&page=${pages}`)
+  //         .then((data:any) => data.json())
+  //         .then((r:any) => console.log('ERRERRRR:', r))
+  //       console.log('RES:', res)
+  //       // setCoinsData((prev:number[]):any => [...prev, ...res.data])
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   fetchData();
+  // }, [pages]);
+
+  // const scrollInfinity = () => {
+  //   let scrollHeight = document.documentElement.scrollHeight;
+  //   let scrollTop = document.documentElement.scrollTop;
+  //   let innerHeight = window.innerHeight;
+  //   if (innerHeight + scrollTop + 1 >= scrollHeight) {
+  //     setPages((prev: number) => prev + 1);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   const scrollInfinity = (e:any) => {
+  //     let scrollTop = document.documentElement.scrollTop;
+  //     let scrollHeight = document.documentElement.scrollHeight+window.innerHeight;
+  //     if (scrollHeight + 1 >= scrollTop) {
+  //       setPages(pages + 5);
+  //     }
+  //   }
+  //   window.addEventListener('scroll', scrollInfinity);
+  //   return () => window.removeEventListener('scroll', scrollInfinity)
+  // }, [pages]);
+
   return (
     <div>
       <Link href={'/create'} >
@@ -115,14 +155,6 @@ const GamesPage = () => {
           resetGames={resetGames}
           selects={selects}
         />
-      </div>
-      <div>
-        {/* <FilterOrder
-          orders={orders}
-          setOrders={setOrders}
-          filters={filters}
-          setFilters={setFilters}
-        /> */}
       </div>
       <button onClick={() => dispatch(getAllGames())} >
         Traer todos los juegos
