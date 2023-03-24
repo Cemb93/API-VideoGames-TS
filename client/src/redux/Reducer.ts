@@ -94,14 +94,14 @@ export const Reducer = (
       let orderGames = state.allGames;
       let alphabeticOrder =
         action.payload === "A-Z"
-          ? orderGames.sort((a, b) => {
-              if (a.name < b.name) return -1;
-              if (a.name > b.name) return 1;
+          ? orderGames.sort((a:GamesGenres, b:GamesGenres) => {
+              if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+              if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
               return 0;
             })
           : orderGames.sort((a, b) => {
-              if (a.name < b.name) return 1;
-              if (a.name > b.name) return -1;
+              if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+              if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
               return 0;
             });
       console.log('ORDER NAME:', alphabeticOrder)
@@ -127,22 +127,6 @@ export const Reducer = (
         ...state,
         allGames: ratingOrder,
       };
-    // case ActionsTypes.FILTERS:
-    //   switch (action.payload) {
-    //     case ActionsTypes.FILTER_BY_GENRES:
-    //       1;
-    //     case ActionsTypes.FILTER_BY_CREATED:
-    //     default:
-    //       return state;
-    //   }
-    // case ActionsTypes.ORDERS:
-    //   switch (action.payload) {
-    //     case ActionsTypes.ORDER_BY_NAME:
-    //       1;
-    //     case ActionsTypes.ORDER_BY_RATING:
-    //     default:
-    //       return state;
-    //   }
     default:
       return state;
   }

@@ -124,8 +124,8 @@ export const filterByCreation = (filter: string) => {
 
 export const filterByGenre = (filter: string) => {
   /* 
-  ! NO HAY: Strategy - Casual - Simulation - Arcade - Racing
-  ! NO HAY: Sports - Family - Board Games - Educational - Card
+  * Con 100 juegos faltarían estos Generos:
+  ! NO HAY: Casual - Board Games - Educational - Card
   */
   return {
     type: ActionsTypes.FILTER_BY_GENRES,

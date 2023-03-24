@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { GenerosApi } from '../../../../interface';
 
 export default function NavBar(
-  { genreHandler, createdGameHandler, sortHandler, resetFiltersHandler, resetGames, selects }:
+  { filterGenre, filterCreated, sortName, sortRating, resetfilters, resetGames, selects }:
     any
 ) {
   const { genres } = useAppSelector((state: InitialState) => state);
@@ -20,7 +20,7 @@ export default function NavBar(
       </button>
       <h3>Filters</h3>
       <select
-        onChange={(e) => genreHandler(e)}
+        onChange={(e) => filterGenre(e)}
         value={selects.genres}
       >
         <option value="All">All Genres</option>
@@ -31,7 +31,7 @@ export default function NavBar(
         })}
       </select>
       <select
-        onChange={(e) => createdGameHandler(e)}
+        onChange={(e) => filterCreated(e)}
         value={selects.created}
       >
         <option value="All Games">All Videogames</option>
@@ -39,17 +39,27 @@ export default function NavBar(
         <option value="Added Games">Added Videogames</option>
       </select>
       <select
-        onChange={(e) => sortHandler(e)}
+        onChange={(e) => sortName(e)}
         value={selects.order}
       >
-        <option value="null">Sort by</option>
+        <option value="null">Sort by name</option>
         <option value="A-Z">A-Z</option>
         <option value="Z-A">Z-A</option>
+        {/* <option value="higher rating">Higher rating</option>
+        <option value="lower rating">Lower rating</option> */}
+      </select>
+      <select
+        onChange={(e) => sortRating(e)}
+        value={selects.order}
+      >
+        <option value="null">Sort by rating</option>
+        {/* <option value="A-Z">A-Z</option>
+        <option value="Z-A">Z-A</option> */}
         <option value="higher rating">Higher rating</option>
         <option value="lower rating">Lower rating</option>
       </select>
       <button
-        onClick={(e) => resetFiltersHandler(e)}
+        onClick={(e) => resetfilters(e)}
       >
         Reset filters
       </button>

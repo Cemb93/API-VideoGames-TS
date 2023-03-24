@@ -17,10 +17,10 @@ const GamesPage = () => {
   const {allGames} = useAppSelector((state: InitialState) => state)
   // console.log('ALL GAMES',allGames)
   const [selects, setSelects] = useState({
-    order: '',
+    orderName: '',
+    orderRating: '',
     genres: '',
     created: '',
-    // years: '',
   });
   // console.log('SELECT:', selects)
   const dispatch = useAppDispatch();
@@ -28,85 +28,71 @@ const GamesPage = () => {
     dispatch(getAllGames())
   }, [dispatch]);
 
-  const genreHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const filterGenre = (e: React.ChangeEvent<HTMLSelectElement>) => {
     // console.log('EVENTO GENERO:',e.target)
     e.preventDefault();
     setSelects({
-      order: '',
+      orderName: '',
+      orderRating: '',
       genres: e.target.value,
       created: '',
-      // years: '',
     });
     dispatch(filterByGenre(e.target.value));
-    // setCurrentPage(1);
   };
 
-  const createdGameHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const filterCreated = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     setSelects({
-      order: '',
+      orderName: '',
+      orderRating: '',
       genres: '',
       created: e.target.value,
     });
     dispatch(filterByCreation(e.target.value));
-    // setCurrentPage(1);
   };
 
-  const sortHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const sortName = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const {value} = e.target;
     e.preventDefault();
-    if (e.target.value === 'A-Z' || e.target.value === 'Z-A') {
-      dispatch(orderByName(e.target.value));
+    if (value === 'A-Z' || value === 'Z-A') {
+      dispatch(orderByName(value));
       setSelects({
-        order: `${e.target.value}`,
+        orderName: value,
+        orderRating: '',
         genres: '',
         created: '',
-        // years: '',
       });
-      // setCurrentPage(1);
-    }
-    if (
-      e.target.value === 'higher rating' ||
-      e.target.value === 'lower rating'
-    ) {
-      dispatch(orderByRating(e.target.value));
-      setSelects({
-        order: `${e.target.value}`,
-        genres: '',
-        created: '',
-        // years: '',
-      });
-      // setCurrentPage(1);
-    }
-    if (e.target.value === 'null') {
-      // dispatch(cleanVideogamesState());
-      dispatch(getAllGames());
-      setSelects({
-        order: `${e.target.value}`,
-        genres: '',
-        created: '',
-        // years: '',
-      });
-      // setCurrentPage(1);
     }
   };
-  const resetFiltersHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
+
+  const sortRating = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const {value} = e.target;
     e.preventDefault();
-    // dispatch(cleanVideogamesState());
+    if (value === 'higher rating' || value === 'lower rating') {
+      dispatch(orderByRating(value));
+      setSelects({
+        orderName: '',
+        orderRating: value,
+        genres: '',
+        created: '',
+      });
+    }
+  };
+
+  const resetfilters = (e:React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     dispatch(getAllGames());
     setSelects({
-      order: '',
+      orderName: '',
+      orderRating: '',
       genres: '',
       created: '',
-      // years: '',
     });
-    // setCurrentPage(1);
-  };
-  const resetGames = (e:React.MouseEvent<HTMLButtonElement>) => {
-    resetFiltersHandler(e);
   };
 
-  // const [orders, setOrders] = useState({});
-  // const [filters, setFilters] = useState({});
+  const resetGames = (e:React.MouseEvent<HTMLButtonElement>) => {
+    resetfilters(e);
+  };
 
   return (
     <div>
@@ -120,13 +106,13 @@ const GamesPage = () => {
       </div>
       <div>
         <NavBar
-          genreHandler={genreHandler}
-          createdGameHandler={createdGameHandler}
-          sortHandler={sortHandler}
-          resetFiltersHandler={resetFiltersHandler}
+          filterGenre={filterGenre}
+          filterCreated={filterCreated}
+          sortName={sortName}
+          sortRating={sortRating}
+          resetfilters={resetfilters}
           // searchGame={searchGame}
           resetGames={resetGames}
-          // yearsHandler={yearsHandler}
           selects={selects}
         />
       </div>
