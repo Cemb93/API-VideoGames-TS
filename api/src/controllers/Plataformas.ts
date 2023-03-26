@@ -11,7 +11,7 @@ export const platformsApi = async (_req: Request, res: Response) => {
       const EndPoint = `${PLATFORMS}?key=${KEY}&page=${i}`;
 
       platformsApi.push(await fetch(EndPoint)
-        .then((data: any) => data.json())
+        .then((data: Response) => data.json())
         .catch((error: string) => console.log('Error en la API por:', error))
       );
     }

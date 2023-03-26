@@ -13,7 +13,7 @@ export const videoGamesApi = async () => {
     for (let i = 1; i <= 5; i++) {
       const EndPoint = `${VIDEOGAMES}?key=${KEY}&page=${i}`;
       pagesOfApi.push(await fetch(EndPoint)
-        .then((data: any) => data.json())
+        .then((data: Response) => data.json())
         .catch((error: string) => console.log('Error en la API por:', error))
       );
     }

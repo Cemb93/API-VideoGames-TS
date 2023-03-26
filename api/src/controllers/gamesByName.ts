@@ -9,7 +9,7 @@ export const gamesByName = async (name: string) => {
     let gameDb = await videoGamesDb();
 
     let allNames: GamesGenres[] = [];
-    let nameApi = await fetch(EndPoint).then((data: any) => data.json());
+    let nameApi = await fetch(EndPoint).then((data: Response) => data.json());
 
     nameApi.results.map((el: GamesApi) => {
       let arrPlatforms: string[] = [];
