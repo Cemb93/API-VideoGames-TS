@@ -2,7 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from '@/Hooks';
 import { getDetailGame, upDateGame } from '@/redux/Actions';
-import { EditForm, InitialState } from '@/types';
+import { EditForm, InitialState } from '@/types/Forms';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { PropsParams } from '../../../../interface/PropsParams';

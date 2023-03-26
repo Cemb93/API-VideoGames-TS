@@ -46,15 +46,4 @@ export interface OrderRating {
   payload: string
 }
 
-export interface Filters {
-  type: ActionsTypes.FILTERS
-  payload: string
-}
-
-export interface Orders {
-  type: ActionsTypes.ORDERS
-  payload: string
-}
-
-// export type Action = AllGames | GetNames | DetailGame | GetGenres | DeleteGame | Filters | Orders
 export type Action = AllGames | GetNames | DetailGame | GetGenres | DeleteGame | FilterCreated | FilterGenres | OrderName | OrderRating

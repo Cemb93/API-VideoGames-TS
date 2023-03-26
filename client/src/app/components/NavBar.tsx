@@ -1,11 +1,12 @@
 import { useAppDispatch, useAppSelector } from '@/Hooks';
 import { getGenres } from '@/redux/Actions';
-import { InitialState } from '@/types';
+import { InitialState } from '@/types/Forms';
 import React, { useEffect } from 'react';
 import { GenerosApi } from '../../../../interface';
+import SearchBar from './SearchBar';
 
 export default function NavBar(
-  { filterGenre, filterCreated, sortName, sortRating, resetfilters, resetGames, selects }:
+  { filterGenre, filterCreated, sortName, sortRating, selects }:
     any
 ) {
   const { genres } = useAppSelector((state: InitialState) => state);
@@ -15,10 +16,9 @@ export default function NavBar(
   }, [dispatch]);
   return (
     <div>
-      <button onClick={(e) => resetGames(e)}>
-        All videogames
-      </button>
-      <h3>Filters</h3>
+      <div>
+        <SearchBar/>
+      </div>
       <select
         onChange={(e) => filterGenre(e)}
         value={selects.genres}
@@ -45,24 +45,15 @@ export default function NavBar(
         <option value="null">Sort by name</option>
         <option value="A-Z">A-Z</option>
         <option value="Z-A">Z-A</option>
-        {/* <option value="higher rating">Higher rating</option>
-        <option value="lower rating">Lower rating</option> */}
       </select>
       <select
         onChange={(e) => sortRating(e)}
         value={selects.order}
       >
         <option value="null">Sort by rating</option>
-        {/* <option value="A-Z">A-Z</option>
-        <option value="Z-A">Z-A</option> */}
         <option value="higher rating">Higher rating</option>
         <option value="lower rating">Lower rating</option>
       </select>
-      <button
-        onClick={(e) => resetfilters(e)}
-      >
-        Reset filters
-      </button>
     </div>
   );
 }

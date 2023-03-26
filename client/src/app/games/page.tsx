@@ -2,7 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from '@/Hooks'
 import { filterByCreation, filterByGenre, getAllGames, orderByName, orderByRating } from '@/redux/Actions'
-import { InitialState } from '@/types';
+import { InitialState } from '@/types/Forms';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { GamesGenres } from '../../../../interface';
@@ -24,15 +24,12 @@ const GamesPage = () => {
     created: '',
   });
   // console.log('SELECT:', selects)
-  const [pages, setPages] = useState<number>(1);
-  const [coinsData, setCoinsData] = useState<[]>([]);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getAllGames())
   }, [dispatch]);
 
   const filterGenre = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    // console.log('EVENTO GENERO:',e.target)
     e.preventDefault();
     setSelects({
       orderName: '',
@@ -82,84 +79,29 @@ const GamesPage = () => {
     }
   };
 
-  const resetfilters = (e:React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    dispatch(getAllGames());
-    setSelects({
-      orderName: '',
-      orderRating: '',
-      genres: '',
-      created: '',
-    });
-  };
-
-  const resetGames = (e:React.MouseEvent<HTMLButtonElement>) => {
-    resetfilters(e);
-  };
-
-  //! PENDIENTE SCROLL INFINITO
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await fetch(`${url}&page=${pages}`)
-  //         .then((data:any) => data.json())
-  //         .then((r:any) => console.log('ERRERRRR:', r))
-  //       console.log('RES:', res)
-  //       // setCoinsData((prev:number[]):any => [...prev, ...res.data])
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   fetchData();
-  // }, [pages]);
-
-  // const scrollInfinity = () => {
-  //   let scrollHeight = document.documentElement.scrollHeight;
-  //   let scrollTop = document.documentElement.scrollTop;
-  //   let innerHeight = window.innerHeight;
-  //   if (innerHeight + scrollTop + 1 >= scrollHeight) {
-  //     setPages((prev: number) => prev + 1);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   const scrollInfinity = (e:any) => {
-  //     let scrollTop = document.documentElement.scrollTop;
-  //     let scrollHeight = document.documentElement.scrollHeight+window.innerHeight;
-  //     if (scrollHeight + 1 >= scrollTop) {
-  //       setPages(pages + 5);
-  //     }
-  //   }
-  //   window.addEventListener('scroll', scrollInfinity);
-  //   return () => window.removeEventListener('scroll', scrollInfinity)
-  // }, [pages]);
+  //! PENDIENTE SCROLL INFINITO CON INTERSECTION OBSERVER
 
   return (
     <div>
+      <h1>API COUNTRIES</h1>
       <Link href={'/create'} >
         <button>
-          Crear VideoJuego
+          Crear nuevo juego
         </button>
       </Link>
-      <div>
-        <SearchBar/>
-      </div>
-      <div>
+      <button onClick={() => dispatch(getAllGames())} >
+        Traer todos los juegos
+      </button>
+      <nav>
         <NavBar
           filterGenre={filterGenre}
           filterCreated={filterCreated}
           sortName={sortName}
           sortRating={sortRating}
-          resetfilters={resetfilters}
-          // searchGame={searchGame}
-          resetGames={resetGames}
           selects={selects}
         />
-      </div>
-      <button onClick={() => dispatch(getAllGames())} >
-        Traer todos los juegos
-      </button>
-      <div className={s.allGames} >
+      </nav>
+      <main className={s.allGames} >
         {
           !allGames.length ? (
             <Loading/>
@@ -181,7 +123,7 @@ const GamesPage = () => {
             })
           )
         }
-      </div>
+      </main>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { InitialState } from "@/types";
+import { InitialState } from "@/types/Forms";
 import { GamesGenres, IGenres } from "../../../interface";
 import { Action } from "../../../interface/Actions";
 import { ActionsTypes } from "./Action-Types";

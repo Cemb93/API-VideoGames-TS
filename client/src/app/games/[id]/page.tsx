@@ -2,7 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from "@/Hooks";
 import { getDetailGame } from "@/redux/Actions";
-import { InitialState } from "@/types";
+import { InitialState } from "@/types/Forms";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { PropsParams } from "../../../../../interface/PropsParams";

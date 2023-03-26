@@ -2,7 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from '@/Hooks';
 import { createGames, getGenres } from '@/redux/Actions';
-import { FormCreate, InitialState } from '@/types';
+import { FormCreate, InitialState } from '@/types/Forms';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { IGenres } from '../../../../interface';

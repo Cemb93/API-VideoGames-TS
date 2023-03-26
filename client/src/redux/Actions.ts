@@ -1,12 +1,13 @@
-import { EditForm, FormCreate } from "@/types";
+import { EditForm, FormCreate } from "@/types/Forms";
 import { Dispatch } from "redux";
-import { Action } from "../../../interface/Actions";
+import { GamesGenres, GenerosApi } from "../../../interface";
 import { ActionsTypes, BACK } from "./Action-Types";
 
 export const getAllGames = () => {
   return async (dispatch: Dispatch) => {
     try {
-      const data = await fetch(BACK.games).then((res: any) => res.json());
+      const res: Response = await fetch(BACK.games);
+      const data: GamesGenres = await res.json();
       dispatch({
         type: ActionsTypes.GET_ALL_GAMES,
         payload: data,
@@ -20,7 +21,8 @@ export const getAllGames = () => {
 export const getNames = (name: string) => {
   return async (dispatch: Dispatch) => {
     try {
-      const data = await fetch(`${BACK.games}?name=${name}`).then((res: any) => res.json());
+      const res: Response = await fetch(`${BACK.games}?name=${name}`);
+      const data: GamesGenres = await res.json();
       dispatch({
         type: ActionsTypes.GET_NAME,
         payload: data,
@@ -34,7 +36,8 @@ export const getNames = (name: string) => {
 export const getDetailGame = (id: string | number) => {
   return async (dispatch: Dispatch) => {
     try {
-      const data = await fetch(`${BACK.games}/${id}`).then((res: any) => res.json());
+      const res: Response = await fetch(`${BACK.games}/${id}`);
+      const data: GamesGenres = await res.json();
       dispatch({
         type: ActionsTypes.GET_ID,
         payload: data,
@@ -52,10 +55,10 @@ export const createGames = (post: FormCreate) => {
         method: "POST",
         body: JSON.stringify(post),
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-type": "application/json"
         }
       })
-      .then((res: any) => res.json())
+      .then((res: Response) => res.json())
       .then((data: (string)) => data)
       .catch((error: string) => console.log('ERROR:',error));
     } catch (error) {
@@ -67,7 +70,8 @@ export const createGames = (post: FormCreate) => {
 export const getGenres = () => {
   return async (dispatch: Dispatch) => {
     try {
-      const data = await fetch(BACK.genres).then((res: any) => res.json());
+      const res: Response = await fetch(BACK.genres);
+      const data: GenerosApi = await res.json();
       dispatch({
         type: ActionsTypes.GET_GENRES,
         payload: data,
@@ -84,7 +88,7 @@ export const deleteGame = (id: string) => {
       await fetch(`${BACK.games}/${id}`, {
         method: "DELETE",
       })
-      .then((res: any) => res.json())
+      .then((res: Response) => res.json())
       .then((data: (string)) => data)
       dispatch({
         type: ActionsTypes.DELETE_GAME,
@@ -106,7 +110,7 @@ export const upDateGame = (game: EditForm, id: string) => {
         },
         body: JSON.stringify(game),
       })
-      .then((res: any) => res.json())
+      .then((res: Response) => res.json())
       .then((res: (string)) => res)
       .catch((error: string) => console.log('ERROR:',error));
     } catch (error) {
@@ -146,17 +150,3 @@ export const orderByRating = (order: string) => {
     payload: order,
   };
 };
-
-export const filters = (payload: string) => {
-  return {
-    type: ActionsTypes.FILTERS,
-    payload,
-  }
-}
-
-export const order = (payload: string) => {
-  return {
-    type: ActionsTypes.ORDERS,
-    payload,
-  }
-}
