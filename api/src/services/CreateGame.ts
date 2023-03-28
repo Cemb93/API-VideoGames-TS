@@ -5,7 +5,7 @@ import db from "../models/db";
 export const createVideoGame = async (req: Request, res: Response) => {
   const game = req.body as GamesGenres;
   try {
-    let newGame = await db.VideoGame.create({
+    const newGame = await db.VideoGame.create({
       name: game.name,
       description: game.description,
       released: game.released,
@@ -14,7 +14,7 @@ export const createVideoGame = async (req: Request, res: Response) => {
       platforms: game.platforms,
     });
 
-    let genresDb = await db.genre.findAll({
+    const genresDb = await db.genre.findAll({
       where: {
         name: game.genres,
       } 

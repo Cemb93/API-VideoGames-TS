@@ -4,9 +4,9 @@ import db from "../models/db";
 
 export const upDateGame = async (req: Request, res: Response) => {
   const { id } = req.params;
-  let game: GamesGenres = req.body;
+  const game: GamesGenres = req.body;
   try {
-    let current = await db.VideoGame.findByPk(id);
+    const current = await db.VideoGame.findByPk(id);
     if (!current) {
       throw Error('El juego no existe.');
     } else {

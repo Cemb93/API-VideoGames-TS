@@ -2,10 +2,10 @@ import { Request, Response } from 'express';
 import db from '../models/db';
 
 export const deleteGame = async (req: Request, res: Response) => {
-  let { id } = req.params;
+  const { id } = req.params;
 
   try {
-    let game = await db.VideoGame.findByPk(id);
+    const game = await db.VideoGame.findByPk(id);
     if (!game) {
       throw Error(`El juego: ${id}, no existe.`);
     } else {

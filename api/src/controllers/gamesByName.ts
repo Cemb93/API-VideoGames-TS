@@ -1,4 +1,4 @@
-import { GamesApi, GamesGenres, GenerosApi, PlatformsApi } from "../../../interface";
+import { GamesApi, GamesGenres, GenerosApi, PlatformsApi, ResponseApi } from "../../../interface";
 import { videoGamesDb } from "./VideoGamesDb";
 const fetch = require("node-fetch");
 const { VIDEOGAMES, KEY } = process.env;
@@ -6,12 +6,13 @@ const { VIDEOGAMES, KEY } = process.env;
 export const gamesByName = async (name: string) => {
   const EndPoint = `${VIDEOGAMES}?search=${name}&key=${KEY}`;
   try {
-    let gameDb = await videoGamesDb();
+    const gameDb = await videoGamesDb();
 
     let allNames: GamesGenres[] = [];
-    let nameApi = await fetch(EndPoint).then((data: Response) => data.json());
+    const nameApi: Response = await fetch(EndPoint);
+    const {results} = await nameApi.json();
 
-    nameApi.results.map((el: GamesApi) => {
+    results.map((el: GamesApi) => {
       let arrPlatforms: string[] = [];
       if (el.platforms !== null) {
         arrPlatforms = el.platforms.map((el: PlatformsApi) => el.platform.name);

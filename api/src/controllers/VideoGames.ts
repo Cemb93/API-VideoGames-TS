@@ -8,16 +8,15 @@ const { VIDEOGAMES, KEY } = process.env;
 
 export const videoGamesApi = async () => {
   try {
-    let gameDb = await videoGamesDb();
+    const gameDb = await videoGamesDb();
     let pagesOfApi: GamesGenres[] = [];
     for (let i = 1; i <= 5; i++) {
       const EndPoint = `${VIDEOGAMES}?key=${KEY}&page=${i}`;
-      pagesOfApi.push(await fetch(EndPoint)
-        .then((data: Response) => data.json())
-        .catch((error: string) => console.log('Error en la API por:', error))
-      );
+      const dataApi: Response = await fetch(EndPoint);
+      const response: GamesGenres = await dataApi.json();
+      pagesOfApi.push(response)
     }
-    let gamesOfApi = await Promise.all(pagesOfApi)
+    const gamesOfApi = await Promise.all(pagesOfApi)
       .then((res: any) => {
         let pages: GamesApi[] = [];
         for (let i = 0; i < res.length; i++) {

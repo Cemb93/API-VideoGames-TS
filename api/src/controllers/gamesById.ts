@@ -6,7 +6,7 @@ const { VIDEOGAMES, KEY } = process.env;
 export const gamesById = async (id: string | number) => {
   try {
     if (typeof id === 'string' && id.includes('-')) {
-      let idDb = await gamesDbById(id);
+      const idDb = await gamesDbById(id);
       return idDb;
     } else {
       const EndPoint = `${VIDEOGAMES}/${id}?key=${KEY}`;

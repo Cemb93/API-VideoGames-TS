@@ -1,3 +1,7 @@
+// export interface ResponseApi {
+//   results: GamesApi[]
+// }
+
 export interface PlatformsApi {//! ESTO NO SE PUEDE HACER CON LOS TIPOS
   platform: {
     name: string

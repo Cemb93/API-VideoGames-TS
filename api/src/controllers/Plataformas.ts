@@ -7,15 +7,15 @@ const { PLATFORMS, KEY } = process.env;
 export const platformsApi = async (_req: Request, res: Response) => {
   try {
     let platformsApi: EndPointP[] = [];
+
     for (let i = 0; i <= 1; i++) {
       const EndPoint = `${PLATFORMS}?key=${KEY}&page=${i}`;
-
-      platformsApi.push(await fetch(EndPoint)
-        .then((data: Response) => data.json())
-        .catch((error: string) => console.log('Error en la API por:', error))
-      );
+      const dataApi = await fetch(EndPoint);
+      const response = await dataApi.json();
+      platformsApi.push(response)
     }
-    let allPlatforms = await Promise.all(platformsApi)
+    
+    const allPlatforms = await Promise.all(platformsApi)
       .then((res: any) => res[1].results.map((el: EndPointP) => {
         return {
           id: el.id,

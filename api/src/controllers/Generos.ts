@@ -10,9 +10,10 @@ export const genresApi = async (_req: Request, res: Response) => {
     const EndPoint = `${GENRES}?key=${KEY}`;
 
     if (!genreDb.length) {
-      const dataApi = await fetch(EndPoint).then((res: Response) => res.json());
+      const dataApi = await fetch(EndPoint);
+      const {results} = await dataApi.json();
       
-      let genresApi = dataApi.results.map((el: GenerosApi) => {
+      let genresApi = results.map((el: GenerosApi) => {
         return {
           id: el.id,
           name: el.name,

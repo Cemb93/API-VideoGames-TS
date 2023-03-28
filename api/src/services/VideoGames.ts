@@ -7,11 +7,11 @@ import { GamesGenres } from "../../../interface";
 export const allVideoGames = async (req: Request, res: Response) => {
   const { name } = req.query;
   try {
-    let allGames = await videoGamesApi();
+    const allGames = await videoGamesApi();
     if (typeof name === 'string') {
-      let names = await gamesByName(name);
+      const names = await gamesByName(name);
       if (names) {
-        let filterName = names.filter((el: GamesGenres) => {
+        const filterName = names.filter((el: GamesGenres) => {
           return el.name.toLowerCase().includes(name.toLowerCase());
         });
         
@@ -35,9 +35,9 @@ export const allVideoGames = async (req: Request, res: Response) => {
 }
 
 export const allVideoGamesById = async (req: Request, res: Response) => {
-  let { id } = req.params;
+  const { id } = req.params;
   try {
-    let allIds = await gamesById(id);
+    const allIds = await gamesById(id);
     if (!allIds || allIds['name'] === undefined) {
       return res.json({ mgs: `El Juego con el ID: ${id}, no existe!` });
     }
