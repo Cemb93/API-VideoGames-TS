@@ -35,13 +35,9 @@ export const videoGamesApi = async () => {
           }
         });
       });
-    if (gameDb && gameDb.length) {
-      pagesOfApi = gameDb.concat(gamesOfApi);
-      // console.log('ALL:', pagesOfApi.length)
-      return pagesOfApi;
-    } else {
-      return pagesOfApi;
-    }
+    pagesOfApi = gameDb.concat(gamesOfApi);
+    // console.log('ALL:', pagesOfApi.length)
+    return pagesOfApi;
   } catch (error) {
     console.log("Error en videoGamesApi por:", error);
   }

@@ -10,7 +10,7 @@ export const allVideoGames = async (req: Request, res: Response) => {
     let allGames = await videoGamesApi();
     if (typeof name === 'string') {
       let names = await gamesByName(name);
-      if (names && names.length >= 1) {
+      if (names) {
         let filterName = names.filter((el: GamesGenres) => {
           return el.name.toLowerCase().includes(name.toLowerCase());
         });
@@ -18,20 +18,17 @@ export const allVideoGames = async (req: Request, res: Response) => {
         let firstNames: GamesGenres[] = [];
         for (let i = 0; i < filterName.length; i++) {
           firstNames.push(filterName[i]);
-          if (firstNames.length <= 15) {
-            firstNames = firstNames;
-            if (firstNames.length) {
-              return res.json(firstNames);
-            } else {
-              return res.json({ msg: `No hay juegos con el nombre: ${name}` });
-            }
+          if (firstNames.length === 15) {
+            return res.json(firstNames);
           }
         }
+      } else {
+        //! Si no encuentra nada que filtrar devuelve este mesaje
+        return res.json({ mgs: `No existen juegos con el nombre: ${name}` });
       }
-      //! Si no encuentra nada que filtrar devuelve este mesaje
-      return res.json({ mgs: `No existen juegos con el nombre: ${name}` })
+    } else {
+      return res.status(200).json(allGames);
     }
-    return res.status(200).json(allGames);
   } catch (error) {
     console.log('Error en la ruta principal por:',error)
   }
