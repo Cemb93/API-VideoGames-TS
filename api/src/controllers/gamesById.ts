@@ -10,25 +10,24 @@ export const gamesById = async (id: string | number) => {
       return idDb;
     } else {
       const EndPoint = `${VIDEOGAMES}/${id}?key=${KEY}`;
-      let idApi = fetch(EndPoint).then((res: Response) => res.json());
-      //* DSTRUCTURANDO EL OBJETO
-      const { name, background_image, released, rating, platforms, genres, description_raw } = await idApi;
+      const idApi: Response = await fetch(EndPoint);
+      const res = await idApi.json();
 
       let arrPlataforms: string[] = [];
       let arrGenres: string[] = [];
-      if ((platforms && genres) !== undefined) {
-        arrPlataforms = platforms.map((el: PlatformsApi) => el.platform.name)
-        arrGenres = genres.map((el: GenerosApi) => el.name)
+      if ((res.platforms && res.genres) !== undefined) {
+        arrPlataforms = res.platforms.map((el: PlatformsApi) => el.platform.name)
+        arrGenres = res.genres.map((el: GenerosApi) => el.name)
       }
       const game = {
         id,
-        name,
-        image: background_image,
-        released,
-        rating,
+        name: res.name,
+        image: res.background_image,
+        released: res.released,
+        rating: res.rating,
         platforms: arrPlataforms,
         genres: arrGenres,
-        description: description_raw,
+        description: res.description_raw,
       };
       return game;
     }
