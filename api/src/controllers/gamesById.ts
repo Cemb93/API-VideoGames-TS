@@ -1,4 +1,4 @@
-import { GenerosApi, PlatformsApi } from "../../../interface";
+import { GamesApi, GenerosApi, PlatformsApi } from "../../../interface";
 import { gamesDbById } from "./VideoGamesDb";
 const fetch = require("node-fetch");
 const { VIDEOGAMES, KEY } = process.env;
@@ -11,7 +11,7 @@ export const gamesById = async (id: string | number) => {
     } else {
       const EndPoint = `${VIDEOGAMES}/${id}?key=${KEY}`;
       const idApi: Response = await fetch(EndPoint);
-      const res = await idApi.json();
+      const res: GamesApi = await idApi.json();
 
       let arrPlataforms: string[] = [];
       let arrGenres: string[] = [];
