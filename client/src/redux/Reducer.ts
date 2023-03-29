@@ -1,6 +1,7 @@
-import { InitialState } from "@/types/Forms";
+// import { InitialState } from "@/types/Forms";
 import { GamesGenres, IGenres } from "../../../interface";
 import { Action } from "../../../interface/Actions";
+import { InitialState } from "../types/Forms";
 import { ActionsTypes } from "./Action-Types";
 
 const initialState: InitialState = {
@@ -78,7 +79,8 @@ export const Reducer = (
               if (typeof el === 'object' && el.name === action.payload) {
                 arr1.push(el)
               }
-              if (typeof el === 'string' && el.includes(action.payload)) {
+              // if (typeof el === 'string' && el.includes(action.payload)) {
+              if (typeof el === 'string' && el === action.payload) {
                 arr1.push(el)
               }
             }

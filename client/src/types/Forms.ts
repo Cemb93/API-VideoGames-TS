@@ -11,5 +11,6 @@ type PropsForms = Omit<GamesGenres, 'id' | 'genres'>
 export type FormCreate = PropsForms & {
   genres: Array<string>
 }
+export type FormError = FormCreate
 
 export type EditForm = PropsForms

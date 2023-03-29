@@ -2,17 +2,15 @@
 
 import { useAppDispatch, useAppSelector } from '@/Hooks'
 import { filterByCreation, filterByGenre, getAllGames, orderByName, orderByRating } from '@/redux/Actions'
-import { InitialState } from '@/types/Forms';
+// import { InitialState } from '@/types/Forms';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { GamesGenres } from '../../../../interface';
 import { Game } from './Game';
 import { Loading } from '../components/Loading';
-import SearchBar from '../components/SearchBar';
 import NavBar from '../components/NavBar';
 import s from '../styles/Games.module.css';
-import { BACK } from '@/redux/Action-Types';
-const url = 'https://api.rawg.io/api/games?key=1fdada09a1ba470984c5234110f3638f'
+import { InitialState } from '../../types/Forms';
 
 const GamesPage = () => {
   const {allGames} = useAppSelector((state: InitialState) => state)
@@ -23,7 +21,6 @@ const GamesPage = () => {
     genres: '',
     created: '',
   });
-  // console.log('SELECT:', selects)
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getAllGames())

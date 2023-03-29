@@ -2,11 +2,9 @@
 
 import { useAppDispatch, useAppSelector } from '@/Hooks';
 import { createGames, getGenres } from '@/redux/Actions';
-import { FormCreate, InitialState } from '@/types/Forms';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
-import { IGenres } from '../../../../interface';
-import { platforms } from '../components/AllPlatforms';
+import { FormCreate, FormError, InitialState } from '../../types/Forms';
 import { FormCreated } from './FormCreated';
 
 const CreatePage = () => {
@@ -16,11 +14,20 @@ const CreatePage = () => {
     description: '',
     released: '',
     rating: 0,
-    platforms: [''],
-    genres: [''],
+    platforms: [],
+    genres: [],
+  }
+  const formError: FormError = {
+    name: '',
+    image: '',
+    description: '',
+    released: '',
+    rating: 0,
+    platforms: [],
+    genres: [],
   }
   const [games, setGames] = useState<FormCreate>(formState);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<FormError>(formError);
   const {genres} = useAppSelector((state: InitialState) => state)
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -28,7 +35,7 @@ const CreatePage = () => {
     dispatch(getGenres())
   }, [dispatch]);
 
-  const handlerChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlerChanges = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setGames({
       ...games,
       [e.target.name]: e.target.value,
@@ -66,10 +73,10 @@ const CreatePage = () => {
     });
   }
 
-  function deleteGenres(el: IGenres) {
+  function deleteGenres(el: string) {
     setGames({
       ...games,
-      genres: games.genres.filter((ele: string) => ele !== el.name),
+      genres: games.genres.filter((ele: string) => ele !== el),
     });
   }
 
@@ -94,14 +101,13 @@ const CreatePage = () => {
     <FormCreated
       games={games}
       errors={errors}
-      handlerChanges={handlerChanges}
-      selectPlatforms={selectPlatforms}
-      deletePlatforms={deletePlatforms}
-      selectGenres={selectGenres}
-      deleteGenres={deleteGenres}
-      handlerSubmit={handlerSubmit}
-      platforms={platforms}
       genres={genres}
+      handlerChanges={handlerChanges}
+      SelectP={selectPlatforms}
+      DeleteP={deletePlatforms}
+      SelectG={selectGenres}
+      DeleteG={deleteGenres}
+      handlerSubmit={handlerSubmit}
     />
   );
 }

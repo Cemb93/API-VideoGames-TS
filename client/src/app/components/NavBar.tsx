@@ -1,8 +1,9 @@
 import { useAppDispatch, useAppSelector } from '@/Hooks';
 import { getGenres } from '@/redux/Actions';
-import { InitialState } from '@/types/Forms';
+// import { InitialState } from '@/types/Forms';
 import React, { useEffect } from 'react';
 import { GenerosApi } from '../../../../interface';
+import { InitialState } from '../../types/Forms';
 import SearchBar from './SearchBar';
 
 export default function NavBar(

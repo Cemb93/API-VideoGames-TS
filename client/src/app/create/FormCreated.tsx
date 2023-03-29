@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { GenerosApi, EndPointP } from "../../../../interface";
+import { platforms } from "../components/AllPlatforms";
+import {IFormCreated} from "../../../../interface/Destructuring";
 
 export const FormCreated = (
-  {games,errors,handlerChanges,selectPlatforms,deletePlatforms,selectGenres,deleteGenres,handlerSubmit,platforms,genres}: 
-  // {games: any,errors: any,}
-  any
+  {games,errors,genres,handlerChanges,SelectP,DeleteP,SelectG,DeleteG,handlerSubmit,}: 
+  IFormCreated
 ) => {
   return (
     <form onSubmit={(e) => handlerSubmit(e)}>
@@ -74,7 +75,7 @@ export const FormCreated = (
         <label>
           Platforms: <br></br>
         </label>
-        <select onChange={(e) => selectPlatforms(e)}>
+        <select onChange={(e) => SelectP(e)}>
           <option>Elije mínimo una Plataforma</option>
           {platforms.map((el: EndPointP) => {
             return (
@@ -88,7 +89,7 @@ export const FormCreated = (
           return (
             <div key={index}>
               <p>{el}</p>
-              <div onClick={() => deletePlatforms(el)}>[X]</div>
+              <div onClick={() => DeleteP(el)}>[X]</div>
             </div>
           );
         })}
@@ -103,8 +104,8 @@ export const FormCreated = (
           type="number"
           name="rating"
           placeholder="0.00 - 5.00"
-          // step={0.01}
-          // min={0.0}
+          step={0.01}
+          min={0.0}
           max={5}
           value={games.rating}
           onChange={(e) => handlerChanges(e)}
@@ -117,7 +118,7 @@ export const FormCreated = (
         <label>
           Genres: <br></br>
         </label>
-        <select onChange={(e) => selectGenres(e)}>
+        <select onChange={(e) => SelectG(e)}>
           <option>Elije mínimo un Genero</option>
           {genres.map((genre: GenerosApi) => {
             return (
@@ -131,14 +132,14 @@ export const FormCreated = (
           return (
             <div key={index}>
               <p>{el}</p>
-              {/* <button onClick={() => deleteGenres(el)}>X</button> */}
-              <a onClick={() => deleteGenres(el)}>[X]</a>
+              <div onClick={() => DeleteG(el)}>[X]</div>
             </div>
           );
         })}
       </div>
 
-      <button type="submit">Crear Video Juego</button>
+      {/* <button type="submit">Crear Video Juego</button> */}
+      <input type="submit" value="Crear Video Juego" />
       <br />
       <Link href={'/games'}>
         <button>Regresar</button>
