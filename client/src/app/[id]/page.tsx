@@ -2,7 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from '@/Hooks';
 import { getDetailGame, upDateGame } from '@/redux/Actions';
-import { EditForm, InitialState } from '@/types/Forms';
+import { EditError, EditForm, InitialState } from '@/types/Forms';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { PropsParams } from '../../../../interface/PropsParams';
@@ -15,11 +15,20 @@ const EditPage = (props: PropsParams) => {
     description: '',
     released: '',
     rating: 0,
-    platforms: [''],
+    platforms: [],
   }
   const [games, setGames] = useState<EditForm>(formState);
-  const [errors, setErrors] = useState({});
-  const {genres, detail} = useAppSelector((state: InitialState) => state)
+  
+  const formError: EditError = {
+    name: '',
+    image: '',
+    description: '',
+    released: '',
+    rating: 0,
+    platforms: [],
+  }
+  const [errors, setErrors] = useState<EditError>(formError);
+  const {detail} = useAppSelector((state: InitialState) => state)
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { id } = props.params;
@@ -31,7 +40,7 @@ const EditPage = (props: PropsParams) => {
     }
   }, [detail]);
 
-  const handlerChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlerChanges = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setGames({
       ...games,
       [e.target.name]: e.target.value,
@@ -81,12 +90,11 @@ const EditPage = (props: PropsParams) => {
     <FormEdit
       games={games}
       errors={errors}
-      handlerChanges={handlerChanges}
-      selectPlatforms={selectPlatforms}
-      deletePlatforms={deletePlatforms}
-      handlerSubmit={handlerSubmit}
-      genres={genres}
       detail={detail}
+      handlerChanges={handlerChanges}
+      SelectP={selectPlatforms}
+      DeleteP={deletePlatforms}
+      handlerSubmit={handlerSubmit}
     />
   );
 }

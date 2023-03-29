@@ -1,10 +1,10 @@
 import Link from "next/link";
+import { IFormEdit } from "../../../../interface/Destructuring";
 import { platforms } from '../components/AllPlatforms';
 
 export const FormEdit = (
-  {games,errors,handlerChanges,selectPlatforms,deletePlatforms,handlerSubmit,detail}: 
-  // {games: any,errors: any,}
-  any
+  {games,errors,handlerChanges,SelectP,DeleteP,handlerSubmit,detail}: 
+  IFormEdit
 ) => {
   return (
     <form onSubmit={(e) => handlerSubmit(e)}>
@@ -76,7 +76,7 @@ export const FormEdit = (
         <label>
           Platforms: <br></br>
         </label>
-        <select onChange={(e) => selectPlatforms(e)}>
+        <select onChange={(e) => SelectP(e)}>
           <option>Elije mínimo una Plataforma</option>
           {platforms.map((platform: {name:string}, index: number) => {
             return (
@@ -90,7 +90,7 @@ export const FormEdit = (
           return (
             <div key={index}>
               <p>{el}</p>
-              <button onClick={() => deletePlatforms(el)}>X</button>
+              <div onClick={() => DeleteP(el)}>[X]</div>
             </div>
           );
         })}
@@ -105,8 +105,8 @@ export const FormEdit = (
           type="number"
           name="rating"
           placeholder="0.00 - 5.00"
-          // step={0.01}
-          // min={0.0}
+          step={0.01}
+          min={0.0}
           max={5}
           value={games.rating}
           onChange={(e) => handlerChanges(e)}

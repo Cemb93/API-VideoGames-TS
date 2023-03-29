@@ -24,7 +24,7 @@ export default function DetailPage(props: PropsParams) {
         <div>
           <p>
             <strong>Nombre: </strong>
-            {detail.name}
+            {detail.name.replace(/\b\w/g, l => l.toUpperCase())}
           </p>
           <img
             src={detail.image}

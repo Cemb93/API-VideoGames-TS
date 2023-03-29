@@ -8,9 +8,13 @@ export type InitialState = {
 }
 
 type PropsForms = Omit<GamesGenres, 'id' | 'genres'>
+
+//! PARA EL FORMULARIO DE CREACION
 export type FormCreate = PropsForms & {
   genres: Array<string>
 }
 export type FormError = FormCreate
 
+//! PARA EL FORMULARIO DE EDICIÓN
 export type EditForm = PropsForms
+export type EditError = PropsForms

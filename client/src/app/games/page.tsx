@@ -2,7 +2,6 @@
 
 import { useAppDispatch, useAppSelector } from '@/Hooks'
 import { filterByCreation, filterByGenre, getAllGames, orderByName, orderByRating } from '@/redux/Actions'
-// import { InitialState } from '@/types/Forms';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { GamesGenres } from '../../../../interface';
