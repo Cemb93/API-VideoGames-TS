@@ -21,3 +21,16 @@ export interface IFormEdit extends PropsI {
   errors: EditError
   detail?: GamesGenres | undefined
 }
+
+export interface INavbar {
+  selects: {
+    orderName: string
+    orderRating: string
+    genres: string
+    created: string
+  }
+  filterGenre: EventSelect
+  filterCreated: EventSelect
+  sortName: EventSelect
+  sortRating: EventSelect
+}

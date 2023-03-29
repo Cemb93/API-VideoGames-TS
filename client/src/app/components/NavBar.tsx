@@ -1,14 +1,14 @@
 import { useAppDispatch, useAppSelector } from '@/Hooks';
 import { getGenres } from '@/redux/Actions';
-// import { InitialState } from '@/types/Forms';
 import React, { useEffect } from 'react';
 import { GenerosApi } from '../../../../interface';
+import { INavbar } from '../../../../interface/Destructuring';
 import { InitialState } from '../../types/Forms';
 import SearchBar from './SearchBar';
 
 export default function NavBar(
   { filterGenre, filterCreated, sortName, sortRating, selects }:
-    any
+  INavbar
 ) {
   const { genres } = useAppSelector((state: InitialState) => state);
   const dispatch = useAppDispatch();
@@ -41,7 +41,7 @@ export default function NavBar(
       </select>
       <select
         onChange={(e) => sortName(e)}
-        value={selects.order}
+        value={selects.orderName}
       >
         <option value="null">Sort by name</option>
         <option value="A-Z">A-Z</option>
@@ -49,7 +49,7 @@ export default function NavBar(
       </select>
       <select
         onChange={(e) => sortRating(e)}
-        value={selects.order}
+        value={selects.orderRating}
       >
         <option value="null">Sort by rating</option>
         <option value="higher rating">Higher rating</option>
