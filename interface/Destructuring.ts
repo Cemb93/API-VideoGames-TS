@@ -1,4 +1,4 @@
-import { GamesGenres, GenerosApi } from ".";
+import { GamesGenres, GenerosApi } from "./Games";
 import {EditError, EditForm, FormCreate, FormError} from "../client/src/types/Forms";
 import {EventChanges, EventDeleteG, EventDeleteP, EventSelect, EventSubmit} from "../client/src/types/Function";
 

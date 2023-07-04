@@ -1,4 +1,4 @@
-import { GamesGenres, GenerosApi } from "../../../interface"
+import { GamesGenres, GenerosApi } from "../../../interface/Games"
 
 export type InitialState = {
   allGames: GamesGenres[]

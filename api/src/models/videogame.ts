@@ -1,6 +1,6 @@
 'use strict';
 import { Model, Sequelize } from "sequelize";
-import { GamesDb } from "../../../interface";
+import { GamesDb } from "../../../interface/Games";
 
 module.exports = (sequelize: Sequelize, DataTypes: any) => {
   class VideoGame extends Model<GamesDb> implements GamesDb {

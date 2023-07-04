@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import db from '../models/db';
+import db from '../../models/db';
 
 export const deleteGame = async (req: Request, res: Response) => {
   const { id } = req.params;

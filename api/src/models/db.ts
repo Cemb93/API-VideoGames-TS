@@ -15,9 +15,13 @@ let sequelize: any = new Sequelize(ConnectDb, {
 );
 
 fs.readdirSync(__dirname).filter((file: string) => {
+    // console.log("DB FILE:", file)
+    //* file => Aca vienen todos los archivos de modelos
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.ts' ? '.ts' : '.js');
   })
   .forEach((file: string) => {
+    // console.log("forEach FILE:", file)
+    //* file => Aca vienen todos los modelos
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });

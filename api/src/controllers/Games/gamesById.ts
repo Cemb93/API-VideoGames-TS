@@ -1,4 +1,4 @@
-import { GamesApi, GenerosApi, PlatformsApi } from "../../../interface";
+import { GamesApi, GenerosApi, PlatformsApi } from "../../../../interface/Games";
 import { gamesDbById } from "./VideoGamesDb";
 const fetch = require("node-fetch");
 const { VIDEOGAMES, KEY } = process.env;

@@ -1,6 +1,6 @@
 // import { InitialState } from "@/types/Forms";
-import { GamesGenres, IGenres } from "../../../interface";
-import { Action } from "../../../interface/Actions";
+import { GamesGenres, IGenres } from "../../../interface/Games";
+import { Action } from "../../../interface/Redux/Actions";
 import { InitialState } from "../types/Forms";
 import { ActionsTypes } from "./Action-Types";
 

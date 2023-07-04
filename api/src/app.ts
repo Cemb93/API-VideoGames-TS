@@ -1,8 +1,9 @@
-import express, { Application, ErrorRequestHandler, NextFunction, Request, Response } from "express";
+import express, { Application, NextFunction, Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import morgan from "morgan";
-import routes from "./routes/index";
+import routerGames from "./routes/Games";
+import routerCounty from "./routes/Countries";
 
 require("./models/db");
 
@@ -21,7 +22,8 @@ server.use((_req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-server.use("/", routes);
+server.use("/", routerGames);
+server.use("/", routerCounty);
 
 server.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   console.log('APP typeof REQ:',typeof err)

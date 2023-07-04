@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GenerosApi, EndPointP } from "../../../../interface";
+import { GenerosApi, EndPointP } from "../../../../interface/Games";
 import { platforms } from "../components/AllPlatforms";
 import {IFormCreated} from "../../../../interface/Destructuring";
 
@@ -17,10 +17,15 @@ export const FormCreated = (
           type="text"
           name="name"
           placeholder="Videogame"
+          pattern="[\sa-zA-Z]+"
+          minLength={5}//* LONGITUD DEL TEXTO
           value={games.name}
           onChange={(e) => handlerChanges(e)}
         />
         {errors.name && <p>{errors.name}</p>}
+        <div className="name-error" >
+          Utiliza sólo letras
+        </div>
       </div>
 
       <br></br>

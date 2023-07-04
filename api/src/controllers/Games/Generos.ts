@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { GenerosApi } from "../../../interface";
-import db from "../models/db";
+import { GenerosApi } from "../../../../interface/Games";
+import db from "../../models/db";
 const fetch = require("node-fetch");
 const { GENRES, KEY } = process.env;
 

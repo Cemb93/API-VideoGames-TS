@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { EndPointP } from "../../../interface";
+import { EndPointP } from "../../../../interface/Games";
 const fetch = require("node-fetch");
 const { PLATFORMS, KEY } = process.env;
 
