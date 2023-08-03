@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { GamesGenres } from "../../../../interface/Games";
+import { GamesDb } from "../../../../interface/Games";
 import { VideoGameModel } from "../../models/videogame";
 // import db from "../../models/db";
 
 export const upDateGame = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const game: GamesGenres = req.body;
+  const game: GamesDb = req.body;
   try {
     const current = await VideoGameModel.findById(id);
     if (!current) {

@@ -49,12 +49,6 @@ type PropsGamesDb = Omit<GamesDb,'_id' | "genres">
 
 //TODO: AGRUPO TODAS LAS PROPS PARA LOS DATOS DE SALIDA
 export interface GamesGenres extends PropsGamesDb, PropsGames {
-  // id: string | number
-  // _id: (Document<unknown, {}, GamesDb> & GamesDb & {
-  //   _id: Types.ObjectId;
-  // })[] | number
-  _id: (Document<unknown, {}, GamesDb> & GamesDb & Required<{
-    _id: string;
-  }>)[] | number
+  _id: string | number
   genres: string[] | Array<IGenres>
 }

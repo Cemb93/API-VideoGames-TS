@@ -1,11 +1,8 @@
-import { genreModel } from "../../models/genre";
 import { VideoGameModel } from "../../models/videogame";
 
 export const videoGamesDb = async () => {
   try {
     let games_DB = await VideoGameModel.find();
-    // console.log("GAMES DB:", games_DB)
-    // games_DB = JSON.parse(JSON.stringify(games_DB));
     return games_DB;
   } catch (error) {
     console.log('Error en videoGamesDb por:', error)

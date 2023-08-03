@@ -9,7 +9,6 @@ const { VIDEOGAMES, KEY } = process.env;
 export const videoGamesApi = async () => {
   try {
     const gameDb = await videoGamesDb();
-    // console.log("GAMES DB:", gameDb?.length)
     let pagesOfApi: GamesGenres[] = [];
     for (let i = 1; i <= 5; i++) {
       const EndPoint = `${VIDEOGAMES}?key=${KEY}&page=${i}`;
@@ -35,13 +34,9 @@ export const videoGamesApi = async () => {
           }
         });
       });
-      // console.log("GAME API:", gamesOfApi.length)
-      // console.log("GAME ALL:", pagesOfApi.length)
-    // pagesOfApi = gameDb?.concat(gamesOfApi);
-    // pagesOfApi = [...gameDb]
-    // console.log('ALL:', pagesOfApi.length)
-    // return pagesOfApi;
-    return gameDb;
+    //* SOLUTION -> https://stackoverflow.com/questions/50234481/typescript-2-8-3-type-must-have-a-symbol-iterator-method-that-returns-an-iterato
+    pagesOfApi = [...<[]>gameDb, ...gamesOfApi]
+    return pagesOfApi;
   } catch (error) {
     console.log("Error en videoGamesApi por:", error);
   }
