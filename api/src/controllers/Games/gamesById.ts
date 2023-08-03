@@ -20,7 +20,7 @@ export const gamesById = async (_id: string | number) => {
         arrGenres = res.genres.map((el: GenerosApi) => el.name)
       }
       const game = {
-        _id,
+        _id: res.id,
         name: res.name,
         image: res.background_image,
         released: res.released,

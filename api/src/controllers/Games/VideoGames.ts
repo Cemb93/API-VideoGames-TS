@@ -24,7 +24,7 @@ export const videoGamesApi = async () => {
         }
         return pages.map((el: GamesApi) => {
           return {
-            _id: el._id,
+            _id: el.id,
             name: el.name,
             released: el.released,
             image: el.background_image,
@@ -35,7 +35,8 @@ export const videoGamesApi = async () => {
         });
       });
     //* SOLUTION -> https://stackoverflow.com/questions/50234481/typescript-2-8-3-type-must-have-a-symbol-iterator-method-that-returns-an-iterato
-    pagesOfApi = [...<[]>gameDb, ...gamesOfApi]
+    pagesOfApi = [...<[]>gameDb, ...<[]>gamesOfApi]
+    // pagesOfApi = [...<[]>gameDb, ...(gamesOfApi as [])]
     return pagesOfApi;
   } catch (error) {
     console.log("Error en videoGamesApi por:", error);

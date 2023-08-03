@@ -21,7 +21,7 @@ export interface EndPointP {
 }
 
 export interface GamesApi {
-  _id: number
+  id?: number
   name: string
   description_raw?: string //! Se usa SÓLO para el ID
   released: string
@@ -49,6 +49,6 @@ type PropsGamesDb = Omit<GamesDb,'_id' | "genres">
 
 //TODO: AGRUPO TODAS LAS PROPS PARA LOS DATOS DE SALIDA
 export interface GamesGenres extends PropsGamesDb, PropsGames {
-  _id: string | number
+  _id: string | number | undefined
   genres: string[] | Array<IGenres>
 }

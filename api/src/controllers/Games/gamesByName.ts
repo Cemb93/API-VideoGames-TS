@@ -18,13 +18,13 @@ export const gamesByName = async (name: string) => {
         arrPlatforms = el.platforms.map((el: PlatformsApi) => el.platform.name);
       }
       allNames.push({
-        _id: el._id,
+        _id: el.id,
         name: el.name,
         released: el.released,
         image: el.background_image,
         rating: el.rating,
         platforms: arrPlatforms,
-        genres: el.genres?.map((el: GenerosApi) => el.name)
+        genres: el.genres?.map((el: GenerosApi) => el.name),
       });
     });
     
