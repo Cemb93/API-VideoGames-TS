@@ -1,4 +1,4 @@
-import { SchemaDefinitionProperty, Types } from "mongoose"
+import { Document, SchemaDefinitionProperty, Types } from "mongoose"
 
 export interface PlatformsApi {//! ESTO NO SE PUEDE HACER CON LOS TIPOS
   platform: {
@@ -21,7 +21,7 @@ export interface EndPointP {
 }
 
 export interface GamesApi {
-  id: number
+  _id: number
   name: string
   description_raw?: string //! Se usa SÓLO para el ID
   released: string
@@ -31,7 +31,7 @@ export interface GamesApi {
   background_image: string
 }
 
-type PropsGames = Omit<GamesApi,'id' | 'description_raw' | 'background_image' | 'platforms' | 'genres'>
+type PropsGames = Omit<GamesApi,'_id' | 'description_raw' | 'background_image' | 'platforms' | 'genres'>
 
 export interface IGenres {
   name: string
@@ -39,17 +39,22 @@ export interface IGenres {
 
 //TODO: EXTIENDO LAS PROPS DE GAMES API
 export interface GamesDb extends PropsGames {
-  // id?: string
+  _id?: string
   description?: string
   image: string
   platforms: string[]
   genres: SchemaDefinitionProperty<IGenres[]>
 }
-type PropsGamesDb = Omit<GamesDb,'id' | "genres">
+type PropsGamesDb = Omit<GamesDb,'_id' | "genres">
 
 //TODO: AGRUPO TODAS LAS PROPS PARA LOS DATOS DE SALIDA
 export interface GamesGenres extends PropsGamesDb, PropsGames {
-  id: string | number
-  // id: Types.ObjectId | number
+  // id: string | number
+  // _id: (Document<unknown, {}, GamesDb> & GamesDb & {
+  //   _id: Types.ObjectId;
+  // })[] | number
+  _id: (Document<unknown, {}, GamesDb> & GamesDb & Required<{
+    _id: string;
+  }>)[] | number
   genres: string[] | Array<IGenres>
 }

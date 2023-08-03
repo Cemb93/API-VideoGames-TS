@@ -12,9 +12,9 @@ export const videoGamesDb = async () => {
   }
 }
 
-export const gamesDbById = async (id: string) => {
+export const gamesDbById = async (_id: string) => {
   try {
-    let id_DB = await VideoGameModel.findById(id);
+    let id_DB = await VideoGameModel.findById(_id);
     // id_DB = JSON.parse(JSON.stringify(id_DB));
     return id_DB;
   } catch (error) {

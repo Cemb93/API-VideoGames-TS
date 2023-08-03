@@ -25,7 +25,7 @@ export const videoGamesApi = async () => {
         }
         return pages.map((el: GamesApi) => {
           return {
-            id: el.id,
+            _id: el._id,
             name: el.name,
             released: el.released,
             image: el.background_image,

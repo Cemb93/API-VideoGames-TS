@@ -3,13 +3,13 @@ import { gamesDbById } from "./VideoGamesDb";
 const fetch = require("node-fetch");
 const { VIDEOGAMES, KEY } = process.env;
 
-export const gamesById = async (id: string | number) => {
+export const gamesById = async (_id: string | number) => {
   try {
-    if (typeof id === 'string' && id.length === 24) {
-      const idDb = await gamesDbById(id);
+    if (typeof _id === 'string' && _id.length === 24) {
+      const idDb = await gamesDbById(_id);
       return idDb;
     } else {
-      const EndPoint = `${VIDEOGAMES}/${id}?key=${KEY}`;
+      const EndPoint = `${VIDEOGAMES}/${_id}?key=${KEY}`;
       const idApi: Response = await fetch(EndPoint);
       const res: GamesApi = await idApi.json();
 
@@ -20,7 +20,7 @@ export const gamesById = async (id: string | number) => {
         arrGenres = res.genres.map((el: GenerosApi) => el.name)
       }
       const game = {
-        id,
+        _id,
         name: res.name,
         image: res.background_image,
         released: res.released,

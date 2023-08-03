@@ -18,7 +18,7 @@ export const gamesByName = async (name: string) => {
         arrPlatforms = el.platforms.map((el: PlatformsApi) => el.platform.name);
       }
       allNames.push({
-        id: el.id,
+        _id: el._id,
         name: el.name,
         released: el.released,
         image: el.background_image,

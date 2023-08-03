@@ -18,9 +18,12 @@ export const allVideoGames = async (req: Request, res: Response) => {
         });
         
         // let firstNames: GamesGenres[] = [];
-        let firstNames: (Document<unknown, {}, GamesDb> & GamesDb & {
-          _id: Types.ObjectId;
-        })[] = [];
+        // let firstNames: (Document<unknown, {}, GamesDb> & GamesDb & {
+        //   _id: Types.ObjectId;
+        // })[] = [];
+        let firstNames: (Document<unknown, {}, GamesDb> & GamesDb & Required<{
+          _id: string;
+        }>)[] = [];
         for (let i = 0; i < filterName.length; i++) {
           firstNames.push(filterName[i]);
           if (firstNames.length === 15) {
