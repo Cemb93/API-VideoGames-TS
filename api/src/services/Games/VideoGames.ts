@@ -2,7 +2,8 @@ import { Request, Response } from "express"
 import { gamesByName } from "../../controllers/Games/gamesByName";
 import { gamesById } from "../../controllers/Games/gamesById";
 import { videoGamesApi } from "../../controllers/Games/VideoGames";
-import { GamesGenres } from "../../../../interface/Games";
+import { GamesDb, GamesGenres } from "../../../../interface/Games";
+import { Document, Types } from "mongoose";
 
 export const allVideoGames = async (req: Request, res: Response) => {
   const { name } = req.query;
@@ -11,11 +12,15 @@ export const allVideoGames = async (req: Request, res: Response) => {
     if (typeof name === 'string') {
       const names = await gamesByName(name);
       if (names) {
-        const filterName = names.filter((el: GamesGenres) => {
+        // const filterName = names.filter((el: GamesGenres) => {
+        const filterName = names.filter((el: any) => {
           return el.name.toLowerCase().includes(name.toLowerCase());
         });
         
-        let firstNames: GamesGenres[] = [];
+        // let firstNames: GamesGenres[] = [];
+        let firstNames: (Document<unknown, {}, GamesDb> & GamesDb & {
+          _id: Types.ObjectId;
+        })[] = [];
         for (let i = 0; i < filterName.length; i++) {
           firstNames.push(filterName[i]);
           if (firstNames.length === 15) {

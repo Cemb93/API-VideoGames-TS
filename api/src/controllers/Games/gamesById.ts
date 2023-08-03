@@ -5,7 +5,7 @@ const { VIDEOGAMES, KEY } = process.env;
 
 export const gamesById = async (id: string | number) => {
   try {
-    if (typeof id === 'string' && id.includes('-')) {
+    if (typeof id === 'string' && id.length === 24) {
       const idDb = await gamesDbById(id);
       return idDb;
     } else {
@@ -20,7 +20,7 @@ export const gamesById = async (id: string | number) => {
         arrGenres = res.genres.map((el: GenerosApi) => el.name)
       }
       const game = {
-        // id,
+        id,
         name: res.name,
         image: res.background_image,
         released: res.released,

@@ -1,4 +1,4 @@
-import { SchemaDefinitionProperty } from "mongoose"
+import { SchemaDefinitionProperty, Types } from "mongoose"
 
 export interface PlatformsApi {//! ESTO NO SE PUEDE HACER CON LOS TIPOS
   platform: {
@@ -39,7 +39,7 @@ export interface IGenres {
 
 //TODO: EXTIENDO LAS PROPS DE GAMES API
 export interface GamesDb extends PropsGames {
-  id?: string
+  // id?: string
   description?: string
   image: string
   platforms: string[]
@@ -50,5 +50,6 @@ type PropsGamesDb = Omit<GamesDb,'id' | "genres">
 //TODO: AGRUPO TODAS LAS PROPS PARA LOS DATOS DE SALIDA
 export interface GamesGenres extends PropsGamesDb, PropsGames {
   id: string | number
+  // id: Types.ObjectId | number
   genres: string[] | Array<IGenres>
 }
