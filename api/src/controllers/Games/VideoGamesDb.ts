@@ -1,14 +1,16 @@
-import db from "../../models/db";
+import { genreModel } from "../../models/genre";
+import { VideoGameModel } from "../../models/videogame";
 
 export const videoGamesDb = async () => {
   try {
-    let games_DB = await db.VideoGame.findAll({
+    let games_DB = await VideoGameModel.find({
       include: {
-        model: db.genre,
+        model: genreModel,
         attributes: ["name"],
         through: { attributes: [], },
       },
     });
+    console.log("GAMES DB:", games_DB)
     games_DB = JSON.parse(JSON.stringify(games_DB));
     return games_DB;
   } catch (error) {
@@ -18,9 +20,9 @@ export const videoGamesDb = async () => {
 
 export const gamesDbById = async (id: string) => {
   try {
-    let id_DB = await db.VideoGame.findByPk(id, {
+    let id_DB = await VideoGameModel.findById(id, {
       include: {
-        model: db.genre,
+        model: genreModel,
         attributes: ["name"],
         through: { attributes: [], },
       },

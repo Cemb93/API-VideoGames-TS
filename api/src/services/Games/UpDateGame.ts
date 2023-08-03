@@ -1,16 +1,17 @@
 import { Request, Response } from "express";
 import { GamesGenres } from "../../../../interface/Games";
-import db from "../../models/db";
+import { VideoGameModel } from "../../models/videogame";
+// import db from "../../models/db";
 
 export const upDateGame = async (req: Request, res: Response) => {
   const { id } = req.params;
   const game: GamesGenres = req.body;
   try {
-    const current = await db.VideoGame.findByPk(id);
+    const current = await VideoGameModel.findById(id);
     if (!current) {
       throw Error('El juego no existe.');
     } else {
-      await db.VideoGame.update(game, { where: { id } } );
+      await VideoGameModel.findByIdAndUpdate(game, { where: { id } } );
       return res.json({ msg: `El juego ha sido actualizado.` } );
     }
   } catch (error) {

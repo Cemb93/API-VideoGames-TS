@@ -1,6 +1,4 @@
-// export interface ResponseApi {
-//   results: GamesApi[]
-// }
+import { SchemaDefinitionProperty } from "mongoose"
 
 export interface PlatformsApi {//! ESTO NO SE PUEDE HACER CON LOS TIPOS
   platform: {
@@ -10,7 +8,10 @@ export interface PlatformsApi {//! ESTO NO SE PUEDE HACER CON LOS TIPOS
 
 export interface GenerosApi {
   id?: number
-  name: string
+  name: string,
+  videoGames: SchemaDefinitionProperty<{
+    name: string;
+  }[]>
 }
 
 //* Esta representa el ENDPOINT
@@ -38,12 +39,13 @@ export interface IGenres {
 
 //TODO: EXTIENDO LAS PROPS DE GAMES API
 export interface GamesDb extends PropsGames {
-  id: string
+  id?: string
   description?: string
   image: string
   platforms: string[]
+  genres: SchemaDefinitionProperty<IGenres[]>
 }
-type PropsGamesDb = Omit<GamesDb,'id'>
+type PropsGamesDb = Omit<GamesDb,'id' | "genres">
 
 //TODO: AGRUPO TODAS LAS PROPS PARA LOS DATOS DE SALIDA
 export interface GamesGenres extends PropsGamesDb, PropsGames {

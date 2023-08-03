@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { GenerosApi } from "../../../../interface/Games";
-import db from "../../models/db";
+import { genreModel } from "../../models/genre";
 const fetch = require("node-fetch");
 const { GENRES, KEY } = process.env;
 
 export const genresApi = async (_req: Request, res: Response) => {
   try {
-    const genreDb = await db.genre.findAll();
+    const genreDb = await genreModel.find();
     const EndPoint = `${GENRES}?key=${KEY}`;
 
     if (!genreDb.length) {
@@ -15,12 +15,12 @@ export const genresApi = async (_req: Request, res: Response) => {
       
       let genresApi = results.map((el: GenerosApi) => {
         return {
-          id: el.id,
+          // id: el.id,
           name: el.name,
         };
       });
 
-      genresApi = await db.genre.bulkCreate(genresApi);
+      genresApi = await genreModel.create(genresApi);
       return res.json(genresApi);
     } else {
       return res.json(genreDb);

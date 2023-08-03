@@ -2,23 +2,67 @@ import { Request, Response } from 'express';
 import { getAllCountries } from '../../controllers/Countries/getCountries';
 import { CountriesActivites } from '../../../../interface/Countries';
 import db from '../../models/db';
+import { Op } from 'sequelize';
 
 export const Countries = async (req: Request, res: Response) => {
-  const { name } = req.query;
+  const { name, filtercontinent, filterActivity, page, order } = req.query;
   try {
-    const dataApi = await getAllCountries();
+    // const dataApi = await getAllCountries();
+    await getAllCountries();
     if (typeof name === 'string') {
-      let filterByName = dataApi.filter((el: CountriesActivites) => {
-        return el.name.toLowerCase().includes(name.toLowerCase());
+      const byName = await db.countrie.findAll({
+        where: {
+          name: {
+            [Op.iLike]: `%${name}%`,
+          }
+        },
+        include: {
+          model: db.activitie,
+          attributes: ["id", "name", "difficulty", "season", "duration"],
+          through: {
+            attributes: [],
+          },
+        }
+      });
+
+      return res.json(byName);
+    } else if (filterActivity || filtercontinent) {
+      
+      const filters = await db.countrie.findAll({
+        where: {
+          //* Se filtra por status
+          //! Se pueden filtros combinados, pero no pueden ser opcionales
+          continent: filtercontinent,
+          activities: filterActivity,
+        },
+        //! Paginado hecho desde el back-end
+        offset: page,//* Inicial de paginado
+        limit: 6,//* Trae los personajes del 1 - 6
+        //! Paginado hecho desde el back-end
+        order: [["name", "population", order]],//* ASC - DESC
+        include: {
+          model: db.activitie,
+          attributes: ["id", "name", "difficulty", "season", "duration"],
+          through: { attributes: [], },
+        }
       });
       
-      if (!filterByName.length) {
-        return res.json({ error: `El paíz ${name.toUpperCase()}, no existe` });
-      } else {
-        return res.json(filterByName);
-      }
+      return res.json(filters);
     } else {
-      return res.json(dataApi);
+      const allCountries = await db.countrie.findAll({
+        //! Paginado hecho desde el back-end
+        offset: page,//* Inicial de paginado
+        limit: 6,//* Final paginado
+        //! Paginado hecho desde el back-end
+        order: [["name", "population", order]],//* ASC - DESC
+        include: {
+          model: db.activitie,
+          attributes: ["id", "name", "difficulty", "season", "duration"],
+          through: { attributes: [], },
+        }
+      });
+
+      return res.json(allCountries);
     }
   } catch (error) {
     if (error instanceof Error) {

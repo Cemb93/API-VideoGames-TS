@@ -9,6 +9,7 @@ const { VIDEOGAMES, KEY } = process.env;
 export const videoGamesApi = async () => {
   try {
     const gameDb = await videoGamesDb();
+    // console.log("GAMES DB:", gameDb?.length)
     let pagesOfApi: GamesGenres[] = [];
     for (let i = 1; i <= 5; i++) {
       const EndPoint = `${VIDEOGAMES}?key=${KEY}&page=${i}`;
@@ -34,9 +35,13 @@ export const videoGamesApi = async () => {
           }
         });
       });
-    pagesOfApi = gameDb.concat(gamesOfApi);
+      // console.log("GAME API:", gamesOfApi.length)
+      // console.log("GAME ALL:", pagesOfApi.length)
+    // pagesOfApi = gameDb?.concat(gamesOfApi);
+    // pagesOfApi = [...gameDb]
     // console.log('ALL:', pagesOfApi.length)
-    return pagesOfApi;
+    // return pagesOfApi;
+    return gameDb;
   } catch (error) {
     console.log("Error en videoGamesApi por:", error);
   }

@@ -1,23 +1,28 @@
 import dotenv from 'dotenv';
+import { connect } from 'mongoose';
 dotenv.config();
-const { HOST, USER, PASSWORD, DATABASE } = process.env;
+const { DB } = process.env;
 
-//* Genero la coneccion de la base de datos
-import { Sequelize } from 'sequelize-typescript';
+// (async () => {
+//   try {
+//     if (typeof DB === "string") {
+//       await connect(DB)
+//       console.log("Base de datos conectada")
+//     }
+//   } catch (error) {
+//     console.log("Error de conexion por:", error)
+//   }
+// })
 
-export const sequelize = new Sequelize({
-  database: DATABASE,
-  dialect: 'postgres',
-  username: USER,
-  // host: HOST,
-  // port: 5432,
-  password: PASSWORD,
-  storage: ':memory:',
-  models: [__dirname + '/models'], // or [Player, Team],}
-  logging: false,
-});
 
-export const { models } = sequelize
+
+export const dbConexion = async (): Promise<void> => {
+  if (typeof DB === "string") {
+    await connect(DB)
+        .then(() => { console.log("<<db-connect>>") })
+        .catch((error) => { console.log("No database connection", error) })
+  }
+}
 
 //* VER DE LA DOCUMENTACION -> https://typeorm.io/
 // import "reflect-metadata";

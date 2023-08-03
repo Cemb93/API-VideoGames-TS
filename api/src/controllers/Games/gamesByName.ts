@@ -28,7 +28,7 @@ export const gamesByName = async (name: string) => {
       });
     });
     
-    allNames = [...gameDb, ...allNames]
+    // allNames = [...gameDb, ...allNames]
     return allNames;
   } catch (error) {
     console.log('No se obtuvo los nombre por:', error);

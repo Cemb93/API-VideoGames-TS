@@ -18,7 +18,7 @@ export const platformsApi = async (_req: Request, res: Response) => {
     const allPlatforms = await Promise.all(platformsApi)
       .then((res: any) => res[1].results.map((el: EndPointP) => {
         return {
-          id: el.id,
+          // id: el.id,
           name: el.name,
         }
       }).sort((x: EndPointP, y: EndPointP) => {
