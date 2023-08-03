@@ -1,8 +1,7 @@
 require('dotenv').config();
-// import db from './models/db';
 import server from './app';
 const { PORT } = process.env;
-import { dbConexion } from "./db_demo";
+// import { dbConexion } from "./db_demo";
 
 /**
  * mongoose => ODM (ORM) de mongoDb
@@ -11,15 +10,8 @@ import { dbConexion } from "./db_demo";
 
 server.listen(PORT, () => {
   console.log(`Listening at PORT:`, 3001);
-  dbConexion()
+  // dbConexion()
 });
-
-
-// db.sequelize.sync({ force: false }).then(() => {
-//   server.listen(PORT, () => {
-//     console.log(`Listening at PORT:`, 3001);
-//   });
-// });
 
 
 // //* VER DE LA DOCUMENTACION -> https://typeorm.io/

@@ -3,24 +3,11 @@ import { connect } from 'mongoose';
 dotenv.config();
 const { DB } = process.env;
 
-// (async () => {
-//   try {
-//     if (typeof DB === "string") {
-//       await connect(DB)
-//       console.log("Base de datos conectada")
-//     }
-//   } catch (error) {
-//     console.log("Error de conexion por:", error)
-//   }
-// })
-
-
-
 export const dbConexion = async (): Promise<void> => {
   if (typeof DB === "string") {
     await connect(DB)
-        .then(() => { console.log("<<db-connect>>") })
-        .catch((error) => { console.log("No database connection", error) })
+      // .then(() => console.log("<<db-connect>>"))
+      // .catch((error) => console.log("No database connection", error))
   }
 }
 

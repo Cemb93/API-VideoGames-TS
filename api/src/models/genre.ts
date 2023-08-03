@@ -6,11 +6,11 @@ export const genreModel = model<GenerosApi>("Genre", new Schema<GenerosApi>({
     type: String,
     require: true
   },
-  videoGames: {
-    type: Schema.Types.Array,
-    // type: Schema.Types.ObjectId,
-    ref: "Videogame",// Nombre del modelo
-  },
+  // videoGames: {
+  //   type: Schema.Types.Array,
+  //   // type: Schema.Types.ObjectId,
+  //   ref: "Videogame",// Nombre del modelo
+  // },
 }, {
   timestamps: false,
 }));

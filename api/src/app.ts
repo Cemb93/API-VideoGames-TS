@@ -1,12 +1,9 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import cookieParser from "cookie-parser";
-import bodyParser from "body-parser";
 import morgan from "morgan";
 import routerGames from "./routes/Games";
 import routerCounty from "./routes/Countries";
-import { dbConexion } from "./db_demo";
-
-require("./models/db");
+import { dbConexion } from "./db";
 
 const server: Application = express();
 
