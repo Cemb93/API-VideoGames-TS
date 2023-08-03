@@ -6,11 +6,11 @@ export const deleteGame = async (req: Request, res: Response) => {
 
   try {
     const game = await VideoGameModel.findById(id);
-    if (!game) {
-      throw Error(`El juego: ${id}, no existe.`);
+    if (game?.id !== id || id.length < 24) {
+      throw Error(`El juego no existe.`);
     } else {
-      await game.deleteOne();
-      return res.status(200).json({ msg: `El juego: ${game.name.toUpperCase()}, ha sido eliminado.` });
+      await VideoGameModel.findByIdAndDelete(id);
+      return res.status(200).json({ msg: `El juego: ${game.name.toUpperCase()}, ha sido eliminado.`, game });
     }
   } catch (error) {
     if (error instanceof Error) {
