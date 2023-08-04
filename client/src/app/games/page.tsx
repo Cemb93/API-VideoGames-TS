@@ -104,9 +104,9 @@ const GamesPage = () => {
           ) : (
             allGames.map((el: GamesGenres) => {
               return (
-                <div key={el.id} >
+                <div key={el._id} >
                   <Game
-                    id={el.id}
+                    _id={el._id}
                     name={el.name}
                     image={el.image}
                     released={el.released}

@@ -1,3 +1,5 @@
+const { BACKEND_URL } = process.env
+
 export enum ActionsTypes {
   GET_ALL_GAMES = 'GET_ALL_GAMES',
   GET_NAME = 'GET_NAME',
@@ -12,5 +14,7 @@ export enum ActionsTypes {
 
 export enum BACK {
   games = 'http://localhost:3001/videogames',
+  // games = `${BACKEND_URL}/videogames`,
   genres = 'http://localhost:3001/genres',
+  // genres = `${BACKEND_URL}/genres`,
 }

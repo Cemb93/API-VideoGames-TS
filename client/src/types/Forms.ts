@@ -7,7 +7,7 @@ export type InitialState = {
   detail?: GamesGenres
 }
 
-type PropsForms = Omit<GamesGenres, 'id' | 'genres'>
+type PropsForms = Omit<GamesGenres, '_id' | 'genres'>
 
 //! PARA EL FORMULARIO DE CREACION
 export type FormCreate = PropsForms & {

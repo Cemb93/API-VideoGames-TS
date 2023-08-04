@@ -25,10 +25,13 @@ export default function NavBar(
         value={selects.genres}
       >
         <option value="All">All Genres</option>
-        {genres.map((genre: GenerosApi) => {
-          return <option key={genre.id} value={genre.name} >
-            {genre.name}
-          </option>
+        {genres.map((genre: GenerosApi, idx: number) => {
+          return (
+            // <option key={genre.id} value={genre.name} >
+            <option key={idx} value={genre.name} >
+              {genre.name}
+            </option>
+          );
         })}
       </select>
       <select

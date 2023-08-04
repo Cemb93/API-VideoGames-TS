@@ -6,26 +6,26 @@ import React from 'react'
 import { GamesGenres, IGenres } from '../../../../interface/Games'
 
 export const Game = (
-  { id, name, image, released, rating, platforms, genres }: 
+  { _id, name, image, released, rating, platforms, genres }: 
   GamesGenres
 ) => {
   const dispatch = useAppDispatch();
-  const handlerDelete = (id: string, name: string) => {
-    dispatch(deleteGame(id));
+  const handlerDelete = (_id: string, name: string) => {
+    dispatch(deleteGame(_id));
     alert(`Presiona "Aceptar" para eliminar el juego: ${name.toUpperCase()}`);
   }
   const router = useRouter();
   return (
     <div>
       {
-        typeof id === 'string' ? (
+        typeof _id === 'string' ? (
           //? convierte la "primer" letra de cada palabra en "mayuscula"
           <p>Nombre: {name.replace(/\b\w/g, l => l.toUpperCase())}</p>
         ) : (
           <p>Nombre: {name}</p> 
         )
       }
-      <Link href={`/games/${id}`} >
+      <Link href={`/games/${_id}`} >
         <img src={image} alt={name} width={'250px'} height={'150px'} />
       </Link>
       <p>Fecha de lanzamiento: {released}</p>
@@ -53,10 +53,10 @@ export const Game = (
         })  
       }</p>
       {
-        typeof id === 'string' && (
+        typeof _id === 'string' && (
           <div>
-            <button onClick={() => handlerDelete(id, name)} >Eliminar</button>
-            <button onClick={() => router.push(`/${id}`)} >Editar</button>
+            <button onClick={() => handlerDelete(_id, name)} >Eliminar</button>
+            <button onClick={() => router.push(`/${_id}`)} >Editar</button>
           </div>
         )
       }

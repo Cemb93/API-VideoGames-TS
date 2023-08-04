@@ -32,6 +32,7 @@ export const VideoGameModel = model<GamesDb>("Videogame", new Schema<GamesDb>({
     ref: "Genre",// Nombre del modelo
   },
 }, {
+  versionKey: false,
   timestamps: false,
 }));
 
