@@ -1,9 +1,10 @@
 import styles from "./styles.module.css";
+const { BACKEND_URL } = process.env
 
 function HomePages(userDetails: any) {
 	const user = userDetails.user;
 	const logout = () => {
-		window.open(`${process.env.BACKEND_URL}/auth/logout`, "_self");
+		window.open(`${BACKEND_URL}/auth/logout`, "_self");
 	};
 	return (
 		<div className={styles.container}>

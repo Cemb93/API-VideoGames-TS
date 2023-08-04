@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import HomePages from "./home/pages";
 import { useRouter } from "next/navigation";
+const { BACKEND_URL } = process.env
 
 export default function Landing() {
   const [user, setUser] = useState(null);
   // console.log("USER:", user)
   const getUser = async () => {
 		try {
-			const url = `${process.env.BACKEND_URL}/auth/login/success`;
+			const url = `${BACKEND_URL}/auth/login/success`;
 			// const { data } = await axios.get(url, { withCredentials: true });
 			const res = await fetch(url);
       console.log("DATA:", res)

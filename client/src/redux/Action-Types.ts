@@ -1,4 +1,6 @@
-const { BACKEND_URL } = process.env
+// SOLUTION process.env --> https://frontend-digest.com/environment-variables-in-next-js-9a272f0bf655
+
+const BACKEND_URL = process.env.BACKEND_URL as string
 
 export enum ActionsTypes {
   GET_ALL_GAMES = 'GET_ALL_GAMES',
@@ -18,3 +20,10 @@ export enum BACK {
   genres = 'http://localhost:3001/genres',
   // genres = `${BACKEND_URL}/genres`,
 }
+
+// export const BACK = {
+//   // games: 'http://localhost:3001/videogames',
+//   games: `${BACKEND_URL}/videogames`,
+//   // genres: 'http://localhost:3001/genres',
+//   genres: `${BACKEND_URL}/genres`,
+// } as const

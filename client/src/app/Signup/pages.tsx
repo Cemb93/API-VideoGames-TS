@@ -1,10 +1,11 @@
 import Link from "next/link";
 import styles from "./styles.module.css";
+const { BACKEND_URL } = process.env
 
 function SignupPages() {
 	const googleAuth = () => {
 		window.open(
-			`${process.env.BACKEND_URL}/auth/google/callback`,
+			`${BACKEND_URL}/auth/google/callback`,
 			"_self"
 		);
 	};
