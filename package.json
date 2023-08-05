@@ -1,0 +1,23 @@
+{
+  "name": "api---video_games---ts",
+  "version": "1.0.0",
+  "description": "![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cemb93/API-VideoGames-TS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cemb93/API-VideoGames-TS/issues"
+  },
+  "homepage": "https://github.com/Cemb93/API-VideoGames-TS#readme",
+  "dependencies": {
+    "mongoose": "^7.4.2"
+  }
+}
