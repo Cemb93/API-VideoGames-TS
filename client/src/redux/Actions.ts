@@ -1,6 +1,6 @@
 import {EditForm, FormCreate} from "../types/Forms"
 import { Dispatch } from "redux";
-import { GamesGenres, GenerosApi } from "../../../interface/Games/IGames";
+import { GamesGenres, GenerosApi } from "../../../interface/IGames";
 import { ActionsTypes, BACK } from "./Action-Types";
 
 export const getAllGames = () => {

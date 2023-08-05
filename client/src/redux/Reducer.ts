@@ -1,4 +1,4 @@
-import { GamesGenres, IGenres } from "../../../interface/Games/IGames";
+import { GamesGenres, IGenres } from "../../../interface/IGames";
 import { Action } from "../../../interface/Redux/Actions";
 import { InitialState } from "../types/Forms";
 import { ActionsTypes } from "./Action-Types";
