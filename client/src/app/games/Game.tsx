@@ -3,7 +3,7 @@ import { deleteGame } from '@/redux/Actions';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'
-import { GamesGenres, IGenres } from '../../../../interface/Games'
+import { GamesGenres, IGenres } from '../../../../interface/Games/IGames'
 
 export const Game = (
   { _id, name, image, released, rating, platforms, genres }: 

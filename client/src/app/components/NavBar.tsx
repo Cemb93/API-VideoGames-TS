@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/Hooks';
 import { getGenres } from '@/redux/Actions';
 import React, { useEffect } from 'react';
-import { GenerosApi } from '../../../../interface/Games';
+import { GenerosApi } from '../../../../interface/Games/IGames';
 import { INavbar } from '../../../../interface/Destructuring';
 import { InitialState } from '../../types/Forms';
 import SearchBar from './SearchBar';

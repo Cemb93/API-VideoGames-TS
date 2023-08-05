@@ -6,9 +6,7 @@ const { DB } = process.env;
 export const dbConexion = async (): Promise<void> => {
   try {
     if (typeof DB === "string") {
-      // const conn = await connect(DB)
       await connect(DB)
-      console.log("MongoDb Conected is OK!!")
     }
   } catch (error) {
     console.log("Error in conection for:", error)

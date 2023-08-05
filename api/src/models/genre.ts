@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { GenerosApi } from "../../../interface/Games";
+import { GenerosApi } from "../../../interface/IGames";
 
 export const genreModel = model<GenerosApi>("Genre", new Schema<GenerosApi>({
   name: {

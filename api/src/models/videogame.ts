@@ -1,5 +1,6 @@
 import { model, Schema } from "mongoose";
-import { GamesDb } from "../interface/IGamesDb";
+import { GamesDb } from "../../../interface/IGames";
+// import { GamesDb } from "../interface/IGamesDb";
 
 export const VideoGameModel = model<GamesDb>("Videogame", new Schema<GamesDb>({
   name: {

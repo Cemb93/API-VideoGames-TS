@@ -1,21 +1,19 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config();
-import { server } from "./app";
-import { dbConexion } from "./db";
+const app_1 = require("./app");
+const db_1 = require("./db");
 const { PORT } = process.env;
-
 /**
  * mongoose => ODM (ORM) de mongoDb
- * 
+ *
 */
-
-dbConexion().then(() => {
-  server.listen(PORT, () => {
-    console.log(`Listening on PORT:`, 3001);
-    console.log("MongoDb Conected is OK!!");
-  });
+(0, db_1.dbConexion)().then(() => {
+    app_1.server.listen(PORT, () => {
+        console.log(`Listening on PORT:`, 3001);
+        console.log("MongoDb Conected is OK!!");
+    });
 });
-
-
 // //* VER DE LA DOCUMENTACION -> https://typeorm.io/
 // import "reflect-metadata";
 // import dotenv from 'dotenv';
@@ -23,7 +21,6 @@ dbConexion().then(() => {
 // import app from './app';
 // import { AppDataSource } from './db';
 // const { PORT } = process.env;
-
 // async function main () {
 //   try {
 //     await AppDataSource.initialize();
@@ -34,5 +31,4 @@ dbConexion().then(() => {
 //     console.log(`Error en el INDEX principal por:`, error);
 //   }
 // }
-
 // main();
