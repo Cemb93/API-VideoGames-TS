@@ -1,6 +1,6 @@
 // SOLUTION process.env --> https://frontend-digest.com/environment-variables-in-next-js-9a272f0bf655
 
-const BACKEND_URL = process.env.BACKEND_URL as string
+const { BACKEND_URL } = process.env
 
 export enum ActionsTypes {
   GET_ALL_GAMES = 'GET_ALL_GAMES',
@@ -14,16 +14,8 @@ export enum ActionsTypes {
   ORDER_BY_RATING = 'ORDER_BY_RATING',
 }
 
+//* ACA SE REEMPLAZA EL LOCAL POR EL DEPLOY
 export enum BACK {
   games = 'http://localhost:3001/videogames',
-  // games = `${BACKEND_URL}/videogames`,
   genres = 'http://localhost:3001/genres',
-  // genres = `${BACKEND_URL}/genres`,
 }
-
-// export const BACK = {
-//   // games: 'http://localhost:3001/videogames',
-//   games: `${BACKEND_URL}/videogames`,
-//   // genres: 'http://localhost:3001/genres',
-//   genres: `${BACKEND_URL}/genres`,
-// } as const
