@@ -1,4 +1,3 @@
-// import { EditForm, FormCreate } from "@/types/Forms";
 import {EditForm, FormCreate} from "../types/Forms"
 import { Dispatch } from "redux";
 import { GamesGenres, GenerosApi } from "../../../interface/Games";

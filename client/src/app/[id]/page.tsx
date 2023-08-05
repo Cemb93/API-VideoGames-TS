@@ -28,13 +28,13 @@ const EditPage = (props: PropsParams) => {
     platforms: [],
   }
   const [errors, setErrors] = useState<EditError>(formError);
-  const {detail} = useAppSelector((state: InitialState) => state)
+  const { detail } = useAppSelector((state: InitialState) => state)
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { id } = props.params;
 
   useEffect(() => {
-    if ((detail?.id === id)) {
+    if (detail?._id === id) {
       dispatch(getDetailGame(id));
       setGames(games);
     }
