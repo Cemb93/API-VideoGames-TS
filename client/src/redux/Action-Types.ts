@@ -16,8 +16,8 @@ export enum ActionsTypes {
 
 //* ACA SE REEMPLAZA EL LOCAL POR EL DEPLOY
 export enum BACK {
-  games = 'http://localhost:3001/videogames',
-  // games = 'https://demo-games.onrender.com/videogames',
-  genres = 'http://localhost:3001/genres',
-  // genres = 'https://demo-games.onrender.com/genres',
+  // games = 'http://localhost:3001/videogames',
+  games = 'https://demo-games.onrender.com/videogames',
+  // genres = 'http://localhost:3001/genres',
+  genres = 'https://demo-games.onrender.com/genres',
 }
