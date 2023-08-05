@@ -1,4 +1,3 @@
-// import { InitialState } from "@/types/Forms";
 import { GamesGenres, IGenres } from "../../../interface/Games";
 import { Action } from "../../../interface/Redux/Actions";
 import { InitialState } from "../types/Forms";
@@ -35,11 +34,6 @@ export const Reducer = (
       return {
         ...state,
         genres: action.payload,
-      };
-    case ActionsTypes.DELETE_GAME:
-      return {
-        ...state,
-        allGames: [...state.allGames].filter((el) => el.id !== action.payload),
       };
     case ActionsTypes.FILTER_BY_CREATED:
       let filterGame: GamesGenres[] = [];
