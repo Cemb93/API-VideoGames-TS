@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GenerosApi, EndPointP } from "../../../../interface/Games/IGames";
+import { GenerosApi, EndPointP } from "../../../../interface/IGames";
 import { platforms } from "../components/AllPlatforms";
 import {IFormCreated} from "../../../../interface/Destructuring";
 

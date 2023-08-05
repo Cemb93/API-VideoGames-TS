@@ -7,6 +7,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { PropsParams } from "../../../../../interface/PropsParams";
 import { Loading } from "../../components/Loading";
+import { IGenres } from "../../../../../interface/IGames";
 
 export default function DetailPage(props: PropsParams) {
   const dispatch = useAppDispatch();
@@ -24,7 +25,7 @@ export default function DetailPage(props: PropsParams) {
         <div>
           <p>
             <strong>Nombre: </strong>
-            {detail.name.replace(/\b\w/g, l => l.toUpperCase())}
+            {detail.name.replace(/\b\w/g, (l: string) => l.toUpperCase())}
           </p>
           <img
             src={detail.image}
@@ -39,7 +40,7 @@ export default function DetailPage(props: PropsParams) {
           <p>
             <strong>Generos: </strong>
             {
-              detail.genres.map(genre => typeof genre === 'object'? genre.name + ', ' : genre + ', ')
+              detail.genres.map((genre: IGenres | string) => typeof genre === 'object'? genre.name + ', ' : genre + ', ')
             }
           </p>
           <p>
@@ -52,7 +53,7 @@ export default function DetailPage(props: PropsParams) {
           </p>
           <p>
             <strong>Plataformas: </strong>
-            {detail.platforms.map(platform => platform + ', ')}
+            {detail.platforms.map((platform: string) => platform + ', ')}
           </p>
         </div>
       ) : (
