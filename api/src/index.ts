@@ -1,16 +1,17 @@
 require('dotenv').config();
-import server from './app';
+import { server } from "./app";
+import { dbConexion } from "./db";
 const { PORT } = process.env;
-// import { dbConexion } from "./db_demo";
 
 /**
  * mongoose => ODM (ORM) de mongoDb
  * 
 */
 
-server.listen(PORT, () => {
-  console.log(`Listening at PORT:`, 3001);
-  // dbConexion()
+dbConexion().then(() => {
+  server.listen(PORT, () => {
+    console.log(`Listening on PORT:`, 3001);
+  });
 });
 
 

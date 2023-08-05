@@ -2,13 +2,12 @@ import express, { Application, NextFunction, Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import routerGames from "./routes/Games";
-import routerCounty from "./routes/Countries";
 import { dbConexion } from "./db";
 import passport from 'passport'
 import session from 'express-session';
 import cors from "cors";
 
-const server: Application = express();
+export const server: Application = express();
 
 server.use(express.urlencoded({ extended: false }));
 server.use(express.json());
@@ -23,7 +22,6 @@ server.use(
   })
 );
 server.use("/", routerGames);
-// server.use("/", routerCounty);
 
 server.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   console.log('APP typeof REQ:',typeof err)
@@ -41,5 +39,3 @@ server.use(session({
   resave: false,
   saveUninitialized: false
 }));
-
-export default server;

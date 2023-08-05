@@ -4,10 +4,14 @@ dotenv.config();
 const { DB } = process.env;
 
 export const dbConexion = async (): Promise<void> => {
-  if (typeof DB === "string") {
-    await connect(DB)
-      // .then(() => console.log("<<db-connect>>"))
-      // .catch((error) => console.log("No database connection", error))
+  try {
+    if (typeof DB === "string") {
+      // const conn = await connect(DB)
+      await connect(DB)
+      console.log("MongoDb Conected is OK!!")
+    }
+  } catch (error) {
+    console.log("Error in conection for:", error)
   }
 }
 
