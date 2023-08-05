@@ -30,7 +30,7 @@ export const Game = (
       </Link>
       <p>Fecha de lanzamiento: {released}</p>
       <p>Calificación: {rating}</p>
-      <p>Generos: {
+      <h4>Generos: {
         genres.map((el: string | IGenres, index: number) => (
           typeof el === 'object' ? (
             <ul key={index} >
@@ -42,8 +42,8 @@ export const Game = (
             </ul>
           )
         ))  
-      }</p>
-      <p>Plataformas: {
+      }</h4>
+      <h4>Plataformas: {
         platforms.map((el: string) => {
           return (
             <ul key={el} >
@@ -51,7 +51,7 @@ export const Game = (
             </ul>
           );
         })  
-      }</p>
+      }</h4>
       {
         typeof _id === 'string' && (
           <div>
