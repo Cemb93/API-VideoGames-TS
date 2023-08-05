@@ -32,10 +32,10 @@ exports.server.use((err, _req, res, _next) => {
     console.error(err);
     res.status(status).send(message);
 });
-exports.server.use(passport_1.default.initialize());
-exports.server.use(passport_1.default.session());
-exports.server.use((0, express_session_1.default)({
-    secret: typeof process.env.SECRET_SESSION,
-    resave: false,
-    saveUninitialized: false
-}));
+// exports.server.use(passport_1.default.initialize());
+// exports.server.use(passport_1.default.session());
+// exports.server.use((0, express_session_1.default)({
+//     secret: typeof process.env.SECRET_SESSION,
+//     resave: false,
+//     saveUninitialized: false
+// }));

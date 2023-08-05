@@ -32,10 +32,10 @@ server.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   res.status(status).send(message);
 });
 
-server.use(passport.initialize())
-server.use(passport.session())
-server.use(session({
-  secret: typeof process.env.SECRET_SESSION,
-  resave: false,
-  saveUninitialized: false
-}));
+// server.use(passport.initialize())
+// server.use(passport.session())
+// server.use(session({
+//   secret: typeof process.env.SECRET_SESSION,
+//   resave: false,
+//   saveUninitialized: false
+// }));
