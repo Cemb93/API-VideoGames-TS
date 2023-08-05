@@ -9,8 +9,6 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const Games_1 = __importDefault(require("./routes/Games"));
 const db_1 = require("./db");
-const passport_1 = __importDefault(require("passport"));
-const express_session_1 = __importDefault(require("express-session"));
 const cors_1 = __importDefault(require("cors"));
 exports.server = (0, express_1.default)();
 exports.server.use(express_1.default.urlencoded({ extended: false }));
@@ -32,10 +30,10 @@ exports.server.use((err, _req, res, _next) => {
     console.error(err);
     res.status(status).send(message);
 });
-// exports.server.use(passport_1.default.initialize());
-// exports.server.use(passport_1.default.session());
-// exports.server.use((0, express_session_1.default)({
-//     secret: typeof process.env.SECRET_SESSION,
-//     resave: false,
-//     saveUninitialized: false
+// server.use(passport.initialize())
+// server.use(passport.session())
+// server.use(session({
+//   secret: typeof process.env.SECRET_SESSION,
+//   resave: false,
+//   saveUninitialized: false
 // }));

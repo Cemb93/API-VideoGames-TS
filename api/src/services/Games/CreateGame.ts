@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { GamesDb } from "../../../../interface/Games";
 import { VideoGameModel } from "../../models/videogame";
+import { GamesDb } from "../../interface/IGamesDb";
 
 export const createVideoGame = async (req: Request, res: Response) => {
   const game = req.body as GamesDb;

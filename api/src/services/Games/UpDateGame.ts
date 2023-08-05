@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { GamesDb } from "../../../../interface/Games";
 import { VideoGameModel } from "../../models/videogame";
+import { GamesDb } from "../../interface/IGamesDb";
 
 export const upDateGame = async (req: Request, res: Response) => {
   const { id } = req.params;
