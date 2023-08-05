@@ -1,6 +1,6 @@
-import { GamesGenres, GenerosApi } from "./Games/IGames";
 import {EditError, EditForm, FormCreate, FormError} from "../client/src/types/Forms";
 import {EventChanges, EventDeleteG, EventDeleteP, EventSelect, EventSubmit} from "../client/src/types/Function";
+import { GamesGenres, GenerosApi } from "./IGames";
 
 export interface IFormCreated {
   games: FormCreate

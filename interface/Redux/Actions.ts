@@ -1,5 +1,5 @@
 import { ActionsTypes } from "@/redux/Action-Types";
-import {GamesGenres, GenerosApi} from '../Games/IGames';
+import {GamesGenres, GenerosApi} from '../IGames';
 
 export interface AllGames {
   type: ActionsTypes.GET_ALL_GAMES
